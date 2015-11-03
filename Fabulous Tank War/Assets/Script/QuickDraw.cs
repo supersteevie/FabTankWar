@@ -13,13 +13,21 @@ public class QuickDraw : MonoBehaviour {
 	public GameObject panel;
 	public bool firedEarly;
 
+	public AudioSource music;
+	public AudioSource ping;
+	public AudioSource boom;
+
 	void Start () 
 	{
 		Invoke ("ExclaimShow", Random.Range(5f,10f));
 	}
 	void ExclaimShow()
 	{
-		exclaim.enabled = true;
+		if (!firedEarly) {
+			music.mute = true;
+			ping.Play ();
+			exclaim.enabled = true;
+		}
 	}
 
 	void Update()
@@ -38,7 +46,7 @@ public class QuickDraw : MonoBehaviour {
 
 		if (exclaim.isActiveAndEnabled) 
 		{
-			StartCoroutine(EnemyDelay(Random.Range(0.25f, 0.5f)));
+			StartCoroutine(EnemyDelay(Random.Range(0.2f, 0.25f)));
 		}
 
 		if (!exclaim.isActiveAndEnabled && Input.GetAxis("Fire1") > 0 && !hasShot) 
@@ -52,6 +60,7 @@ public class QuickDraw : MonoBehaviour {
 			panel.SetActive(true);
 			resultText.text = "You shot too soon, You Lost!";
 			firedEarly = true;
+			music.mute = true;
 		}
 	}
 

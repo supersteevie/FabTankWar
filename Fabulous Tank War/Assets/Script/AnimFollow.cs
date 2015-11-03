@@ -9,7 +9,6 @@ public class AnimFollow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		lookAtPlyr = true;
 		animPlay = true;
 	}
 	
@@ -17,7 +16,7 @@ public class AnimFollow : MonoBehaviour {
 	void Update () {
 		if (lookAtPlyr == true)
 			transform.LookAt (player);
-		//if (animPlay == false)
-
+        //if (animPlay == false)
+            
 	}
 }

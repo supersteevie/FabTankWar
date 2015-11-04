@@ -17,17 +17,30 @@ public class QuickDraw : MonoBehaviour {
 	public AudioSource music;
 	public AudioSource ping;
 	public AudioSource boom;
+	public AudioSource dance;
 
+
+	void Start()
+	{
+	int a = Random.Range (0, 2);
+		switch (a) 
+		{
+		case 0:
+			dance.Play();
+			break;
+		case 1:
+			dance.Play();
+			break;
+		}
+	}
 	public void StartTimer () 
 	{
 		Invoke ("ExclaimShow", Random.Range(5f,10f));
 		hasStarted = true;		
-		music.mute = true;
 	}
 	void ExclaimShow()
 	{
 		if (!firedEarly) {
-			music.mute = true;
 			ping.Play ();
 			exclaim.enabled = true;
 		}
@@ -36,6 +49,20 @@ public class QuickDraw : MonoBehaviour {
 	void Update()
 	{
 		if (hasStarted) {
+
+			if(music.volume >= 0.2f && !panel.activeSelf)
+			{
+				music.volume -= Time.deltaTime / 5f;
+				dance.volume -= Time.deltaTime / 5f;
+			}
+
+			if(panel.activeSelf && boom.volume >= 0)
+			{
+				boom.volume -= Time.deltaTime / 5f;
+				dance.volume -= Time.deltaTime / 5f;
+			}
+			
+			
 			if (exclaim.isActiveAndEnabled && Input.GetAxis ("Fire1") > 0 && !hasShot && !firedEarly) {
 				GameObject bullet = Instantiate (bulletPrefab, transform.position, transform.rotation) as GameObject; 
 				Physics.IgnoreCollision (bullet.GetComponent<Collider> (), player.GetComponent<Collider> ());
@@ -45,6 +72,7 @@ public class QuickDraw : MonoBehaviour {
 				exclaim.enabled = false;
 				panel.SetActive (true);
 				resultText.text = "OH SNAP!";
+				boom.Play();
 			}
 
 			if (exclaim.isActiveAndEnabled) {
@@ -62,6 +90,7 @@ public class QuickDraw : MonoBehaviour {
 				resultText.text = "Got a little excited there, eh?";
 				firedEarly = true;
 				music.mute = true;
+				boom.Play();
 			}
 		}
 	}
@@ -79,6 +108,7 @@ public class QuickDraw : MonoBehaviour {
 			exclaim.enabled = false;			
 			panel.SetActive(true);
 			resultText.text = "Haha... loser.";
+			boom.Play();
 		}
 	}
 

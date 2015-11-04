@@ -16,7 +16,7 @@ public class BeginShowdown : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (transform.position == finalPos && !calledMethod) {
-			gameObject.GetComponent<Rigidbody>().isKinematic = false;
+			GetComponent<Animator>().enabled = false;
 			GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().StartTimer();
 			calledMethod = true;
 		}

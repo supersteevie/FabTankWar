@@ -12,14 +12,17 @@ public class QuickDraw : MonoBehaviour {
 	public Text resultText;
 	public GameObject panel;
 	public bool firedEarly;
+	public bool hasStarted;
 
 	public AudioSource music;
 	public AudioSource ping;
 	public AudioSource boom;
 
-	void Start () 
+	public void StartTimer () 
 	{
 		Invoke ("ExclaimShow", Random.Range(5f,10f));
+		hasStarted = true;		
+		music.mute = true;
 	}
 	void ExclaimShow()
 	{
@@ -32,35 +35,34 @@ public class QuickDraw : MonoBehaviour {
 
 	void Update()
 	{
-		if (exclaim.isActiveAndEnabled && Input.GetAxis("Fire1") > 0 && !hasShot && !firedEarly) 
-		{
-			GameObject bullet = Instantiate (bulletPrefab, transform.position, transform.rotation) as GameObject; 
-			Physics.IgnoreCollision(bullet.GetComponent<Collider>(), player.GetComponent<Collider>());
-			bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * 2000f);
-			Destroy(bullet, .5f);
-			hasShot = true;
-			exclaim.enabled = false;
-			panel.SetActive(true);
-			resultText.text = "You Won! :D";
-		}
+		if (hasStarted) {
+			if (exclaim.isActiveAndEnabled && Input.GetAxis ("Fire1") > 0 && !hasShot && !firedEarly) {
+				GameObject bullet = Instantiate (bulletPrefab, transform.position, transform.rotation) as GameObject; 
+				Physics.IgnoreCollision (bullet.GetComponent<Collider> (), player.GetComponent<Collider> ());
+				bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * 2000f);
+				Destroy (bullet, .5f);
+				hasShot = true;
+				exclaim.enabled = false;
+				panel.SetActive (true);
+				resultText.text = "OH SNAP!";
+			}
 
-		if (exclaim.isActiveAndEnabled) 
-		{
-			StartCoroutine(EnemyDelay(Random.Range(0.2f, 0.25f)));
-		}
+			if (exclaim.isActiveAndEnabled) {
+				StartCoroutine (EnemyDelay (Random.Range (0.35f, 0.5f)));
+			}
 
-		if (!exclaim.isActiveAndEnabled && Input.GetAxis("Fire1") > 0 && !hasShot) 
-		{
-			GameObject bullet = Instantiate (bulletPrefab, transform.position - transform.forward * 10, transform.rotation) as GameObject;
-			bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * 2000f);
-			bullet.GetComponent<MeshRenderer>().enabled = false;
-			Destroy(bullet, .5f);
-			hasShot = true;
-			exclaim.enabled = false;			
-			panel.SetActive(true);
-			resultText.text = "You shot too soon, You Lost!";
-			firedEarly = true;
-			music.mute = true;
+			if (!exclaim.isActiveAndEnabled && Input.GetAxis ("Fire1") > 0 && !hasShot) {
+				GameObject bullet = Instantiate (bulletPrefab, transform.position - transform.forward * 10, transform.rotation) as GameObject;
+				bullet.GetComponent<Rigidbody> ().AddForce (bullet.transform.forward * 2000f);
+				bullet.GetComponent<MeshRenderer> ().enabled = false;
+				Destroy (bullet, .5f);
+				hasShot = true;
+				exclaim.enabled = false;			
+				panel.SetActive (true);
+				resultText.text = "Got a little excited there, eh?";
+				firedEarly = true;
+				music.mute = true;
+			}
 		}
 	}
 
@@ -76,12 +78,12 @@ public class QuickDraw : MonoBehaviour {
 			hasShot = true;
 			exclaim.enabled = false;			
 			panel.SetActive(true);
-			resultText.text = "You Lost! :(";
+			resultText.text = "Haha... loser.";
 		}
 	}
 
 	public void Restart()
 	{
-		Application.LoadLevel (0);
+		Application.LoadLevel (1);
 	}
 }

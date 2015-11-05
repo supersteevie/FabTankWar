@@ -26,7 +26,7 @@ public class QuickDraw : MonoBehaviour {
 		switch (a) 
 		{
 		case 0:
-			dance.Play();
+			music.Play();
 			break;
 		case 1:
 			dance.Play();
@@ -36,7 +36,8 @@ public class QuickDraw : MonoBehaviour {
 	public void StartTimer () 
 	{
 		Invoke ("ExclaimShow", Random.Range(5f,10f));
-		hasStarted = true;		
+		hasStarted = true;
+        player.GetComponent<Rigidbody>().isKinematic = false;
 	}
 	void ExclaimShow()
 	{

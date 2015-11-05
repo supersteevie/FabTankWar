@@ -71,9 +71,9 @@ public class QuickDraw : MonoBehaviour {
 				Destroy (bullet, .5f);
 				hasShot = true;
 				exclaim.enabled = false;
-				panel.SetActive (true);
 				resultText.text = "OH SNAP!";
-				boom.Play();
+                //panel.SetActive(true);
+                boom.Play();
 			}
 
 			if (exclaim.isActiveAndEnabled) {
@@ -87,11 +87,11 @@ public class QuickDraw : MonoBehaviour {
 				Destroy (bullet, .5f);
 				hasShot = true;
 				exclaim.enabled = false;			
-				panel.SetActive (true);
 				resultText.text = "Got a little excited there, eh?";
 				firedEarly = true;
 				music.mute = true;
-				boom.Play();
+                //panel.SetActive(true);
+                boom.Play();
 			}
 		}
 	}

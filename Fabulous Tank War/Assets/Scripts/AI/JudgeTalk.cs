@@ -20,7 +20,7 @@ public class JudgeTalk : MonoBehaviour {
     8 = Congratulations
     */
 
-    public Image[] emojis;
+    public Sprite[] emojis;
     /* 
     0 = Negative response to quickTimeResponse
     1 = Positive response to quickTimeResponse
@@ -65,6 +65,7 @@ public class JudgeTalk : MonoBehaviour {
         {
             case 0:
                 score = player.GetComponent<TankAttributes>().TnkBeauty;
+                didSpin = GameObject.Find("Response Swipe Button").GetComponent<QuickTimeCircle>().circleCompleted;
                 break;
             case 2:
                 score = player.GetComponent<TankAttributes>().TnkPower;
@@ -87,9 +88,10 @@ public class JudgeTalk : MonoBehaviour {
         gameObject.SetActive(true);
         score = didSpin ? score + bias : score;
         i = score > scrutiny ? i : i-1;
-        mainEmoji = emojis[i];
+        mainEmoji.sprite = emojis[i];
         speechBubble.text = responses[i];
         result += score;
+        didSpin = false;
     }
 
     void ClickContinue ()

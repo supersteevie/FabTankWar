@@ -44,14 +44,14 @@ public class JudgeTalk : MonoBehaviour {
     public delegate void JudgesTalk(int num);
     public JudgesTalk judgesTalk;
 
-    private Image mainEmoji;
-    private Text speechBubble;
+	public Image mainEmoji;
+    public Text speechBubble;
 
     // Use this for initialization
     void Start () {
         mainEmoji = gameObject.GetComponent<Image>();
         speechBubble = gameObject.GetComponentInChildren<Text>();
-        gameObject.SetActive(false);
+		gameObject.GetComponent<Image> ().enabled = false;
     }
 	
 	// Update is called once per frame
@@ -61,19 +61,20 @@ public class JudgeTalk : MonoBehaviour {
 
     IEnumerator JudgeEvaluate (int stage)
     {
+		gameObject.GetComponent<Image> ().enabled = true;
         switch (stage)
         {
-            case 0:
-                score = player.GetComponent<TankAttributes>().TnkBeauty;
+			case 1:
+				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkBeauty;
                 didSpin = GameObject.Find("Response Swipe Button").GetComponent<QuickTimeCircle>().circleCompleted;
                 break;
-            case 2:
-                score = player.GetComponent<TankAttributes>().TnkPower;
+            case 3:
+				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkPower;
                 break;
-            case 4:
-                score = player.GetComponent<TankAttributes>().TnkDurability;
+            case 5:
+				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkDurability;
                 break;
-            case 6:
+            case 7:
                 result = result / 3;
                 break;
         }
@@ -85,7 +86,6 @@ public class JudgeTalk : MonoBehaviour {
 
     void EvaluateSpin (int i)
     {
-        gameObject.SetActive(true);
         score = didSpin ? score + bias : score;
         i = score > scrutiny ? i : i-1;
         mainEmoji.sprite = emojis[i];
@@ -94,9 +94,9 @@ public class JudgeTalk : MonoBehaviour {
         didSpin = false;
     }
 
-    void ClickContinue ()
+    public void ClickContinue ()
     {
-        gameObject.SetActive(false);
+		gameObject.GetComponent<Image> ().enabled = false;
         StopCoroutine("JudgeEvaluate");
     }
 

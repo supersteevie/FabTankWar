@@ -20,6 +20,7 @@ public class BeginShowdown : MonoBehaviour {
     public GameObject swipeCircle;
     public GameObject camFollower;
     public int swipeTime;
+	public TankAttributes tankPlayer;
 
     // Use this for initialization
     void Start()
@@ -29,11 +30,11 @@ public class BeginShowdown : MonoBehaviour {
         camFollower = GameObject.Find("Main Camera");
 
         camFollower.GetComponent<AnimFollow>().StartCoroutine("CameraMoving", camFollower.GetComponent<AnimFollow>().midpoint);
-        RunwayRoll(spinPos);
-        stage = 0;
+        StartCoroutine( RunwayRoll(spinPos));
+        stage = 1;
 
         //This tank's attributes
-        TankAttributes tankPlayer = new TankAttributes();
+        tankPlayer = new TankAttributes();
         tankPlayer.TnkBeauty = beauty;
         tankPlayer.TnkDurability = durability;
         tankPlayer.TnkPower = firepower;
@@ -75,7 +76,6 @@ public class BeginShowdown : MonoBehaviour {
         //Function where judging begins. While loop of judges.
         if (stage < 2)
         {
-            swipeCircle.SetActive(true);
             swipeCircle.GetComponent<QuickTimeCircle>().StartCircleQuickTime(swipeTime);
             yield return new WaitForSeconds(swipeTime);
         }
@@ -89,6 +89,7 @@ public class BeginShowdown : MonoBehaviour {
     {
         for (int i = 0; i < judgeNPCs.Length; i++)
         {
+			judgeNPCs[i].SetActive(true);
             judgeNPCs[i].GetComponent<JudgeTalk>().StartCoroutine("JudgeEvaluate", num);
         }
         num += 2;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ public class QuickTimeCircle : MonoBehaviour {
     //Method called to start the quicktime event	
     public void StartCircleQuickTime(float time)
     {
-        Invoke("StopCircle", time);
+		Invoke("StopCircleQuickTime", time);
         hasStarted = true;
     }
 
@@ -23,7 +24,12 @@ public class QuickTimeCircle : MonoBehaviour {
     public void StopCircleQuickTime()
     {
         hasStarted = false;
+		gameObject.GetComponent<Image> ().enabled = true;
     }
+
+	public void Start () {
+		gameObject.GetComponent<Image> ().enabled = false;
+	}
 
 	void Update ()
     {
@@ -67,6 +73,7 @@ public class QuickTimeCircle : MonoBehaviour {
                         {
                             circleCompleted = true;
                             StopCircleQuickTime();
+							gameObject.GetComponent<Image>().enabled=false;
                         }
                 }
             }

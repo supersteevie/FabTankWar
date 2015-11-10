@@ -12,8 +12,11 @@ public class AnimFollow : MonoBehaviour {
     public Vector3 end;
     public float smoothing;
 
+    public Vector3 newPos;
+
 	// Use this for initialization
 	void Start () {
+        newPos = midpoint;
 		animPlay = true;
         smoothing = GameObject.Find("PlayerTank").GetComponent<BeginShowdown>().smoothing;
         transform.position = start;
@@ -27,6 +30,16 @@ public class AnimFollow : MonoBehaviour {
             
 	}
 
+    public void GoCamera ()
+    {
+
+        if (GameObject.Find("PlayerTank").GetComponent<BeginShowdown>().stage < 2)
+        {
+            newPos = midpoint;
+        }
+        StartCoroutine(CameraMoving(newPos));
+    }
+
     IEnumerator CameraMoving (Vector3 target)
     {
         while (Vector3.Distance(transform.position, target) > 0.05f)
@@ -35,7 +48,7 @@ public class AnimFollow : MonoBehaviour {
 
             yield return null;
         }
-
+        //transform.position = target;
         yield return null;
     }
 }

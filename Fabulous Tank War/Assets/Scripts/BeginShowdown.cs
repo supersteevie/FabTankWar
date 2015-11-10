@@ -19,7 +19,6 @@ public class BeginShowdown : MonoBehaviour {
 
     public GameObject swipeCircle;
     public GameObject camFollower;
-    public int swipeTime;
 	public TankAttributes tankPlayer;
 
     // Use this for initialization
@@ -28,8 +27,9 @@ public class BeginShowdown : MonoBehaviour {
         finalPos = new Vector3(-6, 0, -1);
         calledMethod = false;
         camFollower = GameObject.Find("Main Camera");
+        swipeCircle = GameObject.Find("Response Swipe Button");
 
-        camFollower.GetComponent<AnimFollow>().StartCoroutine("CameraMoving", camFollower.GetComponent<AnimFollow>().midpoint);
+        camFollower.GetComponent<AnimFollow>().GoCamera();
         StartCoroutine( RunwayRoll(spinPos));
         stage = 1;
 
@@ -45,9 +45,22 @@ public class BeginShowdown : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, spinPos) <= 0.05f)
+        {
+            if (!swipeCircle.GetComponent<QuickTimeResponse>().hasStarted)
+            {
+                swipeCircle.GetComponent<QuickTimeResponse>().WhenActive();
+            }
+            if (swipeCircle.GetComponent<QuickTimeResponse>().isFinished)
+            {
+                TimeToJudge();
+                swipeCircle.GetComponent<QuickTimeResponse>().isFinished = false;
+            }
+        }
+
         if (stage >=2 && !GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().hasShot)
         {
-            camFollower.GetComponent<AnimFollow>().StartCoroutine("CameraMoving", camFollower.GetComponent<AnimFollow>().end);
+            camFollower.GetComponent<AnimFollow>().GoCamera();
             RunwayRoll(finalPos);
         }
         if (transform.position == finalPos && !calledMethod)
@@ -66,33 +79,27 @@ public class BeginShowdown : MonoBehaviour {
 
     IEnumerator RunwayRoll(Vector3 target)
     {
+        //moving the tank
         while (Vector3.Distance(transform.position, target) > 0.05f)
         {
             transform.position = Vector3.Lerp(transform.position, target, smoothing * Time.deltaTime);
 
             yield return null;
         }
-
-        //Function where judging begins. While loop of judges.
-        if (stage < 2)
-        {
-            swipeCircle.GetComponent<QuickTimeCircle>().StartCircleQuickTime(swipeTime);
-            yield return new WaitForSeconds(swipeTime);
-        }
-
-        TimeToJudge(stage);
+        //transform.position = target;
 
         yield return null;
     }
 
-    void TimeToJudge(int num)
+
+    public void TimeToJudge()
     {
         for (int i = 0; i < judgeNPCs.Length; i++)
         {
 			judgeNPCs[i].SetActive(true);
-            judgeNPCs[i].GetComponent<JudgeTalk>().StartCoroutine("JudgeEvaluate", num);
+            judgeNPCs[i].GetComponent<JudgeTalk>().StartCoroutine("JudgeEvaluate", stage);
         }
-        num += 2;
+        stage += 2;
     }
 
 }

@@ -36,7 +36,7 @@ public class JudgeTalk : MonoBehaviour {
     public int scrutiny;
     public int bias;
 
-    public bool didSpin;
+    public bool didEvent;
 
     private int score;
     public int result;
@@ -52,6 +52,7 @@ public class JudgeTalk : MonoBehaviour {
         mainEmoji = gameObject.GetComponent<Image>();
         speechBubble = gameObject.GetComponentInChildren<Text>();
 		gameObject.GetComponent<Image> ().enabled = false;
+        speechBubble.enabled= false;
     }
 	
 	// Update is called once per frame
@@ -62,11 +63,11 @@ public class JudgeTalk : MonoBehaviour {
     IEnumerator JudgeEvaluate (int stage)
     {
 		gameObject.GetComponent<Image> ().enabled = true;
+        speechBubble.enabled = true;
         switch (stage)
         {
 			case 1:
 				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkBeauty;
-                didSpin = GameObject.Find("Response Swipe Button").GetComponent<QuickTimeCircle>().circleCompleted;
                 break;
             case 3:
 				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkPower;
@@ -84,20 +85,22 @@ public class JudgeTalk : MonoBehaviour {
         yield return new WaitForSeconds(60f);
     }
 
-    void EvaluateSpin (int i)
+    void EvaluateSpin (int refNum)
     {
-        score = didSpin ? score + bias : score;
-        i = score > scrutiny ? i : i-1;
-        mainEmoji.sprite = emojis[i];
-        speechBubble.text = responses[i];
+        //didEvent = GameObject.Find("Response Swipe Button").GetComponent<QuickTimeResponse>().circleCompleted;
+        score = didEvent ? score + bias : score;
+        refNum = score > scrutiny ? refNum : refNum-1;
+        mainEmoji.sprite = emojis[refNum];
+        speechBubble.text = responses[refNum];
         result += score;
-        didSpin = false;
+        didEvent = false;
     }
 
     public void ClickContinue ()
     {
 		gameObject.GetComponent<Image> ().enabled = false;
-        StopCoroutine("JudgeEvaluate");
+        speechBubble.enabled = false;
+        StopAllCoroutines();
     }
 
 }

@@ -20,7 +20,7 @@ public class JudgeTalk : MonoBehaviour {
     8 = Congratulations
     */
 
-    public Image[] emojis;
+    public Sprite[] emojis;
     /* 
     0 = Negative response to quickTimeResponse
     1 = Positive response to quickTimeResponse
@@ -36,7 +36,7 @@ public class JudgeTalk : MonoBehaviour {
     public int scrutiny;
     public int bias;
 
-    public bool didSpin;
+    public bool didEvent;
 
     private int score;
     public int result;
@@ -44,14 +44,15 @@ public class JudgeTalk : MonoBehaviour {
     public delegate void JudgesTalk(int num);
     public JudgesTalk judgesTalk;
 
-    private Image mainEmoji;
-    private Text speechBubble;
+	public Image mainEmoji;
+    public Text speechBubble;
 
     // Use this for initialization
     void Start () {
         mainEmoji = gameObject.GetComponent<Image>();
         speechBubble = gameObject.GetComponentInChildren<Text>();
-        gameObject.SetActive(false);
+		gameObject.GetComponent<Image> ().enabled = false;
+        speechBubble.enabled= false;
     }
 	
 	// Update is called once per frame
@@ -61,18 +62,20 @@ public class JudgeTalk : MonoBehaviour {
 
     IEnumerator JudgeEvaluate (int stage)
     {
+		gameObject.GetComponent<Image> ().enabled = true;
+        speechBubble.enabled = true;
         switch (stage)
         {
-            case 0:
-                score = player.GetComponent<TankAttributes>().TnkBeauty;
+			case 1:
+				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkBeauty;
                 break;
-            case 2:
-                score = player.GetComponent<TankAttributes>().TnkPower;
+            case 3:
+				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkPower;
                 break;
-            case 4:
-                score = player.GetComponent<TankAttributes>().TnkDurability;
+            case 5:
+				score = player.GetComponent<BeginShowdown>().tankPlayer.TnkDurability;
                 break;
-            case 6:
+            case 7:
                 result = result / 3;
                 break;
         }
@@ -82,20 +85,22 @@ public class JudgeTalk : MonoBehaviour {
         yield return new WaitForSeconds(60f);
     }
 
-    void EvaluateSpin (int i)
+    void EvaluateSpin (int refNum)
     {
-        gameObject.SetActive(true);
-        score = didSpin ? score + bias : score;
-        i = score > scrutiny ? i : i-1;
-        mainEmoji = emojis[i];
-        speechBubble.text = responses[i];
+        //didEvent = GameObject.Find("Response Swipe Button").GetComponent<QuickTimeResponse>().circleCompleted;
+        score = didEvent ? score + bias : score;
+        refNum = score > scrutiny ? refNum : refNum-1;
+        mainEmoji.sprite = emojis[refNum];
+        speechBubble.text = responses[refNum];
         result += score;
+        didEvent = false;
     }
 
-    void ClickContinue ()
+    public void ClickContinue ()
     {
-        gameObject.SetActive(false);
-        StopCoroutine("JudgeEvaluate");
+		gameObject.GetComponent<Image> ().enabled = false;
+        speechBubble.enabled = false;
+        StopAllCoroutines();
     }
 
 }

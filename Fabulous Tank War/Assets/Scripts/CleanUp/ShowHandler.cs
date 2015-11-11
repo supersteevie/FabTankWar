@@ -25,6 +25,7 @@ public class ShowHandler : MonoBehaviour {
 
 	//First Stage
 	//...Judges evaluate beauty as tank goes down the runway
+	//...If quicktime event = successful then add bonus points
 
 
 	//Second Stage

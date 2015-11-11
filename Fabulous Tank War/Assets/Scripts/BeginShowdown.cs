@@ -45,7 +45,7 @@ public class BeginShowdown : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, spinPos) <= 0.05f)
+        if (Vector3.Distance(transform.position, spinPos) <= 0.05f && stage < 2)
         {
             if (!swipeCircle.GetComponent<QuickTimeResponse>().hasStarted)
             {
@@ -53,27 +53,34 @@ public class BeginShowdown : MonoBehaviour {
             }
             if (swipeCircle.GetComponent<QuickTimeResponse>().isFinished)
             {
-                TimeToJudge();
+                StartCoroutine( NextStage());
+                //StopAllCoroutines();
                 swipeCircle.GetComponent<QuickTimeResponse>().isFinished = false;
             }
         }
 
-        if (stage >=2 && !GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().hasShot)
+        if (stage > 2)
         {
-            camFollower.GetComponent<AnimFollow>().GoCamera();
-            RunwayRoll(finalPos);
+            Debug.Log("Stage: " + stage);
+            if (!GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().hasShot)
+            {
+                camFollower.GetComponent<AnimFollow>().GoCamera();
+                StartCoroutine( RunwayRoll(finalPos));
+            }
+
+            if (Vector3.Distance(transform.position, finalPos) <= 0.05f && !calledMethod)
+            {
+                GetComponent<Animator>().enabled = false;
+                GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().StartTimer();
+                calledMethod = true;
+            }
+
+            if (calledMethod && GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().hasShot)
+            {
+                GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().panel.SetActive(true);
+            }
         }
-        if (transform.position == finalPos && !calledMethod)
-        {
-            GetComponent<Animator>().enabled = false;
-            GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().StartTimer();
-            calledMethod = true;
-        }
-        if (calledMethod && GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().hasShot)
-        {
-            RunwayRoll(finalPos);
-            GameObject.Find("#Gamehandler").GetComponent<QuickDraw>().panel.SetActive(true);
-        }
+
 
     }
 
@@ -99,7 +106,17 @@ public class BeginShowdown : MonoBehaviour {
 			judgeNPCs[i].SetActive(true);
             judgeNPCs[i].GetComponent<JudgeTalk>().StartCoroutine("JudgeEvaluate", stage);
         }
+    }
+
+    IEnumerator NextStage()
+    {
+        TimeToJudge();
+        yield return new WaitForSeconds(3f);
+
         stage += 2;
+
+        yield return null;
+
     }
 
 }

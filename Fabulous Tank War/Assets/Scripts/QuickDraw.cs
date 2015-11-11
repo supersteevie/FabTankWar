@@ -22,6 +22,7 @@ public class QuickDraw : MonoBehaviour {
 
 	void Start()
 	{
+        hasShot = false;
 	int a = Random.Range (0, 2);
 		switch (a) 
 		{
@@ -72,7 +73,7 @@ public class QuickDraw : MonoBehaviour {
 				hasShot = true;
 				exclaim.enabled = false;
 				resultText.text = "OH SNAP!";
-                //panel.SetActive(true);
+                panel.SetActive(true);
                 boom.Play();
 			}
 
@@ -90,7 +91,7 @@ public class QuickDraw : MonoBehaviour {
 				resultText.text = "Got a little excited there, eh?";
 				firedEarly = true;
 				music.mute = true;
-                //panel.SetActive(true);
+                panel.SetActive(true);
                 boom.Play();
 			}
 		}

@@ -6,6 +6,7 @@ public class AnimFollow : MonoBehaviour {
 	public bool lookAtPlyr;
 	public bool animPlay;
 	public Transform player;
+    public Transform runwayEnd;
 
     public Vector3 start;
     public Vector3 midpoint;
@@ -36,7 +37,13 @@ public class AnimFollow : MonoBehaviour {
         if (GameObject.Find("PlayerTank").GetComponent<BeginShowdown>().stage < 2)
         {
             newPos = midpoint;
+        } else
+        {
+            newPos = end;
+            lookAtPlyr = false;
+            transform.LookAt(runwayEnd);
         }
+        //StopAllCoroutines();
         StartCoroutine(CameraMoving(newPos));
     }
 

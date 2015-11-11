@@ -82,7 +82,12 @@ public class JudgeTalk : MonoBehaviour {
 
         EvaluateSpin(stage);
 
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(3f);
+
+        gameObject.GetComponent<Image>().enabled = false;
+        speechBubble.enabled = false;
+
+        yield return null;
     }
 
     void EvaluateSpin (int refNum)
@@ -94,13 +99,9 @@ public class JudgeTalk : MonoBehaviour {
         speechBubble.text = responses[refNum];
         result += score;
         didEvent = false;
-    }
 
-    public void ClickContinue ()
-    {
-		gameObject.GetComponent<Image> ().enabled = false;
-        speechBubble.enabled = false;
-        StopAllCoroutines();
+        Debug.Log("Score: " + score);
+        Debug.Log("Total Score: " + result);
     }
 
 }

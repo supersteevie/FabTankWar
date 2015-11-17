@@ -10,6 +10,9 @@ public class NewProtoGamehandler : MonoBehaviour {
     //
 
     public PlayerReacts playerReactScript;
+    //Delegate for quick time responses
+    delegate void QuickTimeEvents();
+    QuickTimeEvents quickTimeEvents;
 
     public GameObject playerObj;
     public GameObject towerObj;
@@ -42,5 +45,24 @@ public class NewProtoGamehandler : MonoBehaviour {
         }
     }
 
+    /*
+    void QuicktimeSwitcher(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                quickTimeEvents() = playerReactScript.QuickMove();
+                break;
+            case 1:
+                quickTimeEvents() = playerReactScript.Quickfire();
+                break;
+            case 2:
+                quickTimeEvents() = playerReactScript.ShieldBuff();
+                break;
+            default:
+                break;
+        }
+    }
+    */
 
 }

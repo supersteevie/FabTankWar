@@ -5,9 +5,12 @@ public class PlayerReacts : MonoBehaviour {
 
     //x position for the three lanes on the runway: Left = -3, Center = 0, Right = 3
 
-    //Delegate for quick time responses
-    delegate void QuickTimeEvents();
-    QuickTimeEvents quickTimeEvents;
+    private int taps;
+    public int Taps()
+    {
+        taps++;
+        return taps;
+    }
 
     //Speed that tank moves between lanes
     public float smoothingSpeed = 2;
@@ -42,7 +45,7 @@ public class PlayerReacts : MonoBehaviour {
     //--> More taps in allotted time = +bonus points to durability
 
     //Moves tank between lanes and offers bonus points for accuracy
-    void QuickMove(float locLane, GameObject playerTank, bool success)
+    public void QuickMove(float locLane, GameObject playerTank, bool success)
     {
         //if button = swipeRight move player 1 lane to the right
         //if button = swipeLeft move player 1 lane to the left
@@ -67,14 +70,24 @@ public class PlayerReacts : MonoBehaviour {
     }
 
     //Tank fires in response to image shown
-    void Quickfire()
+    public void Quickfire()
     {
 
     }
 
     //Players taps rapidly to buff shield of tank when they see an incoming bomb
-    void BuffShield()
+    IEnumerator BuffsShield(int num, int pulse, int tapTime, bool buffed)
     {
+        yield return new WaitForSeconds(tapTime);
+        if (num >= pulse)
+        {
+            buffed = true;
+        }
+        else
+        {
+            buffed = false;
+        }
 
+        yield return null;
     }
 }

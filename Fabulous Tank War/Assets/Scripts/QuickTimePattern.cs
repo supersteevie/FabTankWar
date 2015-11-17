@@ -15,17 +15,18 @@ public class QuickTimePattern : MonoBehaviour {
     {
         //Adds the list to queue
         foreach (Transform pos in patternList)
-            currentTemp.Enqueue(GetComponent<Camera>().WorldToScreenPoint(pos.position));
+            currentTemp.Enqueue(Camera.main.GetComponent<Camera>().WorldToScreenPoint(pos.position));
     }
 
-	void Update ()
+    void Update()
     {
         //Stop once all points are hit
-        if(currentTemp.Count > 0)
-            if(Input.GetAxis("Fire1") > 0)  //Check if the button is pressed down
+        print(currentTemp.Count);
+        if (currentTemp.Count > 0)
+            if (Input.GetAxis("Fire1") > 0)  //Check if the button is pressed down
+            {
                 if (Vector2.Distance(currentTemp.Peek(), Input.mousePosition) <= radiusDetection)   //See if it within the desired radius
-                {
                     currentTemp.Dequeue(); //Remove from queue once it is detected
-                }       
+            }
 	}
 }

@@ -34,12 +34,14 @@ public class QuickDraw : MonoBehaviour {
 			break;
 		}
 	}
+
 	public void StartTimer () 
 	{
 		Invoke ("ExclaimShow", Random.Range(5f,10f));
 		hasStarted = true;
         player.GetComponent<Rigidbody>().isKinematic = false;
 	}
+
 	void ExclaimShow()
 	{
 		if (!firedEarly) {

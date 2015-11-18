@@ -11,11 +11,12 @@ public class QuickTimePattern : MonoBehaviour {
     //For list of points
     private Queue<Vector2> currentTemp = new Queue<Vector2>();
 
-    void Start()
+    IEnumerator StartQuickTimePattern(float timer)
     {
         //Adds the list to queue
         foreach (Transform pos in patternList)
             currentTemp.Enqueue(Camera.main.GetComponent<Camera>().WorldToScreenPoint(pos.position));
+        yield return new WaitForSeconds(timer);
     }
 
     void Update()

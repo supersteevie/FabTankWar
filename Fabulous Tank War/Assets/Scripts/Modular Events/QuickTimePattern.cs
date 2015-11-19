@@ -60,4 +60,7 @@ public class QuickTimePattern : MonoBehaviour
                 isRunning = false;
             }
     }
+
+
+
 }

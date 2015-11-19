@@ -15,18 +15,55 @@ public class PlayerReacts : MonoBehaviour {
     //Speed that tank moves between lanes
     public float smoothingSpeed = 2;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+    delegate IEnumerator QuickTimeDelegate();
 
-    //Method to run quicktime events
-    IEnumerator TankResponds()
+    QuickTimeDelegate receiveTouch;
+
+    GameObject playerTank;
+
+    public float direction; //Must be either 3 or -3. 3 if the image points to the right. -3 if the image points to the left.
+
+    private float destinationLane;
+    public float DestinationLane
     {
-
-        yield return null;
+        get
+        {
+            return destinationLane;
+        }
+        set
+        {
+            if (lanePosition >= 3 || lanePosition <= -3)
+            {
+                destinationLane = 0;
+            } else
+            {
+                destinationLane = direction;
+            }
+        }
     }
+
+    //Current lane of tank
+    private float lanePosition;
+    public float LanePosition
+    {
+        get
+        {
+            return lanePosition;
+        }
+        set
+        {
+            lanePosition = playerTank.transform.position.x;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
+        receiveTouch = null;
+        playerTank = GameObject.Find("PlayerTank");
+
+    }
+	
+
 
     //RESPONSES
     //
@@ -44,9 +81,13 @@ public class PlayerReacts : MonoBehaviour {
     //--> Tap repeatedly
     //--> More taps in allotted time = +bonus points to durability
 
+
+
+
     //Moves tank between lanes and offers bonus points for accuracy
-    public void QuickMove(float locLane, GameObject playerTank, bool success)
+    IEnumerator QuickMove()
     {
+
         //if button = swipeRight move player 1 lane to the right
         //if button = swipeLeft move player 1 lane to the left
         //if player in left lane do not show swipeLeft events
@@ -54,10 +95,15 @@ public class PlayerReacts : MonoBehaviour {
 
         //if successful response to button then +points and show response
 
-        StartCoroutine(BarrelRoll(locLane, playerTank));
+        lanePosition = playerTank.transform.position.x;
+        
+
+        yield return StartCoroutine(BarrelRoll(destinationLane));
     }
 
-    IEnumerator BarrelRoll(float target, GameObject playerTank)
+
+    //Moves tank in a barrel roll to the target lan position
+    IEnumerator BarrelRoll(float target)
     {
         Vector3 newLoc;
         newLoc = new Vector3(target, playerTank.transform.position.y, playerTank.transform.position.z);
@@ -68,6 +114,8 @@ public class PlayerReacts : MonoBehaviour {
             yield return null;
         }
     }
+
+    
 
     //Tank fires in response to image shown
     public void Quickfire()

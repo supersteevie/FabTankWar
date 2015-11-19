@@ -5,10 +5,12 @@ using System.Collections.Generic;
 public class QuickTimePattern : MonoBehaviour
 {
 
-    //List of positions for mouse to detecr
+    //List of positions for mouse to detect
     public List<Transform> patternList = new List<Transform>();
+    
     //How close you must get to the point to detect
     public float radiusDetection;
+    
     //For list of points
     private Queue<Transform> currentTemp = new Queue<Transform>();
 

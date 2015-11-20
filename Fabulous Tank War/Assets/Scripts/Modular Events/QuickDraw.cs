@@ -9,8 +9,8 @@ public class QuickDraw : MonoBehaviour
 
 	public void StartTimer (float timer)
 	{
-		wonLast = false;
-		StartCoroutine (StartEvent (timer));
+		wonLast = false;	
+		StartCoroutine (StartEvent (timer));	
 		isRunning = true;
 		GetComponent<Image> ().enabled = true;
 	}
@@ -21,7 +21,6 @@ public class QuickDraw : MonoBehaviour
 		//trigger event
 		while (time <= timer) 
 		{
-			print (time);
 			time += Time.deltaTime;
 			if (Input.GetAxis ("Fire1") > 0)
 			{
@@ -33,7 +32,6 @@ public class QuickDraw : MonoBehaviour
 			}
 			yield return new WaitForSeconds(Time.deltaTime);
 		}
-		yield return new WaitForSeconds (timer);
 		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;

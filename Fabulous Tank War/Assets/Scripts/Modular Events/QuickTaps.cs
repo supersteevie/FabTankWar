@@ -7,32 +7,43 @@ public class QuickTaps : MonoBehaviour
 	public bool isRunning;
 	public int desireTaps { set; get; }
 	public int totalTaps = 0;
+	public bool wonLast = false;
 	
 	public void StartTimer (float timer)
 	{
+		wonLast = false;
 		totalTaps = 0;
 		StartCoroutine (StartEvent (timer));
+		isRunning = true;
+		GetComponent<Image> ().enabled = true;
 	}
 	
 	IEnumerator StartEvent (float timer)
 	{
+		float time = 0;
+
 		//trigger event
-		isRunning = true;
-		yield return new WaitForSeconds (timer);
-		isRunning = false;
-		print (totalTaps  + " out of " + desireTaps);
-	}
-	
-	void Update ()
-	{
-		if (isRunning) {
-			if (Input.GetButtonDown ("Fire1") && totalTaps < desireTaps)
+		while (time <= timer) 
+		{
+			print (time);
+			print (timer);
+			print (totalTaps);
+			print (desireTaps);
+			time += Time.deltaTime;
+			if (Input.GetAxis ("Fire1") > 0)
+			{
 				totalTaps++;
-			if (totalTaps >= desireTaps) {
+			}
+			else if(totalTaps >= desireTaps)
+			{
 				StopAllCoroutines ();
 				isRunning = false;
-				print (totalTaps + " out of " + desireTaps);
-			}		
+				GetComponent<Image> ().enabled = false;
+			}
+			yield return new WaitForSeconds(Time.deltaTime);
 		}
+		wonLast = false;
+		isRunning = false;
+		GetComponent<Image> ().enabled = false;
 	}
 }

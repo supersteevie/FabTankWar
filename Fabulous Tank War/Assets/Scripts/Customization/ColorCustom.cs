@@ -9,25 +9,22 @@ public class ColorCustom : MonoBehaviour {
 		iterator += 1;
 
 		if (iterator == 1) 
-			setGreen ();
+			setPink ();
 
 		if (iterator == 2) 
-			setBlue ();
-
-		if (iterator == 3) 
 			setMagenta ();
 
-		if (iterator == 3)
+		if (iterator == 2)
 			iterator = 0; 
 
 	}
 
 
-	public void setGreen () {
+	public void setPink () {
 
 		foreach (Renderer rend in GetComponentsInChildren<Renderer>()) 
 		{
-			rend.material.color = Color.green;
+			rend.material.color = Color.red + Color.white;
 		}
 	}
 
@@ -37,13 +34,8 @@ public class ColorCustom : MonoBehaviour {
 			rend.material.color = Color.magenta;
 		}
 	}
-	public void setBlue () {
-		foreach (Renderer rend in GetComponentsInChildren<Renderer>()) 
-		{
-			rend.material.color = Color.blue;
-		}
-		
+	
 	}
 
 
-}
+

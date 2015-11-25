@@ -96,7 +96,7 @@ public class TankButtons : MonoBehaviour {
 
 	public void DressUp(){
 
-	//	Application.LoadLevel ("");
+		Application.LoadLevel ("GarageCustomizationKat");
 
 	}
 

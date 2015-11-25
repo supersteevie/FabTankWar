@@ -11,16 +11,22 @@ public class BottomButtons : MonoBehaviour {
 	public GameObject TankHolder;
 	public GameObject ColorHolder;
 	public GameObject DecalHolder;
-	private Vector3 PressedPos = new Vector3 (0,125,0);
+	private Vector3 PressedPos = new Vector3 (0,128,0);
 	private Vector3 UnpressedPos = new Vector3 (0,0,0);
 	public static string TankSavedName;
+	
 
 
 
 	// Use this for initialization
 	void Start () {
+
+
 		if (GameInformation.PlayerName != "Empty") {
 			NameText.text = GameInformation.PlayerName;
+			InputNameText.text = GameInformation.PlayerName;
+		} else {
+			NameText.text = "Empty";
 		}
 	}
 
@@ -32,6 +38,7 @@ public class BottomButtons : MonoBehaviour {
 		TankHolder.transform.position = UnpressedPos;
 		ColorHolder.transform.position = UnpressedPos;
 		DecalHolder.transform.position = UnpressedPos;
+	
 		
 		
 	}
@@ -39,25 +46,22 @@ public class BottomButtons : MonoBehaviour {
 	public void TankButtonPressed(){
 
 		NameInput.gameObject.SetActive (false);
-		TankHolder.transform.position = PressedPos;
-		ColorHolder.transform.position = UnpressedPos;
-		DecalHolder.transform.position = UnpressedPos;
+		StartCoroutine(LerpButtonsMove(ColorHolder.transform, UnpressedPos));
+		StartCoroutine(LerpButtonsMove(TankHolder.transform, PressedPos));
+		StartCoroutine(LerpButtonsMove(DecalHolder.transform, UnpressedPos));
 
-
-// 		lerp way cant figure out
-//		Vector3 ColorHPos = new Vector3(ColorHolder.transform.position.x, ColorHolder.transform.position.y, ColorHolder.transform.position.z);
-//		Vector3 newColorHPos = new Vector3(0, 0, 0);
-//		TankHolder.transform.position = Vector3.Lerp (ColorHPos, newColorHPos, Time.deltaTime * 2.0f);
-//
 
 	}
+	
 
 	public void ColorButtonPressed(){
 		
 		NameInput.gameObject.SetActive (false);
-		TankHolder.transform.position = UnpressedPos;
-		ColorHolder.transform.position = PressedPos;
-		DecalHolder.transform.position = UnpressedPos;
+		StartCoroutine(LerpButtonsMove(ColorHolder.transform, PressedPos));
+		StartCoroutine(LerpButtonsMove(TankHolder.transform, UnpressedPos));
+		StartCoroutine(LerpButtonsMove(DecalHolder.transform, UnpressedPos));
+
+
 
 		
 	}
@@ -65,19 +69,46 @@ public class BottomButtons : MonoBehaviour {
 	public void DecalButtonPressed(){
 		
 		NameInput.gameObject.SetActive (false);
-		TankHolder.transform.position = UnpressedPos;
-		ColorHolder.transform.position = UnpressedPos;
-		DecalHolder.transform.position = PressedPos;
-		
+		StartCoroutine(LerpButtonsMove(ColorHolder.transform, UnpressedPos));
+		StartCoroutine(LerpButtonsMove(TankHolder.transform, UnpressedPos));
+		StartCoroutine(LerpButtonsMove(DecalHolder.transform, PressedPos));
+
+	
 			
 	}	
+
+
+	IEnumerator LerpButtonsMove(Transform UPHolder, Vector3 NewPos)
+	{
+		float time = 0; // measure our current time
+		float duration = .7f; // duration of the lerp
+			float rate = 1/duration;
+				
+			Vector3 startPos = UPHolder.position;
+		while(time<1)
+		{
+			time += Time.deltaTime*rate;
+			UPHolder.transform.position = Vector3.Lerp(startPos, NewPos, time);
+			yield return null;
+			
+		}
+	}
 	
 
+
+
+
+
+
+
+	// saving the name 
 	void Update(){
 		if (InputNameText.text != "") {
 			NameText.text = InputNameText.text;
 		}
 		TankSavedName = NameText.text;
+
+
 
 	}
 

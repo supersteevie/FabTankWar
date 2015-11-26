@@ -63,32 +63,49 @@ public class NewProtoGamehandler : MonoBehaviour {
 		{
 			timeBetweenEvents = Random.Range(timeMin, timeMax);
 			yield return new WaitForSeconds (timeBetweenEvents);
-			quickDrawUI.GetComponent<QuickDraw>().StartTimer(quickDrawTimer);
-			//quickTimeEvents();
+			//quickDrawUI.GetComponent<QuickDraw>().StartTimer(quickDrawTimer);
+			QuicktimeSwitcher();
+            quickTimeEvents();
 			yield return null;
 		}
 	}
 
 
-	/*
-	QuickTimeEvents QuicktimeSwitcher() {
+	
+	void QuicktimeSwitcher() {
 		int rand = Random.Range (0, 2);
 		quickTimeEvents = null;
 		switch (rand) {
 		case 0:
-			quickTimeEvents = quickDrawUI.GetComponent<QuickDraw>().StartTimer(quickDrawTimer);
+			quickTimeEvents = CallQuickdraw;
 			break;
 		case 1:
-			quickTimeEvents = QuickTaps.StartTimer(quickTapsTimer);
+			quickTimeEvents = CallBuff;
 			break;
 		case 2:
-			quickTimeEvents = QuickTimePattern.StartQuickTimePattern(quickPatternTimer);
+			quickTimeEvents = CallSwipe;
 			break;
 		}
 		
-		return quickTimeEvents;
+		return;
 
-	}*/
+	}
+
+    void CallSwipe()
+    {
+
+    }
+
+    void CallQuickdraw()
+    {
+
+
+    }
+
+    void CallBuff()
+    {
+
+    }
 
 
     /*

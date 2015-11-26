@@ -26,7 +26,7 @@ public class QuickTimePattern : MonoBehaviour
         foreach (Transform pos in patternList)
         {
             currentTemp.Enqueue(pos);
-            pos.GetComponent<MeshRenderer>().enabled = true;
+            pos.GetComponent<Image>().enabled = true;
         }
         //Starts the event
         StartCoroutine(StartEvent(timer));
@@ -47,7 +47,7 @@ public class QuickTimePattern : MonoBehaviour
 				{
 					if ((Vector2.Distance(Camera.main.GetComponent<Camera>().WorldToScreenPoint(currentTemp.Peek().position), Input.mousePosition)) <= radiusDetection)
 					{
-						currentTemp.Peek().GetComponent<MeshRenderer>().enabled = false;
+						currentTemp.Peek().GetComponent<Image>().enabled = false;
 						currentTemp.Dequeue();
 					}
 				}

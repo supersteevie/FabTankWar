@@ -7,6 +7,8 @@ public class GameInformation  {
 	public static int HullID{ get; set;}
 	public static int WheelsID{ get; set;}
 	public static string PlayerName{ get; set;}
+	public static int ColorID{ get; set;}
+	public static int DecalID { get; set;}
 	public static int StarRating{ get; set;}
 	public static int BeautyRating{ get; set;}
 	public static int FirePowerRating{ get; set;}

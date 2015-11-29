@@ -17,7 +17,7 @@ public class QuickTimePattern : MonoBehaviour
 	public bool wonLast = false;
 
 
-    public void StartQuickTimePattern(float timer)
+    public IEnumerator StartQuickTimePattern(float timer)
     {
 		wonLast = false;
         //Runs and clears the queue
@@ -32,6 +32,7 @@ public class QuickTimePattern : MonoBehaviour
         StartCoroutine(StartEvent(timer));
 		isRunning = true;
 		GetComponent<Image> ().enabled = true;
+        yield return null;
     }
 
     IEnumerator StartEvent(float timer)
@@ -58,6 +59,7 @@ public class QuickTimePattern : MonoBehaviour
 				StopAllCoroutines();
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
+                wonLast = true;
 
 			}
 			yield return new WaitForSeconds(Time.deltaTime);

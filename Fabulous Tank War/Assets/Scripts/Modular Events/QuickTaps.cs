@@ -9,14 +9,15 @@ public class QuickTaps : MonoBehaviour
 	public int totalTaps = 0;
 	public bool wonLast = false;
 	
-	public void StartTimer (float timer)
+	public IEnumerator StartTimer (float timer)
 	{
 		wonLast = false;
 		totalTaps = 0;
 		StartCoroutine (StartEvent (timer));
 		isRunning = true;
 		GetComponent<Image> ().enabled = true;
-	}
+        yield return null;
+    }
 	
 	IEnumerator StartEvent (float timer)
 	{
@@ -25,10 +26,10 @@ public class QuickTaps : MonoBehaviour
 		//trigger event
 		while (time <= timer) 
 		{
-			print (time);
-			print (timer);
-			print (totalTaps);
-			print (desireTaps);
+			//print (time);
+			//print (timer);
+			//print (totalTaps);
+			//print (desireTaps);
 			time += Time.deltaTime;
 			if (Input.GetAxis ("Fire1") > 0)
 			{

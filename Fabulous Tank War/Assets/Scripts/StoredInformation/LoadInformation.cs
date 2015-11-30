@@ -16,6 +16,8 @@ public class LoadInformation  {
 		GameInformation.FirePowerRating = PlayerPrefs.GetInt (Slot.ToString() + "FIREPOWERRATING", 0);
 		GameInformation.DurabilityRating = PlayerPrefs.GetInt (Slot.ToString() + "DURABILITYRATING", 0);
 		GameInformation.StarRating = PlayerPrefs.GetInt (Slot.ToString () + "STARRATING", 0);
+
+
 	}
 	//public static GameObject Tank(int playerID){
 

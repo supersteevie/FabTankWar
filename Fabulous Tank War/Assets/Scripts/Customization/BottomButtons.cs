@@ -21,7 +21,8 @@ public class BottomButtons : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
+		print ("PlayerID" + TankButtons.selectedTank);
+		print ("PlayerName" + GameInformation.PlayerName);
 		if (GameInformation.PlayerName != "Empty") {
 			NameText.text = GameInformation.PlayerName;
 			InputNameText.text = GameInformation.PlayerName;

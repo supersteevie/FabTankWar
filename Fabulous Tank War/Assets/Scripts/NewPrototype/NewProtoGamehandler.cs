@@ -41,6 +41,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 	public float quickDrawTimer;
 	public float quickTapsTimer;
 	public float quickPatternTimer;
+    public int requiredTaps;
 
     //the number of times one event may occur
     public int limitQuickDraw;
@@ -60,6 +61,10 @@ public class NewProtoGamehandler : MonoBehaviour {
         nbrQuickPattern = 0;
         nbrQuickTaps = 0;
 
+        playerReactScript = playerObj.GetComponent<PlayerReacts>();
+
+        quickTapUI.GetComponent<QuickTaps>().desireTaps = requiredTaps;
+
 	}
 	
 	// Update is called once per frame
@@ -71,7 +76,9 @@ public class NewProtoGamehandler : MonoBehaviour {
     {
         while (Vector3.Distance(playerObj.transform.position, endPostion) > 0.05f)
         {
-            playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, endPostion, moveSpeed * Time.deltaTime);
+            float step = moveSpeed * Time.deltaTime;
+            playerObj.transform.position = Vector3.MoveTowards(playerObj.transform.position, endPostion, step);
+            //playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, endPostion, moveSpeed * Time.deltaTime);
 			endPostion.x = playerObj.transform.position.x;
 
             yield return null;
@@ -86,30 +93,67 @@ public class NewProtoGamehandler : MonoBehaviour {
 			yield return new WaitForSeconds (timeBetweenEvents);
 			//quickDrawUI.GetComponent<QuickDraw>().StartTimer(quickDrawTimer);
 			QuicktimeSwitcher();
-			yield return StartCoroutine(quickTimeEvents());
+            if (quickTimeEvents != null)
+            {
+                yield return StartCoroutine(quickTimeEvents());
+                yield return new WaitForSeconds(timeMax);
+            }
+            yield return null;
 		}
 	}
 
 
     //Switches between different quick time events
     IEnumerator QuicktimeSwitcher() {
-		int rand = Random.Range (0, 2);
+		int rand = Random.Range (0, 3);
 		quickTimeEvents = null;
-		switch (rand) {
-		case 0:
-			quickTimeEvents = CallQuickdraw;
+
+        if (rand == 0 && nbrQuickDraw <= limitQuickDraw)
+        {
+            quickTimeEvents = CallQuickdraw;
             Debug.Log("Switched to quick draw.");
-			break;
-		case 1:
-			quickTimeEvents = CallBuff;
-            Debug.Log("Switched to quick tap.");
-            break;
-		case 2:
-			quickTimeEvents = CallSwipe;
+        }
+        else if (rand == 1 && nbrQuickPattern <= limitQuickPattern)
+        {
+            quickTimeEvents = CallSwipe;
             Debug.Log("Switched to quick swipe.");
-            break;
-		}
-		
+        }
+        else if (rand == 2 && nbrQuickTaps <= limitQuickTaps)
+        {
+            quickTimeEvents = CallBuff;
+            Debug.Log("Switched to quick tap.");
+        }
+        else
+        {
+            quickTimeEvents = null;
+        }
+
+        /*
+        switch (rand) {
+		case 0:
+                if (nbrQuickDraw < limitQuickDraw)
+                {
+                    quickTimeEvents = CallQuickdraw;
+                    Debug.Log("Switched to quick draw.");
+                }
+                break;
+		case 1:
+                if (nbrQuickPattern < limitQuickPattern)
+                {
+                    quickTimeEvents = CallSwipe;
+                    Debug.Log("Switched to quick swipe.");
+                }
+                break;
+		case 2:
+                if (nbrQuickTaps < limitQuickTaps)
+                {
+                    quickTimeEvents = CallBuff;
+                    Debug.Log("Switched to quick tap.");
+                }
+                break;
+		}*/
+
+        Debug.Log("Random number is " + rand);
 		return quickTimeEvents();
 
 	}
@@ -131,9 +175,26 @@ public class NewProtoGamehandler : MonoBehaviour {
             swipeObj = Random.Range(0, 3);
         }
 
-        GameObject quickSwipeClone = Instantiate(quickSwipeUI[swipeObj]);
-        quickSwipeClone.transform.SetParent(mainCanvas);
-        yield return quickSwipeClone.GetComponent<QuickTimePattern>().StartCoroutine("StartQuickTimePattern", quickPatternTimer);
+        //GameObject quickSwipeClone = Instantiate(quickSwipeUI[swipeObj]);
+        //quickSwipeClone.transform.SetParent(mainCanvas);
+
+        //Determines which lane the player will move into based off the random pop up
+        switch (swipeObj)
+        {
+            case 0:
+                playerReactScript.direction = laneLeft;
+                break;
+            case 1:
+                playerReactScript.direction = laneLeft;
+                break;
+            case 2:
+                playerReactScript.direction = laneRight;
+                break;
+            case 3:
+                playerReactScript.direction = laneRight;
+                break;
+        }
+        yield return quickSwipeUI[swipeObj].GetComponent<QuickTimePattern>().StartCoroutine("StartQuickTimePattern", quickPatternTimer);
 
         nbrQuickPattern++;
         //Destroy(quickSwipeClone);
@@ -145,9 +206,9 @@ public class NewProtoGamehandler : MonoBehaviour {
 
     IEnumerator CallQuickdraw()
     {
-        GameObject quickDrawClone = Instantiate(quickDrawUI);
-        quickDrawClone.transform.SetParent(mainCanvas);
-        yield return quickDrawClone.GetComponent<QuickDraw>().StartCoroutine("StartTimer", quickDrawTimer);
+       //GameObject quickDrawClone = Instantiate(quickDrawUI);
+        //quickDrawClone.transform.SetParent(mainCanvas);
+        yield return quickDrawUI.GetComponent<QuickDraw>().StartCoroutine("StartTimer", quickDrawTimer);
 
         nbrQuickDraw++;
         //Destroy(quickDrawClone);
@@ -157,12 +218,13 @@ public class NewProtoGamehandler : MonoBehaviour {
 
     IEnumerator CallBuff()
     {
-        GameObject quickTapClone = Instantiate(quickTapUI);
-        quickTapClone.transform.SetParent(mainCanvas);
-        yield return quickTapClone.GetComponent<QuickTaps>().StartCoroutine("StartTimer", quickTapsTimer);
+        //GameObject quickTapClone = Instantiate(quickTapUI);
+        //quickTapClone.transform.SetParent(mainCanvas);
+        yield return quickTapUI.GetComponent<QuickTaps>().StartCoroutine("StartTimer", quickTapsTimer);
 
         nbrQuickTaps++;
         //Destroy(quickTapClone);
+        quickTapUI.GetComponent<QuickTaps>().desireTaps += (int) quickTapsTimer;
         Debug.Log("executed to quick taps");
         yield return null;
     }

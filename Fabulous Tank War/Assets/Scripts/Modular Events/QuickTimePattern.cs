@@ -16,6 +16,15 @@ public class QuickTimePattern : MonoBehaviour
     public bool isRunning = false;
 	public bool wonLast = false;
 
+    //Script to move tank if successful
+    public PlayerReacts playerReactScript;
+
+    void Start ()
+    {
+        GameObject player = GameObject.Find("PlayerTank");
+        playerReactScript = player.GetComponent<PlayerReacts>();
+    }
+
 
     public IEnumerator StartQuickTimePattern(float timer)
     {
@@ -60,6 +69,7 @@ public class QuickTimePattern : MonoBehaviour
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
                 wonLast = true;
+                playerReactScript.QuickMove();
 
 			}
 			yield return new WaitForSeconds(Time.deltaTime);
@@ -70,7 +80,7 @@ public class QuickTimePattern : MonoBehaviour
 		foreach (Transform pos in patternList)
 		{
 			currentTemp.Enqueue(pos);
-			pos.GetComponent<MeshRenderer>().enabled = false;
+			pos.GetComponent<Image>().enabled = false;
 		}
     }
 }

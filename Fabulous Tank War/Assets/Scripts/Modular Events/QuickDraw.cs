@@ -7,6 +7,9 @@ public class QuickDraw : MonoBehaviour
 	public bool isRunning;
 	public bool wonLast  = false;
 
+	public GameObject playerObj;
+	public GameObject PrefabBullet;
+
 	public IEnumerator StartTimer (float timer)
 	{
 		wonLast = false;	
@@ -30,15 +33,22 @@ public class QuickDraw : MonoBehaviour
 				wonLast = true;
 				GetComponent<Image> ().enabled = false;
 				NewProtoGamehandler.eventRunning = false;
+				FireMissle();
 				break;
 			}
 			//yield return new WaitForSeconds(Time.deltaTime);
 			yield return null;
 		}
-		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
 		NewProtoGamehandler.eventRunning = false;
 	}
-	
+
+	void FireMissle() 
+	{
+		GameObject clone;
+		clone = Instantiate (PrefabBullet, playerObj.transform.position + (Vector3.up * 1.5f), playerObj.transform.rotation) as GameObject;
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<NewProtoGamehandler>().quickTapsTimer, ProjectileType.Missle, true);
+		clone.transform.localScale = new Vector3(1,1,1);
+	}
 }

@@ -23,6 +23,11 @@ public class JudgeProjectiles : MonoBehaviour {
 	public void FireProjectile (Transform tar, float time, ProjectileType type, bool isHoming)
 	{
         //Saved values i
+		GameObject cloneTarget;
+		cloneTarget = new GameObject ();
+		cloneTarget.transform.position = tar.position;
+		if (!isHoming)
+			tar = cloneTarget.transform;
         orgin = transform.position;
 		targetPositionAtFire = transform.position;
         target = tar;
@@ -47,7 +52,7 @@ public class JudgeProjectiles : MonoBehaviour {
             {
                 distanceCovered += Time.deltaTime;
                 float fracJour = distanceCovered / transitTime;
-                transform.position = Vector3.Lerp(orgin, target, fracJour);
+                transform.position = Vector3.Lerp(orgin, target.position, fracJour);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             //If its a bomb type
@@ -55,7 +60,7 @@ public class JudgeProjectiles : MonoBehaviour {
             {
                 distanceCovered += Time.deltaTime;
                 float fracJour = distanceCovered / transitTime;
-                transform.position = BezierVec3(orgin, controlPoint, target, fracJour);
+                transform.position = BezierVec3(orgin, controlPoint, target.position, fracJour);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             //Or if its not yet programmed, destory the object
@@ -72,7 +77,7 @@ public class JudgeProjectiles : MonoBehaviour {
                 Destroy(this.gameObject);
             }
 
-            if(Vector3.Dot(transform.forward, target - transform.position) < 0)
+            if(Vector3.Dot(transform.forward, target.position - transform.position) < 0)
             {
                 print("Projectile passed its target");
                 Destroy(this.gameObject);

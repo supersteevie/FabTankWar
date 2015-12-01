@@ -47,10 +47,13 @@ public class NewProtoGamehandler : MonoBehaviour {
     public int limitQuickDraw;
     public int limitQuickTaps;
     public int limitQuickPattern;
+	private int limitTotal;
 
+	//The current number of finished events
     private int nbrQuickDraw;
     private int nbrQuickTaps;
     private int nbrQuickPattern;
+	private int nbrTotal;
 
 	public static bool eventRunning = false;
 	// Use this for initialization
@@ -66,6 +69,8 @@ public class NewProtoGamehandler : MonoBehaviour {
 
         quickTapUI.GetComponent<QuickTaps>().desireTaps = requiredTaps;
 
+		limitTotal = limitQuickTaps + limitQuickPattern + limitQuickDraw;
+
 	}
 	
 	// Update is called once per frame
@@ -79,7 +84,6 @@ public class NewProtoGamehandler : MonoBehaviour {
         {
             float step = moveSpeed * Time.deltaTime;
             playerObj.transform.position = Vector3.MoveTowards(playerObj.transform.position, endPostion, step);
-            //playerObj.transform.position = Vector3.Lerp(playerObj.transform.position, endPostion, moveSpeed * Time.deltaTime);
 			endPostion.x = playerObj.transform.position.x;
 
             yield return null;
@@ -92,18 +96,21 @@ public class NewProtoGamehandler : MonoBehaviour {
 		{
 			timeBetweenEvents = Random.Range(timeMin, timeMax);
 			yield return new WaitForSeconds (timeBetweenEvents);
-			//quickDrawUI.GetComponent<QuickDraw>().StartTimer(quickDrawTimer);
-			QuicktimeSwitcher();
-            if (quickTimeEvents != null)
-            {
-                yield return StartCoroutine(quickTimeEvents());
-				eventRunning=true;
-                //yield return new WaitForSeconds(timeMax);
-				while (eventRunning) {
-					yield return new WaitForSeconds(0.1f);
-				}
-            }
-            //yield return null;
+			if (nbrTotal < limitTotal) 
+				{
+				QuicktimeSwitcher();
+	            if (quickTimeEvents != null)
+	            {
+	                yield return StartCoroutine(quickTimeEvents());
+					eventRunning=true;
+					while (eventRunning) { //Prevents events from overlapping
+						yield return new WaitForSeconds(0.1f);
+					}
+	            }
+			}else 
+			{
+
+			}
 		}
 	}
 
@@ -113,7 +120,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 		int rand = Random.Range (0, 3);
 		quickTimeEvents = null;
 
-        if (rand == 0 /*&& nbrQuickDraw <= limitQuickDraw*/)
+        if (rand == 0)
         {
 			if (nbrQuickDraw <= limitQuickDraw){
 				quickTimeEvents = CallQuickdraw;
@@ -122,7 +129,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 				QuicktimeSwitcher ();
 			}
         }
-        else if (rand == 1 /*&& nbrQuickPattern <= limitQuickPattern*/)
+        else if (rand == 1)
         {
 			if (nbrQuickPattern <= limitQuickPattern){
 				quickTimeEvents = CallSwipe;
@@ -131,7 +138,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 				QuicktimeSwitcher();
 			}
         }
-        else if (rand == 2 /*&& nbrQuickTaps <= limitQuickTaps*/)
+        else if (rand == 2)
         {
 			if (nbrQuickTaps <= limitQuickTaps) {
 				quickTimeEvents = CallBuff;
@@ -144,31 +151,6 @@ public class NewProtoGamehandler : MonoBehaviour {
         {
             quickTimeEvents = null;
         }
-
-        /*
-        switch (rand) {
-		case 0:
-                if (nbrQuickDraw < limitQuickDraw)
-                {
-                    quickTimeEvents = CallQuickdraw;
-                    Debug.Log("Switched to quick draw.");
-                }
-                break;
-		case 1:
-                if (nbrQuickPattern < limitQuickPattern)
-                {
-                    quickTimeEvents = CallSwipe;
-                    Debug.Log("Switched to quick swipe.");
-                }
-                break;
-		case 2:
-                if (nbrQuickTaps < limitQuickTaps)
-                {
-                    quickTimeEvents = CallBuff;
-                    Debug.Log("Switched to quick tap.");
-                }
-                break;
-		}*/
 
         Debug.Log("Random number is " + rand);
 		return quickTimeEvents();
@@ -192,9 +174,6 @@ public class NewProtoGamehandler : MonoBehaviour {
             swipeObj = Random.Range(0, 3);
         }
 
-        //GameObject quickSwipeClone = Instantiate(quickSwipeUI[swipeObj]);
-        //quickSwipeClone.transform.SetParent(mainCanvas);
-
         //Determines which lane the player will move into based off the random pop up
         switch (swipeObj)
         {
@@ -214,58 +193,35 @@ public class NewProtoGamehandler : MonoBehaviour {
         yield return quickSwipeUI[swipeObj].GetComponent<QuickTimePattern>().StartCoroutine("StartQuickTimePattern", quickPatternTimer);
 
         nbrQuickPattern++;
-        //Destroy(quickSwipeClone);
+		nbrTotal++;
 
         Debug.Log("executed to quick swipe");
         yield return null;
 
     }
 
+	//Calls the quick draw event
     IEnumerator CallQuickdraw()
     {
-       //GameObject quickDrawClone = Instantiate(quickDrawUI);
-        //quickDrawClone.transform.SetParent(mainCanvas);
         yield return quickDrawUI.GetComponent<QuickDraw>().StartCoroutine("StartTimer", quickDrawTimer);
 
         nbrQuickDraw++;
-        //Destroy(quickDrawClone);
+		nbrTotal++;
         Debug.Log("executed to quick draw");
         yield return null;
     }
 
+	//Calls the buff shield quick time event
     IEnumerator CallBuff()
     {
-        //GameObject quickTapClone = Instantiate(quickTapUI);
-        //quickTapClone.transform.SetParent(mainCanvas);
         yield return quickTapUI.GetComponent<QuickTaps>().StartCoroutine("StartTimer", quickTapsTimer);
 
         nbrQuickTaps++;
-        //Destroy(quickTapClone);
+		nbrTotal++;
         quickTapUI.GetComponent<QuickTaps>().desireTaps += (int) quickTapsTimer;
         Debug.Log("executed to quick taps");
         yield return null;
     }
-
-
-    /*
-    void QuicktimeSwitcher(int num)
-    {
-        switch (num)
-        {
-            case 0:
-                quickTimeEvents() = playerReactScript.QuickMove();
-                break;
-            case 1:
-                quickTimeEvents() = playerReactScript.Quickfire();
-                break;
-            case 2:
-                quickTimeEvents() = playerReactScript.ShieldBuff();
-                break;
-            default:
-                break;
-        }
-    }
-    */
 
 
 

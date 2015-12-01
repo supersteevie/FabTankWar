@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class JudgeProfile : MonoBehaviour {
+public class CharacterMC : MonoBehaviour {
+
+	public Image[] emoji;
 
 	// Use this for initialization
 	void Start () {

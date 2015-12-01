@@ -16,8 +16,17 @@ public class QuickTimePattern : MonoBehaviour
     public bool isRunning = false;
 	public bool wonLast = false;
 
+    //Script to move tank if successful
+    public PlayerReacts playerReactScript;
 
-    public void StartQuickTimePattern(float timer)
+    void Start ()
+    {
+        GameObject player = GameObject.Find("PlayerTank");
+        playerReactScript = player.GetComponent<PlayerReacts>();
+    }
+
+
+    public IEnumerator StartQuickTimePattern(float timer)
     {
 		wonLast = false;
         //Runs and clears the queue
@@ -26,12 +35,13 @@ public class QuickTimePattern : MonoBehaviour
         foreach (Transform pos in patternList)
         {
             currentTemp.Enqueue(pos);
-            pos.GetComponent<MeshRenderer>().enabled = true;
+            pos.GetComponent<Image>().enabled = true;
         }
         //Starts the event
         StartCoroutine(StartEvent(timer));
 		isRunning = true;
 		GetComponent<Image> ().enabled = true;
+        yield return null;
     }
 
     IEnumerator StartEvent(float timer)
@@ -47,7 +57,7 @@ public class QuickTimePattern : MonoBehaviour
 				{
 					if ((Vector2.Distance(Camera.main.GetComponent<Camera>().WorldToScreenPoint(currentTemp.Peek().position), Input.mousePosition)) <= radiusDetection)
 					{
-						currentTemp.Peek().GetComponent<MeshRenderer>().enabled = false;
+						currentTemp.Peek().GetComponent<Image>().enabled = false;
 						currentTemp.Dequeue();
 					}
 				}
@@ -58,17 +68,22 @@ public class QuickTimePattern : MonoBehaviour
 				StopAllCoroutines();
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
+                wonLast = true;
+                playerReactScript.QuickMove();
+				NewProtoGamehandler.eventRunning = false;
 
 			}
-			yield return new WaitForSeconds(Time.deltaTime);
+			//yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
+		NewProtoGamehandler.eventRunning = false;
 		foreach (Transform pos in patternList)
 		{
 			currentTemp.Enqueue(pos);
-			pos.GetComponent<MeshRenderer>().enabled = false;
+			pos.GetComponent<Image>().enabled = false;
 		}
     }
 }

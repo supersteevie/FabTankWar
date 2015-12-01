@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class JudgeReacts : MonoBehaviour {
+public class JudgeProfile : MonoBehaviour {
 
     private Image mainEmoji;
-    private Text speechBubble;
+    private Text npcText;
 
     public Sprite[] emojis;
     public string[] responses;
@@ -23,7 +23,7 @@ public class JudgeReacts : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         mainEmoji = gameObject.GetComponent<Image>();
-        speechBubble = gameObject.GetComponentInChildren<Text>();
+        npcText = gameObject.GetComponentInChildren<Text>();
         gameObject.transform.position = locOffScreen;
 	
 	}
@@ -39,7 +39,7 @@ public class JudgeReacts : MonoBehaviour {
         int bonus;
         bonus = complete ? 1 : 0;
         mainEmoji.sprite = emojis[num + bonus];
-        speechBubble.text = responses[num + bonus];
+        npcText.text = responses[num + bonus];
         StartCoroutine(JudgePops (locPopUp, locOffScreen));
 
     }

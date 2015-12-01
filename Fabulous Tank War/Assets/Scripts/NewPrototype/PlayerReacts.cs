@@ -5,21 +5,9 @@ public class PlayerReacts : MonoBehaviour {
 
     //x position for the three lanes on the runway: Left = -3, Center = 0, Right = 3
 
-    private int taps;
-    public int Taps()
-    {
-        taps++;
-        return taps;
-    }
-
     //Speed that tank moves between lanes
-    public float smoothingSpeed = 2;
-
-    delegate IEnumerator QuickTimeDelegate();
-
-    QuickTimeDelegate receiveTouch;
-
-    GameObject playerTank;
+    public float moveSpeed = 2;
+    //private Vector3 velocity = Vector3.zero;
 
     public float direction; //Must be either 3 or -3. 3 if the image points to the right. -3 if the image points to the left.
 
@@ -32,13 +20,7 @@ public class PlayerReacts : MonoBehaviour {
         }
         set
         {
-            if (lanePosition >= 3 || lanePosition <= -3)
-            {
-                destinationLane = 0;
-            } else
-            {
-                destinationLane = direction;
-            }
+            destinationLane = value;
         }
     }
 
@@ -52,90 +34,52 @@ public class PlayerReacts : MonoBehaviour {
         }
         set
         {
-            lanePosition = playerTank.transform.position.x;
+            lanePosition = value;
         }
     }
 
     // Use this for initialization
     void Start () {
-        receiveTouch = null;
-        playerTank = GameObject.Find("PlayerTank");
 
     }
 	
-
-
-    //RESPONSES
-    //
-    //-Beauty (QuickMove)
-    //--> Style animations
-    //--> Moves Tank
-    //--> Success: Bonus points to beauty
-    //
-    //-Firepower (QuickFire)
-    //--> Must tap before opponent
-    //--> Fires at enemies
-    //--> Success: Bonus points to firepower
-    //
-    //-Durability (BuffShield)
-    //--> Tap repeatedly
-    //--> More taps in allotted time = +bonus points to durability
-
-
-
-
     //Moves tank between lanes and offers bonus points for accuracy
-    IEnumerator QuickMove()
+    public void QuickMove()
     {
 
-        //if button = swipeRight move player 1 lane to the right
-        //if button = swipeLeft move player 1 lane to the left
-        //if player in left lane do not show swipeLeft events
-        //if player in right lane do not show swipeRight events
+        lanePosition = transform.position.x;
+        if (lanePosition >= 3 || lanePosition <= -3)
+        {
+            destinationLane = 0;
+        }
+        else
+        {
+            destinationLane = direction;
+            //Debug.Log("Destination lane is set to " + direction);
+        }
 
-        //if successful response to button then +points and show response
 
-        lanePosition = playerTank.transform.position.x;
-        
-
-        yield return StartCoroutine(BarrelRoll(destinationLane));
+        StartCoroutine(BarrelRoll(DestinationLane));
+        //Debug.Log("Starting quick move.");
     }
 
 
     //Moves tank in a barrel roll to the target lan position
     IEnumerator BarrelRoll(float target)
     {
+        //Debug.Log("Starting barrel roll.");
         Vector3 newLoc;
-        newLoc = new Vector3(target, playerTank.transform.position.y, playerTank.transform.position.z);
-        while (playerTank.transform.position.x != target)
+        newLoc = new Vector3(target, transform.position.y, transform.position.z);
+        while (transform.position.x != target)
         {
-            playerTank.transform.position = Vector3.Lerp(playerTank.transform.position, newLoc, smoothingSpeed * Time.deltaTime);
+            float step = moveSpeed * Time.deltaTime;
+            //transform.position = Vector3.Lerp(transform.position, newLoc, smoothingSpeed * Time.deltaTime);
+
+            transform.position = Vector3.MoveTowards(transform.position, newLoc, step);
+
+            //transform.position = Vector3.SmoothDamp(transform.position, newLoc, ref velocity, 0.5f);
 
             yield return null;
         }
-    }
-
-    
-
-    //Tank fires in response to image shown
-    public void Quickfire()
-    {
-
-    }
-
-    //Players taps rapidly to buff shield of tank when they see an incoming bomb
-    IEnumerator BuffsShield(int num, int pulse, int tapTime, bool buffed)
-    {
-        yield return new WaitForSeconds(tapTime);
-        if (num >= pulse)
-        {
-            buffed = true;
-        }
-        else
-        {
-            buffed = false;
-        }
-
-        yield return null;
     }
 }

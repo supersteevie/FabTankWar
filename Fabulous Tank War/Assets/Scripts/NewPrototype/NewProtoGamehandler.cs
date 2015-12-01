@@ -196,7 +196,7 @@ public class NewProtoGamehandler : MonoBehaviour {
         }
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
-		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform.position, quickPatternTimer, ProjectileType.Missle);
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, quickPatternTimer, ProjectileType.Missle);
         yield return quickSwipeUI[swipeObj].GetComponent<QuickTimePattern>().StartCoroutine("StartQuickTimePattern", quickPatternTimer);
 
         nbrQuickPattern++;
@@ -223,7 +223,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 	{
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
-		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform.position, quickTapsTimer, ProjectileType.Bomb);
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, quickTapsTimer, ProjectileType.Bomb);
         yield return quickTapUI.GetComponent<QuickTaps>().StartCoroutine("StartTimer", quickTapsTimer);
 
         nbrQuickTaps++;
@@ -233,6 +233,8 @@ public class NewProtoGamehandler : MonoBehaviour {
         yield return null;
     }
 
-
+	public void LeaveRunway () {
+		Application.LoadLevel (3);
+	}
 
 }

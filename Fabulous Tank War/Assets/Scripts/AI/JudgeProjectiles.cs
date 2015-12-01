@@ -7,7 +7,8 @@ using System.Collections;
 public class JudgeProjectiles : MonoBehaviour {
 
     //Target
-    Vector3 target;
+    Transform target;
+	Vector3 targetPositionAtFire;
     //Bullet's Orgin
     Vector3 orgin;
     //How long it stays airborune;
@@ -19,17 +20,18 @@ public class JudgeProjectiles : MonoBehaviour {
     //Destory if projectile been alive too long
     float deathTimer;
 
-	public void FireProjectile (Vector3 tar, float time, ProjectileType type)
+	public void FireProjectile (Transform tar, float time, ProjectileType type, bool isHoming)
 	{
-        //Saved values in
+        //Saved values i
         orgin = transform.position;
+		targetPositionAtFire = transform.position;
         target = tar;
         transitTime = time;
         distanceCovered = 0;
         transform.LookAt(tar);
         //Calulate control point based on information given
-        controlPoint = Vector3.Lerp(orgin, target, 0.5f);
-        controlPoint += Vector3.up * (Vector3.Distance(orgin, tar) / 2);
+        controlPoint = Vector3.Lerp(orgin, target.position, 0.5f);
+        controlPoint += Vector3.up * (Vector3.Distance(orgin, tar.position) / 2);
         //Start the Event
 		StartCoroutine (StartEvent (type));
         deathTimer = 20f;
@@ -38,7 +40,7 @@ public class JudgeProjectiles : MonoBehaviour {
 	IEnumerator StartEvent (ProjectileType type)
 	{
         //While traveling towards the target
-        while (Vector3.Distance(transform.position, target) >= .25f)
+        while (Vector3.Distance(transform.position, target.position) >= .25f)
         {
             //If its a missle type
             if (type == ProjectileType.Missle)

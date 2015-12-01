@@ -70,13 +70,16 @@ public class QuickTimePattern : MonoBehaviour
 				GetComponent<Image> ().enabled = false;
                 wonLast = true;
                 playerReactScript.QuickMove();
+				NewProtoGamehandler.eventRunning = false;
 
 			}
-			yield return new WaitForSeconds(Time.deltaTime);
+			//yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
+		NewProtoGamehandler.eventRunning = false;
 		foreach (Transform pos in patternList)
 		{
 			currentTemp.Enqueue(pos);

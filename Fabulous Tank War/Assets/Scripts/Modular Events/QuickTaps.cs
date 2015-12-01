@@ -40,11 +40,14 @@ public class QuickTaps : MonoBehaviour
 				StopAllCoroutines ();
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
+				NewProtoGamehandler.eventRunning = false;
 			}
-			yield return new WaitForSeconds(Time.deltaTime);
+			//yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
+		NewProtoGamehandler.eventRunning = false;
 	}
 }

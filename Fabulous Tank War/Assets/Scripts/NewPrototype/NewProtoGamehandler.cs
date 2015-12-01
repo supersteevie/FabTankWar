@@ -52,6 +52,7 @@ public class NewProtoGamehandler : MonoBehaviour {
     private int nbrQuickTaps;
     private int nbrQuickPattern;
 
+	public static bool eventRunning = false;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (BeginShow());
@@ -96,9 +97,13 @@ public class NewProtoGamehandler : MonoBehaviour {
             if (quickTimeEvents != null)
             {
                 yield return StartCoroutine(quickTimeEvents());
-                yield return new WaitForSeconds(timeMax);
+				eventRunning=true;
+                //yield return new WaitForSeconds(timeMax);
+				while (eventRunning) {
+					yield return new WaitForSeconds(0.1f);
+				}
             }
-            yield return null;
+            //yield return null;
 		}
 	}
 
@@ -108,20 +113,32 @@ public class NewProtoGamehandler : MonoBehaviour {
 		int rand = Random.Range (0, 3);
 		quickTimeEvents = null;
 
-        if (rand == 0 && nbrQuickDraw <= limitQuickDraw)
+        if (rand == 0 /*&& nbrQuickDraw <= limitQuickDraw*/)
         {
-            quickTimeEvents = CallQuickdraw;
-            Debug.Log("Switched to quick draw.");
+			if (nbrQuickDraw <= limitQuickDraw){
+				quickTimeEvents = CallQuickdraw;
+            	Debug.Log("Switched to quick draw.");
+			} else {
+				QuicktimeSwitcher ();
+			}
         }
-        else if (rand == 1 && nbrQuickPattern <= limitQuickPattern)
+        else if (rand == 1 /*&& nbrQuickPattern <= limitQuickPattern*/)
         {
-            quickTimeEvents = CallSwipe;
-            Debug.Log("Switched to quick swipe.");
+			if (nbrQuickPattern <= limitQuickPattern){
+				quickTimeEvents = CallSwipe;
+            	Debug.Log("Switched to quick swipe.");
+			} else {
+				QuicktimeSwitcher();
+			}
         }
-        else if (rand == 2 && nbrQuickTaps <= limitQuickTaps)
+        else if (rand == 2 /*&& nbrQuickTaps <= limitQuickTaps*/)
         {
-            quickTimeEvents = CallBuff;
-            Debug.Log("Switched to quick tap.");
+			if (nbrQuickTaps <= limitQuickTaps) {
+				quickTimeEvents = CallBuff;
+            	Debug.Log("Switched to quick tap.");
+			} else {
+				QuicktimeSwitcher ();
+			}
         }
         else
         {

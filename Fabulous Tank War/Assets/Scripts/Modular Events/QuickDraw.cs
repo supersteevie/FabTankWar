@@ -29,13 +29,16 @@ public class QuickDraw : MonoBehaviour
 				isRunning = false;
 				wonLast = true;
 				GetComponent<Image> ().enabled = false;
+				NewProtoGamehandler.eventRunning = false;
 				break;
 			}
-			yield return new WaitForSeconds(Time.deltaTime);
+			//yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
+		NewProtoGamehandler.eventRunning = false;
 	}
 	
 }

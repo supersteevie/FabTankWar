@@ -7,7 +7,8 @@ using System.Collections;
 public class JudgeProjectiles : MonoBehaviour {
 
     //Target
-    Vector3 target;
+    Transform target;
+	Vector3 targetPositionAtFire;
     //Bullet's Orgin
     Vector3 orgin;
     //How long it stays airborune;
@@ -19,17 +20,23 @@ public class JudgeProjectiles : MonoBehaviour {
     //Destory if projectile been alive too long
     float deathTimer;
 
-	public void FireProjectile (Vector3 tar, float time, ProjectileType type)
+	public void FireProjectile (Transform tar, float time, ProjectileType type, bool isHoming)
 	{
-        //Saved values in
+        //Saved values i
+		GameObject cloneTarget;
+		cloneTarget = new GameObject ();
+		cloneTarget.transform.position = tar.position;
+		if (!isHoming)
+			tar = cloneTarget.transform;
         orgin = transform.position;
+		targetPositionAtFire = transform.position;
         target = tar;
         transitTime = time;
         distanceCovered = 0;
         transform.LookAt(tar);
         //Calulate control point based on information given
-        controlPoint = Vector3.Lerp(orgin, target, 0.5f);
-        controlPoint += Vector3.up * (Vector3.Distance(orgin, tar) / 2);
+        controlPoint = Vector3.Lerp(orgin, target.position, 0.5f);
+        controlPoint += Vector3.up * (Vector3.Distance(orgin, tar.position) / 2);
         //Start the Event
 		StartCoroutine (StartEvent (type));
         deathTimer = 20f;
@@ -38,14 +45,14 @@ public class JudgeProjectiles : MonoBehaviour {
 	IEnumerator StartEvent (ProjectileType type)
 	{
         //While traveling towards the target
-        while (Vector3.Distance(transform.position, target) >= .25f)
+        while (Vector3.Distance(transform.position, target.position) >= .25f)
         {
             //If its a missle type
             if (type == ProjectileType.Missle)
             {
                 distanceCovered += Time.deltaTime;
                 float fracJour = distanceCovered / transitTime;
-                transform.position = Vector3.Lerp(orgin, target, fracJour);
+                transform.position = Vector3.Lerp(orgin, target.position, fracJour);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             //If its a bomb type
@@ -53,7 +60,7 @@ public class JudgeProjectiles : MonoBehaviour {
             {
                 distanceCovered += Time.deltaTime;
                 float fracJour = distanceCovered / transitTime;
-                transform.position = BezierVec3(orgin, controlPoint, target, fracJour);
+                transform.position = BezierVec3(orgin, controlPoint, target.position, fracJour);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             //Or if its not yet programmed, destory the object
@@ -70,7 +77,7 @@ public class JudgeProjectiles : MonoBehaviour {
                 Destroy(this.gameObject);
             }
 
-            if(Vector3.Dot(transform.forward, target - transform.position) < 0)
+            if(Vector3.Dot(transform.forward, target.position - transform.position) < 0)
             {
                 print("Projectile passed its target");
                 Destroy(this.gameObject);

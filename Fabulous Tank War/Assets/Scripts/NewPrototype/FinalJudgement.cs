@@ -23,6 +23,8 @@ public class FinalJudgement : MonoBehaviour {
 	//Master of Ceremonies Text
 	public Text npcText;
 
+	public GameObject button;
+
 	// Use this for initialization
 	void Start () {
 		npcText = gameObject.GetComponentInChildren<Text> ();
@@ -47,5 +49,6 @@ public class FinalJudgement : MonoBehaviour {
 		gameObject.GetComponentInChildren<Image> ().enabled = true;
 		npcText.text = winMsg;
 		npcText.enabled = true;
+		button.SetActive (true);
 	}
 }

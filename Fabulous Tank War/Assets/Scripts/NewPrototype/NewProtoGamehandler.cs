@@ -196,7 +196,7 @@ public class NewProtoGamehandler : MonoBehaviour {
         }
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
-		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform.position, quickPatternTimer, ProjectileType.Missle);
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, quickTapsTimer / 1.3f, ProjectileType.Missle, false);
         yield return quickSwipeUI[swipeObj].GetComponent<QuickTimePattern>().StartCoroutine("StartQuickTimePattern", quickPatternTimer);
 
         nbrQuickPattern++;
@@ -212,6 +212,16 @@ public class NewProtoGamehandler : MonoBehaviour {
     {
         yield return quickDrawUI.GetComponent<QuickDraw>().StartCoroutine("StartTimer", quickDrawTimer);
 
+		/*
+		if (quickDrawUI.GetComponent<QuickDraw> ().wonLast) 
+		{
+			GameObject clone;
+			clone = Instantiate (PrefabBullet, playerObj.transform.position, playerObj.transform.rotation) as GameObject;
+			clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, quickTapsTimer, ProjectileType.Missle, true);
+			clone.transform.localScale = new Vector3(1,1,1);
+		}
+		else print ("Nope didnt win"); */
+
         nbrQuickDraw++;
 		nbrTotal++;
         Debug.Log("executed to quick draw");
@@ -223,7 +233,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 	{
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
-		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform.position, quickTapsTimer, ProjectileType.Bomb);
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, quickTapsTimer / 1.3f, ProjectileType.Bomb, true);
         yield return quickTapUI.GetComponent<QuickTaps>().StartCoroutine("StartTimer", quickTapsTimer);
 
         nbrQuickTaps++;
@@ -233,6 +243,8 @@ public class NewProtoGamehandler : MonoBehaviour {
         yield return null;
     }
 
-
+	public void LeaveRunway () {
+		Application.LoadLevel (3);
+	}
 
 }

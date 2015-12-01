@@ -27,7 +27,7 @@ public class BottomButtons : MonoBehaviour {
 			NameText.text = GameInformation.PlayerName;
 			InputNameText.text = GameInformation.PlayerName;
 		} else {
-			NameText.text = "Empty";
+			NameText.text = "Player";
 		}
 	}
 

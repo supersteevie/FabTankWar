@@ -56,6 +56,8 @@ public class NewProtoGamehandler : MonoBehaviour {
 	private int nbrTotal;
 
 	public static bool eventRunning = false;
+
+	public GameObject PrefabBullet;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (BeginShow());
@@ -192,6 +194,9 @@ public class NewProtoGamehandler : MonoBehaviour {
                 playerReactScript.direction = laneRight;
                 break;
         }
+		GameObject clone;
+		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform.position, quickPatternTimer, ProjectileType.Missle);
         yield return quickSwipeUI[swipeObj].GetComponent<QuickTimePattern>().StartCoroutine("StartQuickTimePattern", quickPatternTimer);
 
         nbrQuickPattern++;
@@ -215,7 +220,10 @@ public class NewProtoGamehandler : MonoBehaviour {
 
 	//Calls the buff shield quick time event
     IEnumerator CallBuff()
-    {
+	{
+		GameObject clone;
+		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform.position, quickTapsTimer, ProjectileType.Bomb);
         yield return quickTapUI.GetComponent<QuickTaps>().StartCoroutine("StartTimer", quickTapsTimer);
 
         nbrQuickTaps++;

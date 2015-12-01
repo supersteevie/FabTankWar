@@ -71,6 +71,8 @@ public class NewProtoGamehandler : MonoBehaviour {
 
 		limitTotal = limitQuickTaps + limitQuickPattern + limitQuickDraw;
 
+
+
 	}
 	
 	// Update is called once per frame
@@ -109,7 +111,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 	            }
 			}else 
 			{
-
+				GameObject.Find("npc_MasterCeremonies").GetComponent<FinalJudgement>().Win();
 			}
 		}
 	}

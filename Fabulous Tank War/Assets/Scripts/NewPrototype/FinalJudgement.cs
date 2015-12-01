@@ -21,11 +21,11 @@ public class FinalJudgement : MonoBehaviour {
 	private int[] judgeScores;
 
 	//Master of Ceremonies Text
-	private Text npcText;
+	public Text npcText;
 
 	// Use this for initialization
 	void Start () {
-		npcText = gameObject.GetComponentsInChildren<Text> ();
+		npcText = gameObject.GetComponentInChildren<Text> ();
 	
 	}
 	
@@ -42,7 +42,10 @@ public class FinalJudgement : MonoBehaviour {
 
 	}
 
-	void Win () {
+	public void Win () {
+		gameObject.GetComponent<Image> ().enabled = true;
+		gameObject.GetComponentInChildren<Image> ().enabled = true;
 		npcText.text = winMsg;
+		npcText.enabled = true;
 	}
 }

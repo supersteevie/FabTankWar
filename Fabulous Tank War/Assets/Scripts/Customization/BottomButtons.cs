@@ -11,7 +11,7 @@ public class BottomButtons : MonoBehaviour {
 	public GameObject TankHolder;
 	public GameObject ColorHolder;
 	public GameObject DecalHolder;
-	private Vector3 PressedPos = new Vector3 (0,128,0);
+	private Vector3 PressedPos = new Vector3 (0,80,0);
 	private Vector3 UnpressedPos = new Vector3 (0,0,0);
 	public static string TankSavedName;
 	

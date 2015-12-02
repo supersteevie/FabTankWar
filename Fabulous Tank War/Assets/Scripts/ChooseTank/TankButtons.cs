@@ -104,7 +104,7 @@ public class TankButtons : MonoBehaviour {
 	public void Runway(){
 
 
-	//	Application.LoadLevel ("");
+		Application.LoadLevel ("newProto");
 	
 	}
 

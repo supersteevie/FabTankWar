@@ -24,9 +24,9 @@ public class WheelsCustom : MonoBehaviour {
 				WheelNum = 1;
 
 				// wheel1 skills
-				wheelsBeauty = 10;
-				wheelsFire = 20;
-				wheelsDurability = 30;
+				wheelsBeauty = 15;
+				wheelsFire = 14;
+				wheelsDurability = 22;
 
 				//change num
 				WheelChng = 2;
@@ -37,9 +37,9 @@ public class WheelsCustom : MonoBehaviour {
 				WheelNum = 2;
 
 				// wheel2 skills
-				wheelsBeauty = 25;
-				wheelsFire = 15;
-				wheelsDurability = 20;
+				wheelsBeauty = 22;
+				wheelsFire = 12;
+				wheelsDurability = 11;
 
 				//change num
 				WheelChng = 1;
@@ -56,9 +56,9 @@ public class WheelsCustom : MonoBehaviour {
 			wheels02.SetActive (false);
 			WheelNum = 1;
 			// wheel1 skills
-			wheelsBeauty = 10;
-			wheelsFire = 20;
-			wheelsDurability = 30;
+			wheelsBeauty = 15;
+			wheelsFire = 14;
+			wheelsDurability = 22;
 
 			//change num
 			WheelChng = 2;
@@ -70,9 +70,9 @@ public class WheelsCustom : MonoBehaviour {
 			wheels02.SetActive(true);
 			WheelNum = 2;
 			// wheel2 skills
-			wheelsBeauty = 25;
-			wheelsFire = 15;
-			wheelsDurability = 20;
+			wheelsBeauty = 22;
+			wheelsFire = 12;
+			wheelsDurability = 11;
 
 			// change num
 			WheelChng = 1;

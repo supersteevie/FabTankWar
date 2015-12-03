@@ -14,6 +14,12 @@ public class TankButtons : MonoBehaviour {
 	public Text Tank5Text;
 	public static int selectedTank = 0;
 
+	public Image T1Pressed;
+	public Image T2Pressed;
+	public Image T3Pressed;
+	public Image T4Pressed;
+	public Image T5Pressed;
+
 
 	void Start(){
 		TankName ();
@@ -44,6 +50,12 @@ public class TankButtons : MonoBehaviour {
 		}
 		selectedTank = 1;
 		dressUp.interactable = true;
+		T1Pressed.gameObject.SetActive(true);
+		T2Pressed.gameObject.SetActive(false);
+		T3Pressed.gameObject.SetActive(false);
+		T4Pressed.gameObject.SetActive(false);
+		T5Pressed.gameObject.SetActive(false);
+
 
 
 	}
@@ -60,6 +72,11 @@ public class TankButtons : MonoBehaviour {
 
 		selectedTank = 2;
 		dressUp.interactable = true;
+		T1Pressed.gameObject.SetActive(false);
+		T2Pressed.gameObject.SetActive(true);
+		T3Pressed.gameObject.SetActive(false);
+		T4Pressed.gameObject.SetActive(false);
+		T5Pressed.gameObject.SetActive(false);
 	}
 
 	public void Tank3ButtonInfo(){
@@ -74,6 +91,11 @@ public class TankButtons : MonoBehaviour {
 
 		selectedTank = 3;
 		dressUp.interactable = true;
+		T1Pressed.gameObject.SetActive(false);
+		T2Pressed.gameObject.SetActive(false);
+		T3Pressed.gameObject.SetActive(true);
+		T4Pressed.gameObject.SetActive(false);
+		T5Pressed.gameObject.SetActive(false);
 	}
 
 	public void Tank4ButtonInfo(){
@@ -87,6 +109,13 @@ public class TankButtons : MonoBehaviour {
 		}
 		selectedTank = 4;
 		dressUp.interactable = true;
+		T1Pressed.gameObject.SetActive(false);
+		T2Pressed.gameObject.SetActive(false);
+		T3Pressed.gameObject.SetActive(false);
+		T4Pressed.gameObject.SetActive(true);
+		T5Pressed.gameObject.SetActive(false);
+
+
 	}
 	public void Tank5ButtonInfo(){
 		
@@ -100,6 +129,11 @@ public class TankButtons : MonoBehaviour {
 	
 		selectedTank = 5;
 		dressUp.interactable = true;
+		T1Pressed.gameObject.SetActive(false);
+		T2Pressed.gameObject.SetActive(false);
+		T3Pressed.gameObject.SetActive(false);
+		T4Pressed.gameObject.SetActive(false);
+		T5Pressed.gameObject.SetActive(true);
 	}
 	public void Runway(){
 

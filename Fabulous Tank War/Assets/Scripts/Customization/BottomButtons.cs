@@ -35,11 +35,11 @@ public class BottomButtons : MonoBehaviour {
 
 
 		NameInput.gameObject.SetActive (true);
-		TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true, true);
+		TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true, true).active = true;
 		TankHolder.transform.position = UnpressedPos;
 		ColorHolder.transform.position = UnpressedPos;
 		DecalHolder.transform.position = UnpressedPos;
-	
+
 		
 		
 	}
@@ -50,7 +50,7 @@ public class BottomButtons : MonoBehaviour {
 		StartCoroutine(LerpButtonsMove(ColorHolder.transform, UnpressedPos));
 		StartCoroutine(LerpButtonsMove(TankHolder.transform, PressedPos));
 		StartCoroutine(LerpButtonsMove(DecalHolder.transform, UnpressedPos));
-
+		TouchScreenKeyboard.Open ("", TouchScreenKeyboardType.Default, false, false, true, true).active = false;
 
 	}
 	
@@ -61,7 +61,7 @@ public class BottomButtons : MonoBehaviour {
 		StartCoroutine(LerpButtonsMove(ColorHolder.transform, PressedPos));
 		StartCoroutine(LerpButtonsMove(TankHolder.transform, UnpressedPos));
 		StartCoroutine(LerpButtonsMove(DecalHolder.transform, UnpressedPos));
-
+		TouchScreenKeyboard.Open ("", TouchScreenKeyboardType.Default, false, false, true, true).active = false;
 
 
 		
@@ -73,7 +73,7 @@ public class BottomButtons : MonoBehaviour {
 		StartCoroutine(LerpButtonsMove(ColorHolder.transform, UnpressedPos));
 		StartCoroutine(LerpButtonsMove(TankHolder.transform, UnpressedPos));
 		StartCoroutine(LerpButtonsMove(DecalHolder.transform, PressedPos));
-
+		TouchScreenKeyboard.Open ("", TouchScreenKeyboardType.Default, false, false, true, true).active = false;
 	
 			
 	}	
@@ -84,7 +84,8 @@ public class BottomButtons : MonoBehaviour {
 		float time = 0; // measure our current time
 		float duration = .7f; // duration of the lerp
 			float rate = 1/duration;
-				
+			
+		PressedPos = new Vector3 (0, Screen.height * .24f, 0);
 			Vector3 startPos = UPHolder.position;
 		while(time<1)
 		{

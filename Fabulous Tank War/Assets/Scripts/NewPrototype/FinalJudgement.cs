@@ -15,10 +15,15 @@ public class FinalJudgement : MonoBehaviour {
 	public int twoStar;
 	public int oneStar;
 
+	public int tnkStar;
+
 	//Judge npc prefabs
 	public GameObject[] judges;
 	
 	private int[] judgeScores;
+
+	private int avgScrutiny; //Average of all of the Judge's scrutiny
+	private int avgTnkScore; //Average of tank's 3 attributes + bonus points
 
 	//Master of Ceremonies Text
 	public Text npcText;
@@ -32,19 +37,32 @@ public class FinalJudgement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 
-	void CalculateScore () {
+	void CalculateScore () 
+	{
+		if (avgTnkScore > avgScrutiny) 
+		{
+			tnkStar = threeStar;
+		}
+		if (avgTnkScore == avgScrutiny) {
+			tnkStar = twoStar;
+		} else 
+		{
+			tnkStar = oneStar;
+		}
+	}
+
+	void ShowResults () 
+	{
 
 	}
 
-	void ShowResults () {
-
-	}
-
-	public void Win () {
+	public void Win () 
+	{
 		gameObject.GetComponent<Image> ().enabled = true;
 		gameObject.GetComponentInChildren<Image> ().enabled = true;
 		npcText.text = winMsg;

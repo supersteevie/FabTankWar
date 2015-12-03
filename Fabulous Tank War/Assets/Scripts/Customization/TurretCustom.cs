@@ -24,9 +24,9 @@ public class TurretCustom : MonoBehaviour {
 			TurretNum = 1;
 
 			// turret1 skills 
-			turretBeauty = 10;
-			turretFire = 25;
-			turretDurability = 20;
+			turretBeauty = 11;
+			turretFire = 19;
+			turretDurability = 12;
 
 			//change number
 			TurretChng = 2;
@@ -38,9 +38,9 @@ public class TurretCustom : MonoBehaviour {
 			TurretNum = 2;
 
 			// Turret2 skills
-			turretBeauty = 15;
-			turretFire = 30;
-			turretDurability = 10;	
+			turretBeauty = 14;
+			turretFire = 22;
+			turretDurability = 11;	
 
 			//change number
 			TurretChng = 1;
@@ -56,9 +56,9 @@ public class TurretCustom : MonoBehaviour {
 			Turret02.SetActive (false);
 			TurretNum = 1;
 			// Turret1 Skills
-			turretBeauty = 10;
-			turretFire = 25;
-			turretDurability = 20;
+			turretBeauty = 11;
+			turretFire = 19;
+			turretDurability = 12;
 
 			//change number
 			TurretChng = 2;
@@ -71,9 +71,9 @@ public class TurretCustom : MonoBehaviour {
 			Turret02.SetActive(true);
 			TurretNum = 2;
 			//Turret2 Skills
-			turretBeauty = 15;
-			turretFire = 30;
-			turretDurability = 10;
+			turretBeauty = 14;
+			turretFire = 22;
+			turretDurability = 11;	
 
 			//change number
 			TurretChng = 1;

@@ -1539,7 +1539,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 993309561}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 9.31350708, y: 106}
@@ -1947,10 +1947,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1012700499}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 30
+  m_MaxValue: 60
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2054,7 +2054,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 993309561}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 9.31350708, y: 51}
@@ -2642,10 +2642,10 @@ Transform:
   - {fileID: 1884471448}
   - {fileID: 1476104423}
   - {fileID: 577021653}
+  - {fileID: 2060079568}
   - {fileID: 413880767}
   - {fileID: 715489548}
   - {fileID: 1049404431}
-  - {fileID: 2060079568}
   m_Father: {fileID: 1256451441}
   m_RootOrder: 0
 --- !u!114 &993309562
@@ -2990,7 +2990,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 993309561}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 9.31350708, y: -11}
@@ -4572,10 +4572,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2140660467}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 30
+  m_MaxValue: 60
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5678,7 +5678,7 @@ RectTransform:
   - {fileID: 2948851}
   - {fileID: 2026023225}
   m_Father: {fileID: 993309561}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 2.71356201, y: -28.7600307}
@@ -5723,10 +5723,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 415805287}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 30
+  m_MaxValue: 60
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

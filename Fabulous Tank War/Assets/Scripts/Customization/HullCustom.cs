@@ -25,8 +25,8 @@ public class HullCustom : MonoBehaviour {
 			
 			//Hull1 Skills 
 			hullBeauty = 10;
-			hullFire = 20;
-			hullDurability = 33;
+			hullFire = 15;
+			hullDurability = 20;
 
 			// change number
 			HullChng = 2;
@@ -39,9 +39,9 @@ public class HullCustom : MonoBehaviour {
 			HullNum = 2;
 
 			// Hull2 Skills
-			hullBeauty = 30;
-			hullFire = 15;
-			hullDurability = 25;
+			hullBeauty = 15;
+			hullFire = 12;
+			hullDurability = 19;
 
 			// change number
 			HullChng = 1;
@@ -58,8 +58,8 @@ public class HullCustom : MonoBehaviour {
 			HullNum = 1;
 			// Hull1 skills
 			hullBeauty = 10;
-			hullFire = 20;
-			hullDurability = 33;
+			hullFire = 15;
+			hullDurability = 20;
 
 			// change to next number
 			HullChng = 2;
@@ -69,9 +69,9 @@ public class HullCustom : MonoBehaviour {
 			Hull02.SetActive(true);
 			HullNum = 2;
 			// Hull2 skills
-			hullBeauty = 30;
-			hullFire = 15;
-			hullDurability = 25;
+			hullBeauty = 15;
+			hullFire = 12;
+			hullDurability = 19;
 
 			// change to next number
 			HullChng = 1;

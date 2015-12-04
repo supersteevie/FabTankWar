@@ -35,17 +35,20 @@ public class QuickTaps : MonoBehaviour
 			{
 				totalTaps++;
 			}
-			else if(totalTaps >= desireTaps)
-			{
-				StopAllCoroutines ();
-				isRunning = false;
-				GetComponent<Image> ().enabled = false;
-				NewProtoGamehandler.eventRunning = false;
-			}
-			//yield return new WaitForSeconds(Time.deltaTime);
 			yield return null;
 		}
-		wonLast = false;
+		if (totalTaps > desireTaps) {
+			//Win
+			FinalJudgement.bonusPts++;
+			wonLast = true;
+		} else if (totalTaps < desireTaps) {
+			//Lost
+			FinalJudgement.bonusPts--;
+			wonLast = false;
+		} else {
+			//Tie
+			wonLast = true;
+		}
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
 		NewProtoGamehandler.eventRunning = false;

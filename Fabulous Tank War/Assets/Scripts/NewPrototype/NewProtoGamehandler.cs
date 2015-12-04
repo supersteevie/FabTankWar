@@ -58,6 +58,8 @@ public class NewProtoGamehandler : MonoBehaviour {
 	public static bool eventRunning = false;
 
 	public GameObject PrefabBullet;
+
+	public GameObject exitButton;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (BeginShow());
@@ -101,19 +103,20 @@ public class NewProtoGamehandler : MonoBehaviour {
 			timeBetweenEvents = Random.Range(timeMin, timeMax);
 			yield return new WaitForSeconds (timeBetweenEvents);
 			if (nbrTotal < limitTotal) 
-				{
-				QuicktimeSwitcher();
-	            if (quickTimeEvents != null)
-	            {
-	                yield return StartCoroutine(quickTimeEvents());
-					eventRunning=true;
-					while (eventRunning) { //Prevents events from overlapping
-						yield return new WaitForSeconds(0.1f);
-					}
-	            }
-			}else 
 			{
-				GameObject.Find("npc_MasterCeremonies").GetComponent<FinalJudgement>().Win();
+				QuicktimeSwitcher();
+	            yield return StartCoroutine(quickTimeEvents());
+				eventRunning=true;
+				while (eventRunning) //Prevents events from overlapping
+				{ 
+					yield return new WaitForSeconds(0.1f);
+				}
+				print (FinalJudgement.bonusPts);
+	        }
+			else 
+			{
+				gameObject.GetComponent<FinalJudgement>().EndGame();
+				exitButton.SetActive(true);
 			}
 		}
 	}

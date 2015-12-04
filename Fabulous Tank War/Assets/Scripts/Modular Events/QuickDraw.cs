@@ -28,9 +28,11 @@ public class QuickDraw : MonoBehaviour
 			time += Time.deltaTime;
 			if (Input.GetAxis ("Fire1") > 0)
 			{
+				//Player wins
 				StopAllCoroutines ();
 				isRunning = false;
 				wonLast = true;
+				FinalJudgement.bonusPts++;
 				GetComponent<Image> ().enabled = false;
 				NewProtoGamehandler.eventRunning = false;
 				FireMissle();
@@ -39,6 +41,9 @@ public class QuickDraw : MonoBehaviour
 			//yield return new WaitForSeconds(Time.deltaTime);
 			yield return null;
 		}
+
+		FinalJudgement.bonusPts--;
+		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
 		NewProtoGamehandler.eventRunning = false;

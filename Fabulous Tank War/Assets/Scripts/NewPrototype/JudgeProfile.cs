@@ -17,6 +17,9 @@ public class JudgeProfile : MonoBehaviour {
     public float waitTime;
 
     public int scrutiny;
+	public int beaBias;
+	public int firBias;
+	public int durBias;
 
 
 
@@ -25,6 +28,8 @@ public class JudgeProfile : MonoBehaviour {
         mainEmoji = gameObject.GetComponent<Image>();
         npcText = gameObject.GetComponentInChildren<Text>();
         gameObject.transform.position = locOffScreen;
+
+		scrutiny = (beaBias + firBias + durBias) / 3;
 	
 	}
 	
@@ -50,7 +55,7 @@ public class JudgeProfile : MonoBehaviour {
     {
         while (Vector3.Distance(transform.position, newPos) > 0.05f)
         {
-            transform.position = Vector3.Lerp(transform.position, newPos, smoothing * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, newPos, smoothing * Time.deltaTime);
 
             yield return null;
         }
@@ -59,7 +64,7 @@ public class JudgeProfile : MonoBehaviour {
 
         while (Vector3.Distance(transform.position, oldPos) > 0.05f)
         {
-            transform.position = Vector3.Lerp(transform.position, oldPos, smoothing * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, oldPos, smoothing * Time.deltaTime);
 
             yield return null;
         }

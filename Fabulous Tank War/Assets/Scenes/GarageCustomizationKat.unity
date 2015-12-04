@@ -2813,6 +2813,30 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11432300, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
+      propertyPath: RichKid
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473568, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
+      propertyPath: RichKid
+      value: 
+      objectReference: {fileID: 2800000, guid: 5020a5a2fcb261a4f97c3f2eee981577, type: 3}
+    - target: {fileID: 11432300, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
+      propertyPath: richKid
+      value: 
+      objectReference: {fileID: 2800000, guid: 5020a5a2fcb261a4f97c3f2eee981577, type: 3}
+    - target: {fileID: 11473568, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
+      propertyPath: richKid
+      value: 
+      objectReference: {fileID: 2800000, guid: 5020a5a2fcb261a4f97c3f2eee981577, type: 3}
+    - target: {fileID: 11473568, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
+      propertyPath: Crazy
+      value: 
+      objectReference: {fileID: 2800000, guid: 6f3b69f6d682fa640a2e5e575f2d2121, type: 3}
+    - target: {fileID: 11432300, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
+      propertyPath: Crazy
+      value: 
+      objectReference: {fileID: 2800000, guid: 6f3b69f6d682fa640a2e5e575f2d2121, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49d219fc19fe3ae4a810906cc2053440, type: 2}
   m_IsPrefabParent: 0
@@ -4728,7 +4752,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1693454542}
+        m_MethodName: ChooseRichKid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 642863920}
         m_MethodName: ChooseRichKid
         m_Mode: 1
         m_Arguments:
@@ -5807,7 +5842,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 642863920}
+        m_MethodName: ChooseCrazy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1693454542}
         m_MethodName: ChooseCrazy
         m_Mode: 1
         m_Arguments:

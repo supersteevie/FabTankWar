@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class DecalCustom : MonoBehaviour {
 
 	public Texture getto;
+	public Texture richKid;
+	public Texture Crazy;
 	public static int DecalNum = 0;
 
 	
@@ -45,12 +47,13 @@ public class DecalCustom : MonoBehaviour {
 	public void ChooseRichKid(){
 
 		DecalNum = 2;
+		this.gameObject.GetComponent<MeshRenderer>().material.SetTexture ("_Decal", richKid);
 		
 	}
 	public void ChooseCrazy(){
 
 		DecalNum = 3;
-		
+		this.gameObject.GetComponent<MeshRenderer>().material.SetTexture ("_Decal", Crazy);
 	}
 
 }

@@ -16,6 +16,8 @@ public class QuickTimePattern : MonoBehaviour
     public bool isRunning = false;
 	public bool wonLast = false;
 
+	public float bonusTime;
+
     //Script to move tank if successful
     public PlayerReacts playerReactScript;
 
@@ -65,6 +67,12 @@ public class QuickTimePattern : MonoBehaviour
 			else
 			{
 				//if they finished the shape end the coroutines
+				if (time <= timer - bonusTime)
+				{
+					//Player passes quickly
+					FinalJudgement.bonusPts++;
+					bonusTime++;
+				}
 				StopAllCoroutines();
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;

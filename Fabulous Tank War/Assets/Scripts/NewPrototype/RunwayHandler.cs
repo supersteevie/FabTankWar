@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class NewProtoGamehandler : MonoBehaviour {
+public class RunwayHandler : MonoBehaviour {
 
     //Communicates between scripts
     //
@@ -111,7 +111,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 				{ 
 					yield return new WaitForSeconds(0.1f);
 				}
-				print (FinalJudgement.bonusPts);
+				print ("Current Bonus Points: " + FinalJudgement.bonusPts);
 	        }
 			else 
 			{
@@ -200,7 +200,7 @@ public class NewProtoGamehandler : MonoBehaviour {
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
 		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, timerBuff / 1.3f, ProjectileType.Missle, false);
-        yield return uiSwipe[swipeObj].GetComponent<QuickSwipe>().StartCoroutine("StartQuickTimePattern", timerSwipe);
+        yield return uiSwipe[swipeObj].GetComponent<QuickSwipe>().StartCoroutine("StartQuickSwipeEvent", timerSwipe);
 
         nbrSwipe++;
 		nbrTotal++;

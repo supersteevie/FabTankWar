@@ -522,9 +522,13 @@ MonoBehaviour:
   playerReactScript: {fileID: 0}
   playerObj: {fileID: 1023222814}
   towerObj: {fileID: 1115466142}
-  uiSwipe: []
-  uiFire: {fileID: 0}
-  uiBuff: {fileID: 0}
+  uiSwipe:
+  - {fileID: 1394456955}
+  - {fileID: 1996116397}
+  - {fileID: 1573074643}
+  - {fileID: 2123849686}
+  uiFire: {fileID: 1443497403}
+  uiBuff: {fileID: 475477996}
   mainCanvas: {fileID: 1048575083}
   laneLeft: -3
   laneCenter: 0
@@ -533,13 +537,13 @@ MonoBehaviour:
   moveSpeed: 1
   timeMin: .5
   timeMax: 2
-  timerFire: 0
-  timerBuff: 0
-  timerSwipe: 0
+  timerFire: 3
+  timerBuff: 3
+  timerSwipe: 3
   requiredTaps: 20
-  limitFire: 0
-  limitBuff: 0
-  limitSwipe: 0
+  limitFire: 5
+  limitBuff: 4
+  limitSwipe: 6
   PrefabBullet: {fileID: 100470, guid: c11fc6eeca2a57b49b96baf910dc9a60, type: 2}
   exitButton: {fileID: 1788575772}
 --- !u!114 &154300133
@@ -839,6 +843,10 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22450794, guid: 9f0cbf00171dce547996bd09cf8339b7,
     type: 2}
   m_PrefabInternal: {fileID: 275554109}
+--- !u!1 &475477996 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 185200, guid: 8fe12114dba51024cbf43a30bd9ee462, type: 2}
+  m_PrefabInternal: {fileID: 1513842499}
 --- !u!1 &564252197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1796,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1350240764}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1394456955 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 146470, guid: ef5feaa4f1b5dc043ab0088501880d33, type: 2}
+  m_PrefabInternal: {fileID: 1725643342}
 --- !u!1001 &1429414706
 Prefab:
   m_ObjectHideFlags: 0
@@ -1892,6 +1904,10 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22484012, guid: dc92f86798356c94290bd904332688fc,
     type: 2}
   m_PrefabInternal: {fileID: 1429414706}
+--- !u!1 &1443497403 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 191910, guid: 437e5a938be3b7c459cdaa1aac0d99e3, type: 2}
+  m_PrefabInternal: {fileID: 1542829704}
 --- !u!1001 &1513842499
 Prefab:
   m_ObjectHideFlags: 0
@@ -2000,6 +2016,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300002, guid: 7a46b2b5c067be4409ea80829fa13c21,
         type: 3}
+    - target: {fileID: 185200, guid: 8fe12114dba51024cbf43a30bd9ee462, type: 2}
+      propertyPath: m_Name
+      value: QuickBuff
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fe12114dba51024cbf43a30bd9ee462, type: 2}
   m_IsPrefabParent: 0
@@ -2201,6 +2221,10 @@ Prefab:
       propertyPath: PrefabBullet
       value: 
       objectReference: {fileID: 100470, guid: c11fc6eeca2a57b49b96baf910dc9a60, type: 2}
+    - target: {fileID: 191910, guid: 437e5a938be3b7c459cdaa1aac0d99e3, type: 2}
+      propertyPath: m_Name
+      value: QuickFire
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 437e5a938be3b7c459cdaa1aac0d99e3, type: 2}
   m_IsPrefabParent: 0
@@ -2209,6 +2233,10 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22467810, guid: 437e5a938be3b7c459cdaa1aac0d99e3,
     type: 2}
   m_PrefabInternal: {fileID: 1542829704}
+--- !u!1 &1573074643 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 197212, guid: b9d5648773f76ae4bab668140c6a2e60, type: 2}
+  m_PrefabInternal: {fileID: 59156485}
 --- !u!224 &1685722790 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22494384, guid: 6be49336177adff4abc3b2469b89a8bb,
@@ -2663,7 +2691,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 148, y: -109}
+  m_AnchoredPosition: {x: 200, y: -137}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1788575774
@@ -2751,6 +2779,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1788575772}
+--- !u!1 &1996116397 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 158404, guid: 9f0cbf00171dce547996bd09cf8339b7, type: 2}
+  m_PrefabInternal: {fileID: 275554109}
 --- !u!1 &1997349541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,3 +2992,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2106661067}
   m_Mesh: {fileID: 4300004, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
+--- !u!1 &2123849686 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 153330, guid: e845dc72148925046a581dfc0c6e9448, type: 2}
+  m_PrefabInternal: {fileID: 1734035625}

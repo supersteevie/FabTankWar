@@ -84,7 +84,7 @@ public class QuickSwipe : MonoBehaviour
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
                 playerReactScript.QuickMove();
-				NewProtoGamehandler.eventRunning = false;
+				RunwayHandler.eventRunning = false;
 
 			}
 			//yield return new WaitForSeconds(Time.deltaTime);
@@ -94,7 +94,7 @@ public class QuickSwipe : MonoBehaviour
         FinalJudgement.bonusPts--;
         isRunning = false;
 		GetComponent<Image> ().enabled = false;
-		NewProtoGamehandler.eventRunning = false;
+		RunwayHandler.eventRunning = false;
 		foreach (Transform pos in patternList)
 		{
 			currentTemp.Enqueue(pos);

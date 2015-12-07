@@ -36,7 +36,7 @@ public class QuickFire : MonoBehaviour
 				wonLast = true;
 				FinalJudgement.bonusPts++;
 				GetComponent<Image> ().enabled = false;
-				NewProtoGamehandler.eventRunning = false;
+				RunwayHandler.eventRunning = false;
 				FireMissle();
 				break;
 			}
@@ -48,14 +48,14 @@ public class QuickFire : MonoBehaviour
 		wonLast = false;
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
-		NewProtoGamehandler.eventRunning = false;
+		RunwayHandler.eventRunning = false;
 	}
 
 	void FireMissle() 
 	{
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, playerObj.transform.position + (Vector3.up * 1.5f), playerObj.transform.rotation) as GameObject;
-		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<NewProtoGamehandler>().timerBuff, ProjectileType.Missle, true);
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<RunwayHandler>().timerBuff, ProjectileType.Missle, true);
 		clone.transform.localScale = new Vector3(1,1,1);
 	}
 }

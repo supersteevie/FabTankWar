@@ -53,6 +53,6 @@ public class QuickBuff : MonoBehaviour
 		}
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;
-		NewProtoGamehandler.eventRunning = false;
+		RunwayHandler.eventRunning = false;
 	}
 }

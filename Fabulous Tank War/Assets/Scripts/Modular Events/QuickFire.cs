@@ -2,17 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class QuickDraw : MonoBehaviour
+public class QuickFire : MonoBehaviour
 {
 	public bool isRunning;
 	public bool wonLast  = false;
+    public bool tie = false;
 
 	public GameObject playerObj;
 	public GameObject PrefabBullet;
 
 	public IEnumerator StartTimer (float timer)
 	{
-		wonLast = false;	
+		wonLast = false;
+        tie = false;
 		StartCoroutine (StartEvent (timer));	
 		isRunning = true;
 		GetComponent<Image> ().enabled = true;
@@ -53,7 +55,7 @@ public class QuickDraw : MonoBehaviour
 	{
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, playerObj.transform.position + (Vector3.up * 1.5f), playerObj.transform.rotation) as GameObject;
-		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<NewProtoGamehandler>().quickTapsTimer, ProjectileType.Missle, true);
+		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<NewProtoGamehandler>().timerBuff, ProjectileType.Missle, true);
 		clone.transform.localScale = new Vector3(1,1,1);
 	}
 }

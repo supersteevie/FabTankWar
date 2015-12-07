@@ -1,6 +1,6 @@
 //Maya ASCII 2015 scene
 //Name: trojanTank00.ma
-//Last modified: Thu, Dec 03, 2015 02:20:16 PM
+//Last modified: Sat, Dec 05, 2015 05:09:48 PM
 //Codeset: UTF-8
 requires maya "2015";
 currentUnit -l centimeter -a degree -t film;
@@ -12,12 +12,12 @@ fileInfo "osv" "Mac OS X 10.9.5";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0.26783085254438344 0.37970481999565903 6.8062741986688824 ;
-	setAttr ".r" -type "double3" -1.5383527297572901 360.19999999953689 -7.7650733852759135e-19 ;
+	setAttr ".t" -type "double3" 3.9183557982028261 1.3702282269264965 -1.3525837542898385 ;
+	setAttr ".r" -type "double3" -12.338352730081105 115.7999999995865 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 6.2232378894815623;
+	setAttr ".coi" 4.1313610546751498;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -371,7 +371,7 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.54166668653488159 0.5 ;
+	setAttr ".pv" -type "double2" 0.75000002980232239 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr -s 76 ".uvst[0].uvsp[0:75]" -type "float2" 0.375 0 0.45833334
 		 0 0.54166669 0 0.625 0 0.375 0.083333336 0.45833334 0.083333336 0.54166669 0.083333336
@@ -394,6 +394,15 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 8 ".pt";
+	setAttr ".pt[19]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[23]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[43]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[47]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[48]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[49]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[50]" -type "float3" 0.14408894 0 0 ;
+	setAttr ".pt[51]" -type "float3" 0.14408894 0 0 ;
 	setAttr -s 56 ".vt[0:55]"  -0.79540128 -0.051791579 0.50500643 -0.3620711 -0.010734344 0.50500643
 		 0.01959452 -0.010734344 0.50500643 0.40126008 -0.051791579 0.50500643 -0.79540128 -0.0021781635 0.50500643
 		 -0.3620711 0.038879056 0.50500643 0.01959452 0.038879056 0.50500643 0.40126008 -0.0021781635 0.50500643
@@ -543,7 +552,7 @@ createNode mesh -n "pSphereShape1" -p "pSphere1";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.95000013709068298 0.50000005960464478 ;
+	setAttr ".pv" -type "double2" 0.95000013709068298 0.57500007748603821 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr -s 525 ".uvst[0].uvsp";
 	setAttr ".uvst[0].uvsp[0:249]" -type "float2" 0 0.050000001 0.050000001 0.050000001
@@ -672,6 +681,43 @@ createNode mesh -n "pSphereShape1" -p "pSphere1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
+	setAttr -s 37 ".pt";
+	setAttr ".pt[180]" -type "float3" 0 0.0241095 0 ;
+	setAttr ".pt[198]" -type "float3" 0 0.0241095 0 ;
+	setAttr ".pt[199]" -type "float3" 0 -0.0085764807 8.2688221e-09 ;
+	setAttr ".pt[200]" -type "float3" 0 -0.021398382 -0.027960112 ;
+	setAttr ".pt[218]" -type "float3" 0 -0.021398382 0.027960112 ;
+	setAttr ".pt[219]" -type "float3" 0 -0.0066323448 -0.026923126 ;
+	setAttr ".pt[236]" -type "float3" 0 -0.0066323448 0.026923126 ;
+	setAttr ".pt[255]" -type "float3" 0 0.031259123 8.2688221e-09 ;
+	setAttr ".pt[397]" -type "float3" 0 -0.038896952 0 ;
+	setAttr ".pt[398]" -type "float3" 0 0 0.030521639 ;
+	setAttr ".pt[400]" -type "float3" 0 0 -0.030521639 ;
+	setAttr ".pt[401]" -type "float3" 0 0 0.02931533 ;
+	setAttr ".pt[402]" -type "float3" 0 0 -0.029315321 ;
+	setAttr ".pt[403]" -type "float3" 0 0.038896952 0 ;
+	setAttr ".pt[406]" -type "float3" -0.019209698 0 0 ;
+	setAttr ".pt[407]" -type "float3" -0.019209698 -0.043041483 0 ;
+	setAttr ".pt[408]" -type "float3" -0.019209698 0 0.04901715 ;
+	setAttr ".pt[409]" -type "float3" -0.019209698 0 0 ;
+	setAttr ".pt[410]" -type "float3" -0.019209698 0 -0.04901715 ;
+	setAttr ".pt[411]" -type "float3" -0.019209698 0 0.04706068 ;
+	setAttr ".pt[412]" -type "float3" -0.019209698 0 -0.047060646 ;
+	setAttr ".pt[413]" -type "float3" -0.019209698 0.043041483 0 ;
+	setAttr ".pt[414]" -type "float3" -0.019209698 0 0 ;
+	setAttr ".pt[415]" -type "float3" -0.019209698 0 0 ;
+	setAttr ".pt[429]" -type "float3" 0 -0.028467298 -8.0899039e-09 ;
+	setAttr ".pt[430]" -type "float3" 0 -0.027207393 5.277466e-09 ;
+	setAttr ".pt[432]" -type "float3" 0 -0.0053095436 0.020861862 ;
+	setAttr ".pt[433]" -type "float3" 0 -0.002882449 0.022721548 ;
+	setAttr ".pt[436]" -type "float3" 0 -0.0053095631 -0.02086189 ;
+	setAttr ".pt[437]" -type "float3" 0 -0.0028824753 -0.022721548 ;
+	setAttr ".pt[438]" -type "float3" 0 0.0044468227 0.020228826 ;
+	setAttr ".pt[439]" -type "float3" 0 0.010370473 0.021995828 ;
+	setAttr ".pt[440]" -type "float3" 0 0.0044468166 -0.020228844 ;
+	setAttr ".pt[441]" -type "float3" 0 0.010370455 -0.021995824 ;
+	setAttr ".pt[443]" -type "float3" 0 0.020214327 -3.1929455e-09 ;
+	setAttr ".pt[445]" -type "float3" 0 0.028467298 1.1696452e-08 ;
 	setAttr -s 468 ".vt";
 	setAttr ".vt[0:165]"  -0.057242051 0.13256463 -0.02394139 -0.069743767 0.13256463 -0.045539226
 		 -0.089215636 0.13256463 -0.062679373 -0.11375161 0.13256463 -0.073684014 -0.14094998 0.13256463 -0.07747595
@@ -1955,47 +2001,15 @@ createNode mesh -n "pCylinderShape1" -p "pCylinder1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 41 ".pt";
-	setAttr ".pt[42]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[43]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[44]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[45]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[46]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[47]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[48]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[49]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[50]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[51]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[52]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[53]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[54]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[55]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[56]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[57]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[58]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[59]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[60]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[61]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[62]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[63]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[64]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[65]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[66]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[67]" -type "float3" -1.6298145e-09 0 0 ;
-	setAttr ".pt[68]" -type "float3" -1.6298145e-09 0 0 ;
-	setAttr ".pt[69]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[70]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[71]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[72]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[73]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[74]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[75]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[76]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[77]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[78]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[79]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[80]" -type "float3" -1.3969839e-09 0 0 ;
-	setAttr ".pt[81]" -type "float3" -1.3969839e-09 0 0 ;
+	setAttr -s 40 ".pt[42:81]" -type "float3"  -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.6298145e-09 0 0 -1.6298145e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 
+		0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0 -1.3969839e-09 0 0;
 	setAttr -s 82 ".vt[0:81]"  0.54898757 -0.41543153 0.075857505 0.44520533 -0.35340792 0.075857505
 		 0.28356075 -0.30418569 0.075857505 0.079876721 -0.27258313 0.075857505 -0.14590873 -0.26169363 0.075857505
 		 -0.37169415 -0.27258313 0.075857505 -0.57537812 -0.30418575 0.075857505 -0.73702252 -0.35340798 0.075857505
@@ -3482,8 +3496,6 @@ select -ne :hardwareRenderingGlobals;
 		 0 0 0 0 ;
 select -ne :defaultHardwareRenderGlobals;
 	setAttr ".res" -type "string" "ntsc_4d 646 485 1.333";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr "layer1.di" "pPlane1.do";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
@@ -3533,6 +3545,6 @@ connectAttr "pCylinderShape4.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCylinderShape5.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCylinderShape6.iog" ":initialShadingGroup.dsm" -na;
 dataStructure -fmt "raw" -as "name=externalContentTable:string=node:string=key:string=upath:uint32=upathcrc:string=rpath:string=roles";
-applyMetadata -fmt "raw" -v "channel\nname externalContentTable\nstream\nname v1.0\nindexType numeric\nstructure externalContentTable\n0\n\"file1\" \"fileTextureName\" \"/Users/sharrontholen/Desktop/can-stock-photo_csp17727716.jpg\" 64351908 \"/Users/sharrontholen/Desktop/can-stock-photo_csp17727716.jpg\" \"sourceImages\"\nendStream\nendChannel\nendAssociations\n" 
+applyMetadata -fmt "raw" -v "channel\nname externalContentTable\nstream\nname v1.0\nindexType numeric\nstructure externalContentTable\n0\n\"file1\" \"fileTextureName\" \"/Users/sharrontholen/Desktop/can-stock-photo_csp17727716.jpg\" 64351908 \"\" \"sourceImages\"\nendStream\nendChannel\nendAssociations\n" 
 		-scn;
 // End of trojanTank00.ma

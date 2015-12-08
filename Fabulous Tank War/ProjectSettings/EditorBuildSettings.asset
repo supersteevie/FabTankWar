@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/ChooseTank.unity
   - enabled: 1
     path: Assets/Scenes/newProto.unity
+  - enabled: 1
+    path: Assets/Scenes/Runway.unity

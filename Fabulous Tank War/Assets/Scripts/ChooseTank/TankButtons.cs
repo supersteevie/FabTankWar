@@ -20,6 +20,12 @@ public class TankButtons : MonoBehaviour {
 	public Image T4Pressed;
 	public Image T5Pressed;
 
+	public Image T1X;
+	public Image T2X;
+	public Image T3X;
+	public Image T4X;
+	public Image T5X;
+
 
 	void Start(){
 		TankName ();
@@ -31,17 +37,34 @@ public class TankButtons : MonoBehaviour {
 		dressUp.interactable = false;
 		erase.interactable = false;
 		selectedTank = 0;
-		Tank1Text.text = PlayerPrefs.GetString("1" + "PLAYERNAME", "Empty");
-		Tank2Text.text = PlayerPrefs.GetString("2" + "PLAYERNAME", "Empty");
-		Tank3Text.text = PlayerPrefs.GetString("3" + "PLAYERNAME", "Empty");
-		Tank4Text.text = PlayerPrefs.GetString("4" + "PLAYERNAME", "Empty");
-		Tank5Text.text = PlayerPrefs.GetString("5" + "PLAYERNAME", "Empty");
+		Tank1Text.text = PlayerPrefs.GetString("1" + "PLAYERNAME", " ");
+		Tank2Text.text = PlayerPrefs.GetString("2" + "PLAYERNAME", " ");
+		Tank3Text.text = PlayerPrefs.GetString("3" + "PLAYERNAME", " ");
+		Tank4Text.text = PlayerPrefs.GetString("4" + "PLAYERNAME", " ");
+		Tank5Text.text = PlayerPrefs.GetString("5" + "PLAYERNAME", " ");
+
+		if (Tank1Text.text == " ") {
+			T1X.gameObject.SetActive(true);
+		} 
+		if (Tank2Text.text == " ") {
+			T2X.gameObject.SetActive(true);
+		} 
+		if (Tank3Text.text == " ") {
+			T3X.gameObject.SetActive(true);
+		} 
+		if (Tank4Text.text == " ") {
+			T4X.gameObject.SetActive(true);
+		} 
+		if (Tank5Text.text == " ") {
+			T5X.gameObject.SetActive(true);
+		} 
+
 
 	}
 
 
 	public void Tank1ButtonInfo(){
-		if (Tank1Text.text == "Empty") {
+		if (Tank1Text.text == " ") {
 			runway.interactable = false;
 			erase.interactable = false;
 		} else {
@@ -62,7 +85,7 @@ public class TankButtons : MonoBehaviour {
 
 	public void Tank2ButtonInfo(){
 		
-		if (Tank2Text.text == "Empty") {
+		if (Tank2Text.text == " ") {
 			runway.interactable = false;
 			erase.interactable = false;
 		} else {
@@ -81,7 +104,7 @@ public class TankButtons : MonoBehaviour {
 
 	public void Tank3ButtonInfo(){
 		
-		if (Tank3Text.text == "Empty") {
+		if (Tank3Text.text == " ") {
 			runway.interactable = false;
 			erase.interactable = false;
 		} else {
@@ -100,7 +123,7 @@ public class TankButtons : MonoBehaviour {
 
 	public void Tank4ButtonInfo(){
 		
-		if (Tank4Text.text == "Empty") {
+		if (Tank4Text.text == " ") {
 			runway.interactable = false;
 			erase.interactable = false;
 		} else {
@@ -119,7 +142,7 @@ public class TankButtons : MonoBehaviour {
 	}
 	public void Tank5ButtonInfo(){
 		
-		if (Tank5Text.text == "Empty") {
+		if (Tank5Text.text == " ") {
 			runway.interactable = false;
 			erase.interactable = false;
 		} else {
@@ -139,6 +162,7 @@ public class TankButtons : MonoBehaviour {
 
 
 		Application.LoadLevel ("newProto");
+	//	Application.LoadLevel ("Runway");
 	
 	}
 
@@ -150,7 +174,6 @@ public class TankButtons : MonoBehaviour {
 
 
 	public void EraseButton(){
-
 
 		PlayerPrefs.DeleteKey (selectedTank.ToString() + "TURRETID");
 		PlayerPrefs.DeleteKey (selectedTank.ToString() + "HULLID");
@@ -166,19 +189,24 @@ public class TankButtons : MonoBehaviour {
 		erase.interactable = false;
 
 		if (selectedTank == 1) {
-			Tank1Text.text = PlayerPrefs.GetString("1" + "PLAYERNAME", "Empty");
+			Tank1Text.text = PlayerPrefs.GetString("1" + "PLAYERNAME", " ");
+			T1X.gameObject.SetActive(true);
 		}
 		if (selectedTank == 2) {
-			Tank2Text.text = PlayerPrefs.GetString("2" + "PLAYERNAME", "Empty");
+			Tank2Text.text = PlayerPrefs.GetString("2" + "PLAYERNAME", " ");
+			T2X.gameObject.SetActive(true);
 		}
 		if (selectedTank == 3) {
-			Tank3Text.text = PlayerPrefs.GetString("3" + "PLAYERNAME", "Empty");
+			Tank3Text.text = PlayerPrefs.GetString("3" + "PLAYERNAME", " ");
+			T3X.gameObject.SetActive(true);
 		}
 		if (selectedTank == 4) {
-			Tank4Text.text = PlayerPrefs.GetString("4" + "PLAYERNAME", "Empty");
+			Tank4Text.text = PlayerPrefs.GetString("4" + "PLAYERNAME", " ");
+			T4X.gameObject.SetActive(true);
 		}
 		if (selectedTank == 5) {
-			Tank5Text.text = PlayerPrefs.GetString("5" + "PLAYERNAME", "Empty");
+			Tank5Text.text = PlayerPrefs.GetString("5" + "PLAYERNAME", " ");
+			T5X.gameObject.SetActive(true);
 		}
 
 

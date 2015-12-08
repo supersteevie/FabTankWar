@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: 74f980c237d0c9f44acbcb1431979c4b
+timeCreated: 1449523135
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: be_base01
+    100002: be_Bottom01
+    100004: be_L_hib01
+    100006: be_mid01
+    100008: be_R_hib01
+    100010: be_top01
+    100012: bn_L_Backfoot01
+    100014: bn_L_FrontFoot01
+    100016: bn_L_MidFoot01
+    100018: bn_R_Backfoot01
+    100020: bn_R_FrontFoot01
+    100022: bn_R_MidFoot01
+    100024: bn_scale_bot01
+    100026: bn_scale_mid01
+    100028: bn_scale_top01
+    100030: Export
+    100032: Joints
+    100034: Mesh
+    100036: Tank_c
+    100038: //RootNode
+    100040: Tank_C_Hull01
+    100042: Tank_C_Turret01
+    100044: Tank_C_Wheels01
+    100046: bn_helper_scale_bot01
+    100048: Tank_c1
+    400000: be_base01
+    400002: be_Bottom01
+    400004: be_L_hib01
+    400006: be_mid01
+    400008: be_R_hib01
+    400010: be_top01
+    400012: bn_L_Backfoot01
+    400014: bn_L_FrontFoot01
+    400016: bn_L_MidFoot01
+    400018: bn_R_Backfoot01
+    400020: bn_R_FrontFoot01
+    400022: bn_R_MidFoot01
+    400024: bn_scale_bot01
+    400026: bn_scale_mid01
+    400028: bn_scale_top01
+    400030: Export
+    400032: Joints
+    400034: Mesh
+    400036: Tank_c
+    400038: //RootNode
+    400040: Tank_C_Hull01
+    400042: Tank_C_Turret01
+    400044: Tank_C_Wheels01
+    400046: bn_helper_scale_bot01
+    400048: Tank_c1
+    4300000: Tank_C_Turret01
+    4300002: Tank_C_Wheels01
+    4300004: Tank_C_Hull01
+    9500000: //RootNode
+    13700000: Tank_C_Hull01
+    13700002: Tank_C_Turret01
+    13700004: Tank_C_Wheels01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 1
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class QuickTimePattern : MonoBehaviour
+public class QuickSwipe : MonoBehaviour
 {
 
     //List of positions for mouse to detect
@@ -15,6 +15,7 @@ public class QuickTimePattern : MonoBehaviour
 
     public bool isRunning = false;
 	public bool wonLast = false;
+    public bool tie = false;
 
 	public float bonusTime;
 
@@ -28,9 +29,10 @@ public class QuickTimePattern : MonoBehaviour
     }
 
 
-    public IEnumerator StartQuickTimePattern(float timer)
+    public IEnumerator StartQuickSwipeEvent(float timer)
     {
 		wonLast = false;
+        tie = false;
         //Runs and clears the queue
         currentTemp.Clear();
         //Fills the queue
@@ -64,30 +66,35 @@ public class QuickTimePattern : MonoBehaviour
 					}
 				}
 			}
-			else
-			{
-				//if they finished the shape end the coroutines
+            else //if they finished the shape end the coroutines
+            {
+				//if the player completes quickly
 				if (time <= timer - bonusTime)
 				{
-					//Player passes quickly
-					FinalJudgement.bonusPts++;
+                    wonLast = true;
+                    FinalJudgement.bonusPts++;
+                    //Add more to time window to increase difficulty next round
 					bonusTime++;
-				}
+				} else
+                {
+                    //A "tie" condition, does not increase difficulty
+                    tie = true;
+                }
 				StopAllCoroutines();
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
-                wonLast = true;
                 playerReactScript.QuickMove();
-				NewProtoGamehandler.eventRunning = false;
+				RunwayHandler.eventRunning = false;
 
 			}
 			//yield return new WaitForSeconds(Time.deltaTime);
 			yield return null;
 		}
 		wonLast = false;
-		isRunning = false;
+        FinalJudgement.bonusPts--;
+        isRunning = false;
 		GetComponent<Image> ().enabled = false;
-		NewProtoGamehandler.eventRunning = false;
+		RunwayHandler.eventRunning = false;
 		foreach (Transform pos in patternList)
 		{
 			currentTemp.Enqueue(pos);

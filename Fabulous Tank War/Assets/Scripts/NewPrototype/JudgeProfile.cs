@@ -7,11 +7,15 @@ public class JudgeProfile : MonoBehaviour {
     private Image mainEmoji;
     private Text npcText;
 
-    public Sprite[] emojis;
-    public string[] responses;
-    
-    public Vector3 locPopUp;
-    public Vector3 locOffScreen;
+    public Sprite[] emoLose;    //sprites for a lose reaction from NPCs
+    public Sprite[] emoTie;     //sprites for a tie reaction from NPCs
+    public Sprite[] emoWin;     //sprites for a win reaction from NPCs
+    public string[] rspLose;    //dialogue for a lose reaction from NPCs
+    public string[] rspTie;     //dialogue for a tie reaction from NPCs
+    public string[] rspWin;     //dialogue for a win reaction from NPCs
+
+    public Vector3 locOnScrn;   //On screen locaton of prefab 
+    public Vector3 locOffScrn;  //Off screen location of prefab
 
     public float smoothing;
     public float waitTime;
@@ -27,7 +31,7 @@ public class JudgeProfile : MonoBehaviour {
 	void Start () {
         mainEmoji = gameObject.GetComponent<Image>();
         npcText = gameObject.GetComponentInChildren<Text>();
-        gameObject.transform.position = locOffScreen;
+        gameObject.transform.position = locOffScrn;
 
 		scrutiny = (beaBias + firBias + durBias) / 3;
 	
@@ -39,13 +43,23 @@ public class JudgeProfile : MonoBehaviour {
 	}
 
     //takes in int for which response the tank performed and a bool if it was completed
-    void JudgeReaction(int num, bool complete)
+    void JudgeReaction(int num, bool win, bool tie)
     {
-        int bonus;
-        bonus = complete ? 1 : 0;
-        mainEmoji.sprite = emojis[num + bonus];
-        npcText.text = responses[num + bonus];
-        StartCoroutine(JudgePops (locPopUp, locOffScreen));
+        if (win)
+        {
+            mainEmoji.sprite = emoWin[num];
+            npcText.text = rspWin[num];
+        } else if (tie)
+        {
+            mainEmoji.sprite = emoTie[num];
+            npcText.text = rspTie[num];
+        }
+        else
+        {
+            mainEmoji.sprite = emoLose[num];
+            npcText.text = rspLose[num];
+        }
+        StartCoroutine(JudgePops (locOnScrn, locOffScrn));
 
     }
 

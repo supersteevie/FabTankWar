@@ -22,6 +22,8 @@ public class JudgeProjectiles : MonoBehaviour {
 
 	public void FireProjectile (Transform tar, float time, ProjectileType type, bool isHoming)
 	{
+		GameObject particle;
+		particle = Instantiate (Resources.Load ("FireParticle") as GameObject, transform.position + Vector3.forward * 2, transform.rotation) as GameObject;
         //Saved values i
 		GameObject cloneTarget;
 		cloneTarget = new GameObject ();
@@ -31,7 +33,8 @@ public class JudgeProjectiles : MonoBehaviour {
         orgin = transform.position;
 		targetPositionAtFire = transform.position;
         target = tar;
-        transitTime = time;
+        transitTime = time + 1;
+		Destroy (particle, time);
         distanceCovered = 0;
         transform.LookAt(tar);
         //Calulate control point based on information given
@@ -39,7 +42,7 @@ public class JudgeProjectiles : MonoBehaviour {
         controlPoint += Vector3.up * (Vector3.Distance(orgin, tar.position) / 2);
         //Start the Event
 		StartCoroutine (StartEvent (type));
-        deathTimer = 20f;
+        deathTimer = transitTime;
 	}
 
 	IEnumerator StartEvent (ProjectileType type)
@@ -50,18 +53,18 @@ public class JudgeProjectiles : MonoBehaviour {
             //If its a missle type
             if (type == ProjectileType.Missle)
             {
-                distanceCovered += Time.deltaTime;
+				distanceCovered += Time.deltaTime;
                 float fracJour = distanceCovered / transitTime;
                 transform.position = Vector3.Lerp(orgin, target.position, fracJour);
-                yield return new WaitForSeconds(Time.deltaTime);
+                yield return null;
             }
             //If its a bomb type
             else if (type == ProjectileType.Bomb)
             {
-                distanceCovered += Time.deltaTime;
+				distanceCovered += Time.deltaTime;
                 float fracJour = distanceCovered / transitTime;
                 transform.position = BezierVec3(orgin, controlPoint, target.position, fracJour);
-                yield return new WaitForSeconds(Time.deltaTime);
+                yield return null;
             }
             //Or if its not yet programmed, destory the object
             else

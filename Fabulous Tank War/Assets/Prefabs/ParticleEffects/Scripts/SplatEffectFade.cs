@@ -7,12 +7,6 @@ public class SplatEffectFade : MonoBehaviour {
 	public Image splatterImage;
 	public Color lerpedColor;
 
-	void Update()
-	{
-		if (Input.GetKeyDown (KeyCode.A))
-			DoSplatter ();
-	}
-
 	public void DoSplatter()
 	{
 		lerpedColor = splatterImage.color;

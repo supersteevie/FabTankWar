@@ -10,6 +10,7 @@ public class QuickFire : MonoBehaviour
 
 	public GameObject playerObj;
 	public GameObject PrefabBullet;
+	public GameObject splatter;
 
 	public IEnumerator StartTimer (float timer)
 	{
@@ -44,11 +45,15 @@ public class QuickFire : MonoBehaviour
 			yield return null;
 		}
 
-		FinalJudgement.bonusPts--;
-		wonLast = false;
-		isRunning = false;
-		GetComponent<Image> ().enabled = false;
-		RunwayHandler.eventRunning = false;
+		if (!wonLast) {
+			FinalJudgement.bonusPts--;
+			splatter.GetComponent<SplatEffectFade> ().DoSplatter ();
+			splatter.GetComponent<AudioSource> ().Play ();
+			wonLast = false;
+			isRunning = false;
+			GetComponent<Image> ().enabled = false;
+			RunwayHandler.eventRunning = false;
+		}
 	}
 
 	void FireMissle() 
@@ -56,6 +61,7 @@ public class QuickFire : MonoBehaviour
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, playerObj.transform.position + (Vector3.up * 1.5f), playerObj.transform.rotation) as GameObject;
 		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<RunwayHandler>().timerBuff, ProjectileType.Missle, true);
+		SoundEffectsPlayer.PlayAudio (SoundEffects.TankFire);
 		clone.transform.localScale = new Vector3(1,1,1);
 	}
 }

@@ -7,7 +7,7 @@ public class DecalCustom : MonoBehaviour {
 	public Texture getto;
 	public Texture richKid;
 	public Texture Crazy;
-	public static int DecalNum = 0;
+	public static int DecalNum;
 
 	
 	void Start(){
@@ -16,13 +16,23 @@ public class DecalCustom : MonoBehaviour {
 
 
 		if (DecalNum == 0) {
-			this.gameObject.GetComponent<MeshRenderer>().material.SetTexture("_Decal", null);
+			this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture("_Decal", null);
 
 		}
 		if (DecalNum == 1) {
-			this.gameObject.GetComponent<MeshRenderer>().material.SetTexture ("_Decal", getto);
+			this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture ("_Decal", getto);
 				
 
+		}
+		if (DecalNum == 2) {
+			this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture ("_Decal", richKid);
+			
+			
+		}
+		if (DecalNum == 3) {
+			this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture ("_Decal", Crazy);
+			
+			
 		}
 
 
@@ -33,27 +43,27 @@ public class DecalCustom : MonoBehaviour {
 	public void ChooseNone(){
 
 		DecalNum = 0;
-		this.gameObject.GetComponent<MeshRenderer>().material.SetTexture("_Decal", null);
+		this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture("_Decal", null);
 
 	}
 
 	public void ChooseGhetto(){
 
 		DecalNum = 1;
-		this.gameObject.GetComponent<MeshRenderer>().material.SetTexture ("_Decal", getto);
+		this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture ("_Decal", getto);
 
 	}
 
 	public void ChooseRichKid(){
 
 		DecalNum = 2;
-		this.gameObject.GetComponent<MeshRenderer>().material.SetTexture ("_Decal", richKid);
+		this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture ("_Decal", richKid);
 		
 	}
 	public void ChooseCrazy(){
 
 		DecalNum = 3;
-		this.gameObject.GetComponent<MeshRenderer>().material.SetTexture ("_Decal", Crazy);
+		this.gameObject.GetComponent<SkinnedMeshRenderer>().material.SetTexture ("_Decal", Crazy);
 	}
 
 }

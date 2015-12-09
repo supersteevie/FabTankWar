@@ -31,7 +31,7 @@ public class ChooseColor : MonoBehaviour {
 		
 			if (ColorNum == 4) {
 				foreach (Renderer rend in GetComponentsInChildren<Renderer>(true)) {
-					rend.material.color = Color.blue;
+					rend.material.color = Color.blue+ Color.white;
 
 				}
 			}
@@ -72,7 +72,7 @@ public class ChooseColor : MonoBehaviour {
 		ColorNum = 4;
 		foreach (Renderer rend in GetComponentsInChildren<Renderer>(true)) 
 		{
-			rend.material.color = Color.blue;
+			rend.material.color = Color.blue + Color.white;
 		}
 	}
 

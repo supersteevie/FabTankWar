@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TurningTank : MonoBehaviour {
 
-	private float turningSpeed = 2.5f;
+	private float turningSpeed = 3f;
 
 	// Update is called once per frame
 	void Update () {

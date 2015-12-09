@@ -38,7 +38,7 @@ public class FinalJudgement : MonoBehaviour {
 		{
 			avgScrutiny += judges[i].GetComponent<JudgeProfile>().scrutiny;
 		}
-		avgScrutiny /= judges.Length;
+//		avgScrutiny /= judges.Length;
 		avgTnkScore = (GameInformation.BeautyRating + GameInformation.DurabilityRating + GameInformation.FirePowerRating) / 3;
 		threeStar = 3;
 		twoStar = 2;

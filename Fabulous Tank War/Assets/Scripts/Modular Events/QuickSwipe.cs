@@ -21,6 +21,7 @@ public class QuickSwipe : MonoBehaviour
 
     //Script to move tank if successful
     public PlayerReacts playerReactScript;
+	public GameObject splatter;
 
     void Start ()
     {
@@ -91,6 +92,8 @@ public class QuickSwipe : MonoBehaviour
 			yield return null;
 		}
 		wonLast = false;
+		splatter.GetComponent<SplatEffectFade>().DoSplatter();
+		splatter.GetComponent<AudioSource>().Play();
         FinalJudgement.bonusPts--;
         isRunning = false;
 		GetComponent<Image> ().enabled = false;

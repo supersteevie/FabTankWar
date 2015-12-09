@@ -9,6 +9,8 @@ public class QuickBuff : MonoBehaviour
 	public int totalTaps = 0;
 	public bool wonLast = false;
     public bool tie = false;
+	public GameObject player;
+	public GameObject splatter;
 	
 	public IEnumerator StartTimer (float timer)
 	{
@@ -24,14 +26,19 @@ public class QuickBuff : MonoBehaviour
 	IEnumerator StartEvent (float timer)
 	{
 		float time = 0;
+		GameObject clone;
+		clone = Instantiate (Resources.Load ("Shield"), player.transform.position, player.transform.rotation) as GameObject;
+		clone.transform.parent = player.transform;
+		Destroy (clone, timer + 1f);		
+		Color alpha = clone.GetComponent<MeshRenderer>().material.color;
 
 		//trigger event
 		while (time <= timer) 
 		{
-			//print (time);
-			//print (timer);
-			//print (totalTaps);
-			//print (desireTaps);
+			float a = (float)totalTaps;
+			float b = (float)desireTaps;
+			alpha.a = a/b /5f ;
+			clone.GetComponent<MeshRenderer>().material.color = alpha;
 			time += Time.deltaTime;
 			if (Input.GetAxis ("Fire1") > 0)
 			{
@@ -46,6 +53,9 @@ public class QuickBuff : MonoBehaviour
 		} else if (totalTaps < desireTaps) {
 			//Lost
 			FinalJudgement.bonusPts--;
+			GameObject splat;
+			splatter.GetComponent<SplatEffectFade>().DoSplatter();
+			splatter.GetComponent<AudioSource>().Play();
 			wonLast = false;
 		} else {
 			//Tie

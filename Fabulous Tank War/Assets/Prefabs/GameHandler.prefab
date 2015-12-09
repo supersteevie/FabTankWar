@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &172234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 451476}
+  - 114: {fileID: 11426560}
+  - 114: {fileID: 11455958}
+  m_Layer: 0
+  m_Name: GameHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451476
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172234}
+  m_LocalRotation: {x: -.149100661, y: .277742386, z: -.0436826795, w: .948008478}
+  m_LocalPosition: {x: -343.243988, y: -188.809189, z: 1943.31335}
+  m_LocalScale: {x: 297.91272, y: 297.912781, z: 297.91272}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11426560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b82141f21af07d4a8f2e5b93af82369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReactScript: {fileID: 0}
+  playerObj: {fileID: 0}
+  towerObj: {fileID: 0}
+  uiSwipe:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  uiFire: {fileID: 0}
+  uiBuff: {fileID: 0}
+  mainCanvas: {fileID: 0}
+  laneLeft: -3
+  laneCenter: 0
+  laneRight: 3
+  endPostion: {x: 0, y: .75, z: 89}
+  moveSpeed: 1
+  timeMin: .5
+  timeMax: 2
+  timerFire: 3
+  timerBuff: 3
+  timerSwipe: 3
+  requiredTaps: 20
+  limitFire: 5
+  limitBuff: 4
+  limitSwipe: 6
+  PrefabBullet: {fileID: 100470, guid: c11fc6eeca2a57b49b96baf910dc9a60, type: 2}
+  exitButton: {fileID: 0}
+--- !u!114 &11455958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd664805f17efe47b45ed91f63c1f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  judges: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 172234}
+  m_IsPrefabParent: 1

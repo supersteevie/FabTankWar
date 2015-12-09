@@ -200,6 +200,7 @@ public class RunwayHandler : MonoBehaviour {
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
 		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, timerBuff / 1.3f, ProjectileType.Missle, false);
+		SoundEffectsPlayer.PlayAudio (SoundEffects.TurretFire);
         yield return uiSwipe[swipeObj].GetComponent<QuickSwipe>().StartCoroutine("StartQuickSwipeEvent", timerSwipe);
 
         nbrSwipe++;
@@ -237,6 +238,7 @@ public class RunwayHandler : MonoBehaviour {
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
 		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, timerBuff / 1.3f, ProjectileType.Bomb, true);
+		SoundEffectsPlayer.PlayAudio (SoundEffects.TurretFire);
         yield return uiBuff.GetComponent<QuickBuff>().StartCoroutine("StartTimer", timerBuff);
 
         nbrBuff++;

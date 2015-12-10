@@ -8,7 +8,7 @@ public class QuickFire : MonoBehaviour
 	public bool wonLast  = false;
     public bool tie = false;
 
-	public GameObject playerObj;
+	public GameObject turretLoc;
 	public GameObject PrefabBullet;
 	public GameObject splatter;
 
@@ -60,9 +60,9 @@ public class QuickFire : MonoBehaviour
 	void FireMissle() 
 	{
 		GameObject clone;
-		clone = Instantiate (PrefabBullet, playerObj.transform.position + (Vector3.up * 1.5f), playerObj.transform.rotation) as GameObject;
+		clone = Instantiate (PrefabBullet, turretLoc.transform.position , turretLoc.transform.rotation) as GameObject;
 		clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, GameObject.Find ("GameHandler").GetComponent<RunwayHandler>().timerBuff, ProjectileType.Missle, true);
 		SoundEffectsPlayer.PlayAudio (SoundEffects.TankFire);
-		clone.transform.localScale = new Vector3(1,1,1);
+		clone.transform.localScale = new Vector3(5,5,5);
 	}
 }

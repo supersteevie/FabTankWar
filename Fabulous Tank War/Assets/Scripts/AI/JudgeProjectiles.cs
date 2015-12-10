@@ -22,8 +22,10 @@ public class JudgeProjectiles : MonoBehaviour {
 
 	public void FireProjectile (Transform tar, float time, ProjectileType type, bool isHoming)
 	{
+		transform.localScale = new Vector3 (15, 15, 15);
 		GameObject particle;
-		particle = Instantiate (Resources.Load ("FireParticle") as GameObject, transform.position + Vector3.forward * 2, transform.rotation) as GameObject;
+		particle = Instantiate (Resources.Load ("FireParticle") as GameObject, transform.position, transform.rotation) as GameObject;
+
         //Saved values i
 		GameObject cloneTarget;
 		cloneTarget = new GameObject ();
@@ -88,11 +90,19 @@ public class JudgeProjectiles : MonoBehaviour {
         }
         ResolveProjectile();
 	}
+	void OnCollisionEnter(Collision collision) 
+	{
+		ResolveProjectile();
+	}
+
 
     //The command to resolve the projectile if an event happens
     //Can be expanded upon once graphics are added
     public void ResolveProjectile()
     {
+		GameObject particle;
+		particle = Instantiate (Resources.Load ("TomatoSplatter") as GameObject, transform.position, transform.rotation) as GameObject;
+		Destroy (particle, 2f);
         Destroy(this.gameObject);
     }
 

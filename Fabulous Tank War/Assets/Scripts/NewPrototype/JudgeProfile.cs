@@ -42,6 +42,7 @@ public class JudgeProfile : MonoBehaviour {
 	
 	}
 
+	/*
     //takes in int for which response the tank performed and a bool if it was completed
     void JudgeReaction(int num, bool win, bool tie)
     {
@@ -83,4 +84,5 @@ public class JudgeProfile : MonoBehaviour {
             yield return null;
         }
     }
+    */
 }

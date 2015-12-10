@@ -249,7 +249,7 @@ public class RunwayHandler : MonoBehaviour {
     }
 
 	public void LeaveRunway () {
-		Application.LoadLevel (3);
+		Application.LoadLevel (1);
 	}
 
 }

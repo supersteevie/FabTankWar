@@ -3055,7 +3055,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 973615669}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3, type: 3}
   m_Controller: {fileID: 9100000, guid: 85c9bdc0d9ad0a742a72e91adc927514, type: 2}
   m_CullingMode: 0
@@ -3529,7 +3529,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1089215374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3, type: 3}
   m_Controller: {fileID: 9100000, guid: 85c9bdc0d9ad0a742a72e91adc927514, type: 2}
   m_CullingMode: 0
@@ -5700,6 +5700,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 85c9bdc0d9ad0a742a72e91adc927514, type: 2}
+    - target: {fileID: 9500000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3, type: 3}
   m_IsPrefabParent: 0
@@ -6089,7 +6093,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1803399359}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3, type: 3}
   m_Controller: {fileID: 9100000, guid: 85c9bdc0d9ad0a742a72e91adc927514, type: 2}
   m_CullingMode: 0

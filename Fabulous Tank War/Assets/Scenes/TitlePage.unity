@@ -419,6 +419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a775a0e67fa5b5e41a7c26abc3bd561d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleMusic: {fileID: 8300000, guid: 076c7918f9c4cb943b4fef46ec992b27, type: 3}
+  GarageMusic: {fileID: 8300000, guid: f45efe7680c56e248b38af33490036c5, type: 3}
+  RunwayMusic: {fileID: 8300000, guid: 613ae8ffede686d40b159bcfba38e0ce, type: 3}
 --- !u!1 &1874906945
 GameObject:
   m_ObjectHideFlags: 0

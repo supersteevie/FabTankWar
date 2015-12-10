@@ -544,6 +544,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22404152, guid: 2e90fcd5bccc14b678fee44ffb3ad47c,
     type: 2}
   m_PrefabInternal: {fileID: 478928123}
+--- !u!114 &478928125 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11474530, guid: 2e90fcd5bccc14b678fee44ffb3ad47c,
+    type: 2}
+  m_PrefabInternal: {fileID: 478928123}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &538536761
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +891,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22432586, guid: fc714cdb137f2420da98874714f0899a,
     type: 2}
   m_PrefabInternal: {fileID: 668261539}
+--- !u!114 &668261541 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11494324, guid: fc714cdb137f2420da98874714f0899a,
+    type: 2}
+  m_PrefabInternal: {fileID: 668261539}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &686291823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,6 +1937,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22493184, guid: caa64cfdea6d343549876ef5e5db0f6f,
     type: 2}
   m_PrefabInternal: {fileID: 1202401953}
+--- !u!114 &1202401955 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11408378, guid: caa64cfdea6d343549876ef5e5db0f6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1202401953}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1268692684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,9 +3000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e8c003b4e79424793784e854ec17ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runway: {fileID: 0}
-  dressUp: {fileID: 0}
-  erase: {fileID: 0}
+  runway: {fileID: 478928125}
+  dressUp: {fileID: 1202401955}
+  erase: {fileID: 668261541}
   Tank1Text: {fileID: 1131799373}
   Tank2Text: {fileID: 1193203469}
   Tank3Text: {fileID: 1376419006}

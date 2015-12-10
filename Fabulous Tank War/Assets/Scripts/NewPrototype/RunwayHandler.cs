@@ -243,7 +243,10 @@ public class RunwayHandler : MonoBehaviour {
 
         nbrBuff++;
 		nbrTotal++;
-        uiBuff.GetComponent<QuickBuff>().desireTaps += tapsIncr;
+		if (uiBuff.GetComponent<QuickBuff> ().wonLast) 
+		{
+			uiBuff.GetComponent<QuickBuff> ().desireTaps += tapsIncr;
+		}
         //Debug.Log("executed to quick taps");
         yield return null;
     }

@@ -61,7 +61,11 @@ public class RunwayHandler : MonoBehaviour {
 
 	public GameObject exitButton;
 	// Use this for initialization
+
+	public bool gameOver = false;
 	void Start () {
+		gameOver = false;
+		limitTotal = limitBuff + limitSwipe + limitFire;
 		StartCoroutine (BeginShow());
 		StartCoroutine (RunShow());
 
@@ -73,7 +77,6 @@ public class RunwayHandler : MonoBehaviour {
 
         uiBuff.GetComponent<QuickBuff>().desireTaps = requiredTaps;
 
-		limitTotal = limitBuff + limitSwipe + limitFire;
 
 
 
@@ -85,9 +88,10 @@ public class RunwayHandler : MonoBehaviour {
 	}
 
     IEnumerator BeginShow()
-    {
-        while (Vector3.Distance(playerObj.transform.position, endPostion) > 0.05f)
-        {
+	{
+		moveSpeed = Vector3.Distance(playerObj.transform.position, endPostion) / limitTotal / 3;
+		while (Vector3.Distance(playerObj.transform.position, endPostion) > 0.05f && !gameOver)
+        {			
             float step = moveSpeed * Time.deltaTime;
             playerObj.transform.position = Vector3.MoveTowards(playerObj.transform.position, endPostion, step);
 			endPostion.x = playerObj.transform.position.x;
@@ -117,6 +121,8 @@ public class RunwayHandler : MonoBehaviour {
 			{
 				gameObject.GetComponent<FinalJudgement>().EndGame();
 				exitButton.SetActive(true);
+				gameOver = true;
+				playerReactScript.SetIdle();
 			}
 		}
 	}
@@ -249,7 +255,7 @@ public class RunwayHandler : MonoBehaviour {
     }
 
 	public void LeaveRunway () {
-		Application.LoadLevel (3);
+		Application.LoadLevel (1);
 	}
 
 }

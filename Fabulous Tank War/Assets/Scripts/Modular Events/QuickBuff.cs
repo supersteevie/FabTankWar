@@ -54,6 +54,7 @@ public class QuickBuff : MonoBehaviour
 			//Lost
 			FinalJudgement.bonusPts--;
 			GameObject splat;
+			splatter.SetActive(true);
 			splatter.GetComponent<SplatEffectFade>().DoSplatter();
 			splatter.GetComponent<AudioSource>().Play();
 			wonLast = false;

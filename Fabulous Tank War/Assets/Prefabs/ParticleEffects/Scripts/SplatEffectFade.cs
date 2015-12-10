@@ -28,6 +28,7 @@ public class SplatEffectFade : MonoBehaviour {
 		lerpedColor.a = 0;
 		splatterImage.color = lerpedColor;
 		yield return null;
+		gameObject.SetActive (false);
 	}
 
 }

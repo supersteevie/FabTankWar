@@ -92,6 +92,7 @@ public class QuickSwipe : MonoBehaviour
 			yield return null;
 		}
 		wonLast = false;
+		splatter.SetActive(true);
 		splatter.GetComponent<SplatEffectFade>().DoSplatter();
 		splatter.GetComponent<AudioSource>().Play();
         FinalJudgement.bonusPts--;

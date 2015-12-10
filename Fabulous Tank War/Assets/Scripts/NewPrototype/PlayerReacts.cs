@@ -40,7 +40,7 @@ public class PlayerReacts : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+		GetComponent<AnimationHandler> ().isForward ();
     }
 	
     //Moves tank between lanes and offers bonus points for accuracy
@@ -67,6 +67,10 @@ public class PlayerReacts : MonoBehaviour {
     //Moves tank in a barrel roll to the target lan position
     IEnumerator BarrelRoll(float target)
     {
+		if (target < transform.position.x)
+			GetComponent<AnimationHandler> ().JumpLeft ();
+		else
+			GetComponent<AnimationHandler> ().JumpRight ();
         //Debug.Log("Starting barrel roll.");
         Vector3 newLoc;
         newLoc = new Vector3(target, transform.position.y, transform.position.z);
@@ -82,4 +86,9 @@ public class PlayerReacts : MonoBehaviour {
             yield return null;
         }
     }
+
+	public void SetIdle()
+	{
+		GetComponent<AnimationHandler> ().isIdle ();
+	}
 }

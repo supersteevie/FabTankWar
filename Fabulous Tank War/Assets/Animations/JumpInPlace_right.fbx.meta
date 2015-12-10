@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 530c76525e78d084a8c1d9f6ae81d848
+timeCreated: 1449760989
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: be_base01
+    100002: be_Bottom01
+    100004: be_L_hib01
+    100006: be_mid01
+    100008: be_R_hib01
+    100010: be_top01
+    100012: bn_helper_scale_bot01
+    100014: bn_L_Backfoot01
+    100016: bn_L_FrontFoot01
+    100018: bn_L_MidFoot01
+    100020: bn_R_Backfoot01
+    100022: bn_R_FrontFoot01
+    100024: bn_R_MidFoot01
+    100026: bn_scale_bot01
+    100028: bn_scale_mid01
+    100030: bn_scale_top01
+    100032: Export
+    100034: Joints
+    100036: //RootNode
+    100038: Mesh
+    100040: Tank_a
+    100042: Tank_A_Hull01
+    100044: Tank_A_Turret01
+    100046: Tank_A_Wheels01
+    100048: Tank_b
+    100050: Tank_B_Hull01
+    100052: Tank_B_Turret01
+    100054: Tank_B_Wheels01
+    100056: Tank_c1
+    100058: Tank_C_Hull01
+    100060: Tank_C_Turret01
+    100062: Tank_C_Wheels01
+    100064: Tank_d
+    100066: Tank_D_Hull01
+    100068: Tank_D_Turret01
+    100070: Tank_D_Wheels01
+    400000: be_base01
+    400002: be_Bottom01
+    400004: be_L_hib01
+    400006: be_mid01
+    400008: be_R_hib01
+    400010: be_top01
+    400012: bn_helper_scale_bot01
+    400014: bn_L_Backfoot01
+    400016: bn_L_FrontFoot01
+    400018: bn_L_MidFoot01
+    400020: bn_R_Backfoot01
+    400022: bn_R_FrontFoot01
+    400024: bn_R_MidFoot01
+    400026: bn_scale_bot01
+    400028: bn_scale_mid01
+    400030: bn_scale_top01
+    400032: Export
+    400034: Joints
+    400036: //RootNode
+    400038: Mesh
+    400040: Tank_a
+    400042: Tank_A_Hull01
+    400044: Tank_A_Turret01
+    400046: Tank_A_Wheels01
+    400048: Tank_b
+    400050: Tank_B_Hull01
+    400052: Tank_B_Turret01
+    400054: Tank_B_Wheels01
+    400056: Tank_c1
+    400058: Tank_C_Hull01
+    400060: Tank_C_Turret01
+    400062: Tank_C_Wheels01
+    400064: Tank_d
+    400066: Tank_D_Hull01
+    400068: Tank_D_Turret01
+    400070: Tank_D_Wheels01
+    4300000: Tank_A_Turret01
+    4300002: Tank_A_Hull01
+    4300004: Tank_A_Wheels01
+    4300006: Tank_D_Turret01
+    4300008: Tank_D_Hull01
+    4300010: Tank_D_Wheels01
+    4300012: Tank_C_Turret01
+    4300014: Tank_C_Wheels01
+    4300016: Tank_C_Hull01
+    4300018: Tank_B_Hull01
+    4300020: Tank_B_Wheels01
+    4300022: Tank_B_Turret01
+    7400000: Tank_Jump_Right
+    9500000: //RootNode
+    13700000: Tank_A_Hull01
+    13700002: Tank_A_Turret01
+    13700004: Tank_A_Wheels01
+    13700006: Tank_B_Hull01
+    13700008: Tank_B_Turret01
+    13700010: Tank_B_Wheels01
+    13700012: Tank_C_Hull01
+    13700014: Tank_C_Turret01
+    13700016: Tank_C_Wheels01
+    13700018: Tank_D_Hull01
+    13700020: Tank_D_Turret01
+    13700022: Tank_D_Wheels01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Tank_Jump_Right
+      takeName: Take 001
+      firstFrame: 12
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Export
+        weight: 1
+      - path: Export/Joints
+        weight: 1
+      - path: Export/Joints/be_base01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/be_mid01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/be_mid01/be_top01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/be_mid01/be_top01/bn_scale_top01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/be_mid01/bn_scale_mid01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_L_hib01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_L_hib01/bn_L_Backfoot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_L_hib01/bn_L_Backfoot01/bn_L_MidFoot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_L_hib01/bn_L_Backfoot01/bn_L_MidFoot01/bn_L_FrontFoot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_R_hib01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_R_hib01/bn_R_Backfoot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_R_hib01/bn_R_Backfoot01/bn_R_MidFoot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/be_R_hib01/bn_R_Backfoot01/bn_R_MidFoot01/bn_R_FrontFoot01
+        weight: 1
+      - path: Export/Joints/be_base01/be_Bottom01/bn_scale_bot01/bn_helper_scale_bot01
+        weight: 1
+      - path: Export/Mesh
+        weight: 1
+      - path: Export/Mesh/Tank_a
+        weight: 1
+      - path: Export/Mesh/Tank_a/Tank_A_Hull01
+        weight: 1
+      - path: Export/Mesh/Tank_a/Tank_A_Turret01
+        weight: 1
+      - path: Export/Mesh/Tank_a/Tank_A_Wheels01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Export
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 7f9a92e0dbe3fee458d8b8cef35b98f3,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

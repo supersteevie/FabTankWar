@@ -47,6 +47,7 @@ public class QuickFire : MonoBehaviour
 
 		if (!wonLast) {
 			FinalJudgement.bonusPts--;
+			splatter.SetActive(true);
 			splatter.GetComponent<SplatEffectFade> ().DoSplatter ();
 			splatter.GetComponent<AudioSource> ().Play ();
 			wonLast = false;

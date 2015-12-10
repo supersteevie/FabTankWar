@@ -171,6 +171,9 @@ public class TankButtons : MonoBehaviour {
 		Application.LoadLevel ("GarageCustomizationKat");
 
 	}
+	public void BackToMenu(){
+		Application.LoadLevel ("TitlePage");
+	}
 
 
 	public void EraseButton(){

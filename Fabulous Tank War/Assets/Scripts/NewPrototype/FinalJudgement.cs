@@ -27,7 +27,9 @@ public class FinalJudgement : MonoBehaviour {
 	public string mehMsg; //2 star result
 	public string loseMsg; //1 star result
 
-	public Sprite[] starSpr;
+	public Sprite star3;
+	public Sprite star2;
+	public Sprite star1;
 
 
 	//Overall winning conditions
@@ -61,7 +63,6 @@ public class FinalJudgement : MonoBehaviour {
 			avgScrutiny += judges[i].GetComponent<JudgeProfile>().scrutiny;
 		}
 		avgScrutiny /= judges.Length;
-		print ("Stars Amount: " + starSpr.Length);
 
 		avgTnkScore = (GameInformation.BeautyRating + GameInformation.DurabilityRating + GameInformation.FirePowerRating) / 3;
 		threeStar = 3;
@@ -80,31 +81,33 @@ public class FinalJudgement : MonoBehaviour {
 	IEnumerator CalculateScore () 
 	{
 		endgameUI.SetActive (true);
-		starsImg.sprite = starSpr[0];
 		header.text = calcHdr;
 		body.text = calcMsg;
 
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (2);
 
 		avgTnkScore += bonusPts;
 		if (avgTnkScore > avgScrutiny) 
 		{
-			tnkStar = threeStar;
+			tnkStar = 3;
 			header.text = winHdr;
 			body.text = winMsg;
-			starsImg.sprite = starSpr[threeStar];
+			starsImg.sprite = star3;
+			print ("Tank 3");
 		}
-		if (avgTnkScore == avgScrutiny) {
-			tnkStar = twoStar;
-			header.text = winHdr;
-			body.text = winMsg;
-			starsImg.sprite = starSpr[twoStar];
+		else if (avgTnkScore == avgScrutiny) {
+			tnkStar = 2;
+			header.text = mehHdr;
+			body.text = mehMsg;
+			starsImg.sprite = star2;
+			print ("Tank 2");
 		} else 
 		{
-			tnkStar = oneStar;
-			header.text = winHdr;
-			body.text = winMsg;
-			starsImg.sprite = starSpr[oneStar];
+			tnkStar = 1;
+			header.text = loseHdr;
+			body.text = loseMsg;
+			starsImg.sprite = star1;
+			print ("Tank 1");
 		}
 
 

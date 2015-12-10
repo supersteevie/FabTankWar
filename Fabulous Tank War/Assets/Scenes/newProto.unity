@@ -34607,6 +34607,73 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11486160, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: limitFire
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486160, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: limitBuff
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486160, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: limitSwipe
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460054, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: star3
+      value: 
+      objectReference: {fileID: 21300000, guid: 83edf2adde489df4783af39b0cc2eb3e,
+        type: 3}
+    - target: {fileID: 11460054, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: star2
+      value: 
+      objectReference: {fileID: 21300000, guid: 741032ec5e7155a4bbf281094a264442,
+        type: 3}
+    - target: {fileID: 11460054, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: star1
+      value: 
+      objectReference: {fileID: 21300000, guid: 18475356a0834424fb89b2ad2457de22,
+        type: 3}
+    - target: {fileID: 11439060, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: beaBias
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439060, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: firBias
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439060, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: durBias
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405378, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: beaBias
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405378, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: firBias
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11405378, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: durBias
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491226, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: beaBias
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491226, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: firBias
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491226, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: durBias
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489508, guid: 4045effe3871a304897b78ea658b7122, type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4045effe3871a304897b78ea658b7122, type: 2}
   m_IsPrefabParent: 0

@@ -41,7 +41,8 @@ public class RunwayHandler : MonoBehaviour {
 	public float timerFire;
 	public float timerBuff;
 	public float timerSwipe;
-    public int requiredTaps;
+    public int rqrdTaps;
+	public int tapsIncr;
 
     //the number of times one event may occur
     public int limitFire;
@@ -71,7 +72,7 @@ public class RunwayHandler : MonoBehaviour {
 
         playerReactScript = playerObj.GetComponent<PlayerReacts>();
 
-        uiBuff.GetComponent<QuickBuff>().desireTaps = requiredTaps;
+        uiBuff.GetComponent<QuickBuff>().desireTaps = rqrdTaps;
 
 		limitTotal = limitBuff + limitSwipe + limitFire;
 
@@ -111,12 +112,11 @@ public class RunwayHandler : MonoBehaviour {
 				{ 
 					yield return new WaitForSeconds(0.1f);
 				}
-				print ("Current Bonus Points: " + FinalJudgement.bonusPts);
+				//print ("Current Bonus Points: " + FinalJudgement.bonusPts);
 	        }
 			else 
 			{
 				gameObject.GetComponent<FinalJudgement>().EndGame();
-				exitButton.SetActive(true);
 			}
 		}
 	}
@@ -131,7 +131,7 @@ public class RunwayHandler : MonoBehaviour {
         {
 			if (nbrFire <= limitFire){
 				quickTimeEvents = CallQuickFire;
-            	Debug.Log("Switched to quick draw.");
+            	//Debug.Log("Switched to quick draw.");
 			} else {
 				QuicktimeSwitcher ();
 			}
@@ -140,7 +140,7 @@ public class RunwayHandler : MonoBehaviour {
         {
 			if (nbrSwipe <= limitSwipe){
 				quickTimeEvents = CallSwipe;
-            	Debug.Log("Switched to quick swipe.");
+            	//Debug.Log("Switched to quick swipe.");
 			} else {
 				QuicktimeSwitcher();
 			}
@@ -149,7 +149,7 @@ public class RunwayHandler : MonoBehaviour {
         {
 			if (nbrBuff <= limitBuff) {
 				quickTimeEvents = CallBuff;
-            	Debug.Log("Switched to quick tap.");
+            	//Debug.Log("Switched to quick tap.");
 			} else {
 				QuicktimeSwitcher ();
 			}
@@ -159,7 +159,7 @@ public class RunwayHandler : MonoBehaviour {
             quickTimeEvents = null;
         }
 
-        Debug.Log("Random number is " + rand);
+        //Debug.Log("Random number is " + rand);
 		return quickTimeEvents();
 
 	}
@@ -206,7 +206,7 @@ public class RunwayHandler : MonoBehaviour {
         nbrSwipe++;
 		nbrTotal++;
 
-        Debug.Log("executed to quick swipe");
+        //Debug.Log("executed to quick swipe");
         yield return null;
 
     }
@@ -228,7 +228,7 @@ public class RunwayHandler : MonoBehaviour {
 
         nbrFire++;
 		nbrTotal++;
-        Debug.Log("executed to quick draw");
+        //Debug.Log("executed to quick draw");
         yield return null;
     }
 
@@ -243,8 +243,8 @@ public class RunwayHandler : MonoBehaviour {
 
         nbrBuff++;
 		nbrTotal++;
-        uiBuff.GetComponent<QuickBuff>().desireTaps += (int) timerBuff;
-        Debug.Log("executed to quick taps");
+        uiBuff.GetComponent<QuickBuff>().desireTaps += tapsIncr;
+        //Debug.Log("executed to quick taps");
         yield return null;
     }
 

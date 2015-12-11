@@ -11,7 +11,9 @@ public class FinalJudgement : MonoBehaviour {
 	public Text header;
 	public Text body;
 	public Image starsImg;
+	public GameObject kissMark;
 	public Text stats;
+	public GameObject statsHUD;
 
 	private string statsText;
 
@@ -94,6 +96,7 @@ public class FinalJudgement : MonoBehaviour {
 			body.text = winMsg;
 			starsImg.sprite = star3;
 			print ("Tank 3");
+			kissMark.SetActive(true);
 		}
 		else if (avgTnkScore == avgScrutiny) {
 			tnkStar = 2;
@@ -113,6 +116,7 @@ public class FinalJudgement : MonoBehaviour {
 
 		statsText = GameInformation.BeautyRating + "\n\n" + GameInformation.FirePowerRating + "\n\n" + GameInformation.DurabilityRating + "\n\n" + bonusPts;
 		stats.text = statsText;
+		statsHUD.SetActive (true);
 
 		SaveInformation.StarRatingInformationStore (TankButtons.selectedTank, tnkStar);
 

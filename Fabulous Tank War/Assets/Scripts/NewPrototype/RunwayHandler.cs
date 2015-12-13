@@ -19,16 +19,42 @@ public class RunwayHandler : MonoBehaviour {
     public GameObject towerObj;
 
 
-    public GameObject[] uiSwipe;   //
-	public GameObject uiFire;
-    public GameObject uiBuff;
-    public Transform mainCanvas;
+	//QUICK SWIPE
+    public GameObject[] uiSwipeL;   	//Left swipes from easy to impossible
+	public GameObject[] uiSwipeR;		//Right swipes from easy to impossible
+	private GameObject[] allSwipes;		//Adds swipes when used for center lane
+	public float timerSwipe; 			//3 seconds
+	public float swpIncr; 				//.5 seconds
+	public static float swpBonus;
+	static public bool swipeWin;		//True if last event was a win
+	static public bool swipeTie;		//True if last event was a tie
+	private int swipeMin;				//Min value for array
+	private int swipeMax;				//Max value for array
+	public int limitSwipe;				//6 Events
 
+
+	//QUICK FIRE EVENT
+	public GameObject uiFire;
+	public float timerFire; 	//3 seconds
+	public float firBonus;		//2 seconds
+	public float firIncr;		//.75 seconds
+	public int limitFire;		//5 Events
+
+
+	//QUICK BUFF
+    public GameObject uiBuff;
+	public float timerBuff; 	//3 seconds
+	public int rqrdTaps; 		//Taps needed to pass
+	public int bonusTaps;		//Bonus taps for win condition
+	public int tapsIncr; 		//Currently 3
+	public int limitBuff;		//4 Events
+
+	//CHARACTER LOCATION
     public float laneLeft;      // -3
     public float laneCenter;    // 0
     public float laneRight;     // 3
 
-    //move speed and the end position of the lane
+    //CHARACTER MOVE SPEED
     public Vector3 endPostion;
     public float moveSpeed;
 
@@ -37,23 +63,11 @@ public class RunwayHandler : MonoBehaviour {
 	public float timeMin;
 	public float timeMax;
 
-    //Timers for events
-	public float timerFire;
-	public float timerBuff;
-	public float timerSwipe;
-    public int rqrdTaps;
-	public int tapsIncr;
 
-    //the number of times one event may occur
-    public int limitFire;
-    public int limitBuff;
-    public int limitSwipe;
+    //Total event limits.
 	private int limitTotal;
 
 	//The current number of finished events
-    private int nbrFire;
-    private int nbrBuff;
-    private int nbrSwipe;
 	private int nbrTotal;
 
 	public static bool eventRunning = false;
@@ -66,18 +80,21 @@ public class RunwayHandler : MonoBehaviour {
 		StartCoroutine (BeginShow());
 		StartCoroutine (RunShow());
 
-        nbrFire = 0;
-        nbrSwipe = 0;
-        nbrBuff = 0;
-
         playerReactScript = playerObj.GetComponent<PlayerReacts>();
 
         uiBuff.GetComponent<QuickBuff>().desireTaps = rqrdTaps;
+		uiBuff.GetComponent<QuickBuff> ().bonusTaps = bonusTaps;
 
 		limitTotal = limitBuff + limitSwipe + limitFire;
 
+		swipeMin = 0;
+		swipeMax = 1;
 
+		quickTimeEvents = CallBuff;
 
+		allSwipes = new GameObject[4];
+
+		swpBonus = swpIncr;
 	}
 	
 	// Update is called once per frame
@@ -112,7 +129,7 @@ public class RunwayHandler : MonoBehaviour {
 				{ 
 					yield return new WaitForSeconds(0.1f);
 				}
-				//print ("Current Bonus Points: " + FinalJudgement.bonusPts);
+				print ("Current Bonus Points: " + FinalJudgement.bonusPts);
 	        }
 			else 
 			{
@@ -125,32 +142,49 @@ public class RunwayHandler : MonoBehaviour {
     //Switches between different quick time events
     IEnumerator QuicktimeSwitcher() {
 		int rand = Random.Range (0, 3);
-		quickTimeEvents = null;
+		//quickTimeEvents = null;
 
         if (rand == 0)
         {
-			if (nbrFire <= limitFire){
+			if (limitFire > 0 && quickTimeEvents != CallQuickFire)
+			{
 				quickTimeEvents = CallQuickFire;
             	//Debug.Log("Switched to quick draw.");
-			} else {
+			}
+			else if (limitFire > 0 && nbrTotal > 9)
+			{
+				quickTimeEvents = CallQuickFire;
+			}
+			else 
+			{
 				QuicktimeSwitcher ();
 			}
         }
         else if (rand == 1)
         {
-			if (nbrSwipe <= limitSwipe){
+			if (limitSwipe > 0)
+			{
 				quickTimeEvents = CallSwipe;
             	//Debug.Log("Switched to quick swipe.");
-			} else {
+			}
+			else 
+			{
 				QuicktimeSwitcher();
 			}
         }
         else if (rand == 2)
         {
-			if (nbrBuff <= limitBuff) {
+			if (limitBuff > 0 && quickTimeEvents != CallBuff) 
+			{
 				quickTimeEvents = CallBuff;
             	//Debug.Log("Switched to quick tap.");
-			} else {
+			}
+			else if (limitBuff > 0 && nbrTotal > 9)
+			{
+				quickTimeEvents = CallBuff;
+			}
+			else 
+			{
 				QuicktimeSwitcher ();
 			}
         }
@@ -168,42 +202,66 @@ public class RunwayHandler : MonoBehaviour {
     IEnumerator CallSwipe()
     {
         int swipeObj;
-        if (playerObj.transform.position.x >= 3)
-        {
-            swipeObj = Random.Range(0, 1);
-        }
-        else if (playerObj.transform.position.x <= -3)
-        {
-            swipeObj = Random.Range(2, 3);
-        }
-        else
-        {
-            swipeObj = Random.Range(0, 3);
-        }
 
-        //Determines which lane the player will move into based off the random pop up
-        switch (swipeObj)
+        if (playerObj.transform.position.x >= 3) 		//Player is in the right lane, call only swipe left events
         {
-            case 0:
-                playerReactScript.direction = laneLeft;
-                break;
-            case 1:
-                playerReactScript.direction = laneLeft;
-                break;
-            case 2:
-                playerReactScript.direction = laneRight;
-                break;
-            case 3:
-                playerReactScript.direction = laneRight;
-                break;
+			for (int i= 0; i < 2; i++) 
+			{
+				allSwipes[i] = uiSwipeL[swipeMin + i];
+			}
+			swipeObj = Random.Range(0, 2);
+			CalcMovement(1);
         }
+		else if (playerObj.transform.position.x <= -3) //Player is in the left lane, call only swipe right events
+        {
+			for (int i= 0; i < 2; i++) 
+			{
+				allSwipes[i] = uiSwipeR[swipeMin + i];
+			}
+			swipeObj = Random.Range(0, 2);
+			CalcMovement(2);
+        }
+		else 											//Player is in the center lane, call all swipe events
+        {
+			for (int i = 0; i <2; i++)
+			{
+				allSwipes[i] = uiSwipeL[swipeMin + i];
+				allSwipes[i+2] = uiSwipeR[swipeMin + i];
+			}
+			swipeObj = Random.Range(0, allSwipes.Length);
+			CalcMovement(swipeObj);
+        }
+		
 		GameObject clone;
 		clone = Instantiate (PrefabBullet, GameObject.Find ("Cannon").transform.position, GameObject.Find ("Cannon").transform.rotation) as GameObject;
 		clone.GetComponent<JudgeProjectiles> ().FireProjectile (playerObj.transform, timerBuff / 1.3f, ProjectileType.Missle, false);
 		SoundEffectsPlayer.PlayAudio (SoundEffects.TurretFire);
-        yield return uiSwipe[swipeObj].GetComponent<QuickSwipe>().StartCoroutine("StartQuickSwipeEvent", timerSwipe);
+        yield return allSwipes[swipeObj].GetComponent<QuickSwipe>().StartCoroutine("StartQuickSwipeEvent", timerSwipe);
 
-        nbrSwipe++;
+		//If player won last swipe event 
+		if (swipeWin) 
+		{
+			//increase the range for higher difficulty events
+			swipeMin += swipeMin < uiSwipeL.Length - 2 ? 1 : 0;
+			swipeMax += swipeMax < uiSwipeL.Length - 1 ? 1 : 0;
+
+			//decrease time window for the win condition
+			swpBonus += swpIncr;
+		}
+
+		//If pplayer lost last swipe event
+		if (!swipeWin && !swipeTie) 
+		{
+			//decrease the range for lower difficulty events
+			swipeMax -= swipeMin != 0 ? 1 : 0;
+			swipeMin -= swipeMin >= 1 ? 1 : 0;
+
+			//increase time window for the win condition
+			swpBonus -= swpBonus <.5 ? swpIncr : 0;
+		}
+
+
+        limitSwipe--;
 		nbrTotal++;
 
         //Debug.Log("executed to quick swipe");
@@ -214,19 +272,25 @@ public class RunwayHandler : MonoBehaviour {
 	//Calls the quick draw event
     IEnumerator CallQuickFire()
     {
+		yield return new WaitForSeconds (firIncr);
         yield return uiFire.GetComponent<QuickFire>().StartCoroutine("StartTimer", timerFire);
 
-		/*
-		if (quickDrawUI.GetComponent<QuickDraw> ().wonLast) 
+		//PLAYER WINS
+		if (uiFire.GetComponent<QuickFire>().wonLast) 
 		{
-			GameObject clone;
-			clone = Instantiate (PrefabBullet, playerObj.transform.position, playerObj.transform.rotation) as GameObject;
-			clone.GetComponent<JudgeProjectiles> ().FireProjectile (GameObject.Find ("Cannon").transform, quickTapsTimer, ProjectileType.Missle, true);
-			clone.transform.localScale = new Vector3(1,1,1);
+			//decreases allotted time for bonus points and pass time
+			timerFire *= firIncr;
+			firBonus *= firIncr;
 		}
-		else print ("Nope didnt win"); */
+		//PLAYER LOSES
+		else if (!uiFire.GetComponent<QuickFire>().wonLast && !!uiFire.GetComponent<QuickFire>().tie)
+		{
+			//increases allotted time for bonus points and pass time
+			timerFire /= firIncr;
+			firBonus /= firIncr;
+		}
 
-        nbrFire++;
+        limitFire--;
 		nbrTotal++;
         //Debug.Log("executed to quick draw");
         yield return null;
@@ -241,13 +305,8 @@ public class RunwayHandler : MonoBehaviour {
 		SoundEffectsPlayer.PlayAudio (SoundEffects.TurretFire);
         yield return uiBuff.GetComponent<QuickBuff>().StartCoroutine("StartTimer", timerBuff);
 
-        nbrBuff++;
+		limitBuff--;
 		nbrTotal++;
-		if (uiBuff.GetComponent<QuickBuff> ().wonLast) 
-		{
-			uiBuff.GetComponent<QuickBuff> ().desireTaps += tapsIncr;
-		}
-        //Debug.Log("executed to quick taps");
         yield return null;
     }
 
@@ -255,4 +314,26 @@ public class RunwayHandler : MonoBehaviour {
 		Application.LoadLevel (1);
 	}
 
+	public void CalcMovement (int num)
+	{
+		//Determines which lane the player will move into based off the random pop up
+		switch (num)
+		{
+		case 0:
+			playerReactScript.direction = laneLeft;
+			break;
+		case 1:
+			playerReactScript.direction = laneLeft;
+			break;
+		case 2:
+			playerReactScript.direction = laneRight;
+			break;
+		case 3:
+			playerReactScript.direction = laneRight;
+			break;
+		default:
+			playerReactScript.direction = 0;
+			break;
+		}
+	}
 }

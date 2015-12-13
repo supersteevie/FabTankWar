@@ -33,7 +33,8 @@ public class JudgeProfile : MonoBehaviour {
         npcText = gameObject.GetComponentInChildren<Text>();
         gameObject.transform.position = locOffScrn;
 
-		scrutiny = (beaBias + firBias + durBias) / 3;
+		scrutiny = beaBias + firBias + durBias;
+		scrutiny /= 3;
 	
 	}
 	

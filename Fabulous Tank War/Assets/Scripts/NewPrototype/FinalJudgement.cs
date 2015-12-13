@@ -45,6 +45,9 @@ public class FinalJudgement : MonoBehaviour {
 	//Judge npc prefabs
 	public GameObject[] judges;
 
+	private int avgBiasB;
+	private int avgBiasF;
+	private int avgBiasD;
 	private int avgScrutiny; //Average of all of the Judge's scrutiny
 	private int avgTnkScore; //Average of tank's 3 attributes + bonus points
 
@@ -53,6 +56,9 @@ public class FinalJudgement : MonoBehaviour {
 	private int durScore;
 
 	public static int bonusPts;
+	public static int beaBnsPts;
+	public static int firBnsPts;
+	public static int durBnsPts;
 
 	//Master of Ceremonies Text
 	//public Text npcText;
@@ -60,25 +66,47 @@ public class FinalJudgement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//npcText = gameObject.GetComponentInChildren<Text> ();
-		for (int i = 0; i < judges.Length; i++)
-		{
-			avgScrutiny += judges[i].GetComponent<JudgeProfile>().scrutiny;
-		}
-		avgScrutiny /= judges.Length;
+		avgScrutiny = 0;
+		JudgeScrutiny ();
+		bonusPts = 0;
+
 
 		avgTnkScore = (GameInformation.BeautyRating + GameInformation.DurabilityRating + GameInformation.FirePowerRating) / 3;
 		threeStar = 3;
 		twoStar = 2;
 		oneStar = 1;
 	
+		print ("Tank Average: " + avgTnkScore);
+		print ("Tank Beauty: " + GameInformation.BeautyRating);
+		print ("Tank Firepower: " + GameInformation.FirePowerRating);
+		print ("Tank Durability: " + GameInformation.DurabilityRating);
 	
 	}
 	
-	// Update is called once per frame
-	void Update () 
+	void JudgeScrutiny () 
 	{
-	
+		for (int i = 0; i < judges.Length; i++)
+		{
+			avgScrutiny += judges[i].GetComponent<JudgeProfile>().scrutiny;
+			print ("Judge " + i + " has: " + judges[i].GetComponent<JudgeProfile>().scrutiny + 
+			       "\n Beauty Bias: " + judges[i].GetComponent<JudgeProfile>().beaBias +
+			       "\n Firepower Bias: " + judges[i].GetComponent<JudgeProfile>().firBias + 
+			       "\n Durability Bias: " + judges[i].GetComponent<JudgeProfile>().durBias);
+			avgBiasB += judges[i].GetComponent<JudgeProfile>().beaBias;
+			avgBiasF += judges[i].GetComponent<JudgeProfile>().firBias;
+			avgBiasD += judges[i].GetComponent<JudgeProfile>().durBias;
+		}
+		print (avgScrutiny + " divided by " + judges.Length + " equals...");
+		avgScrutiny /= judges.Length;
+		print (avgScrutiny);
+		avgBiasB /= judges.Length;
+		print ("Judges' Beauty Bias: " + avgBiasB);
+		avgBiasF /= judges.Length;
+		print ("Judges' Firepower Bias: " + avgBiasF);
+		avgBiasD /= judges.Length;
+		print ("Judges' Durability Bias: " + avgBiasD);
 	}
+
 
 	IEnumerator CalculateScore () 
 	{
@@ -88,29 +116,28 @@ public class FinalJudgement : MonoBehaviour {
 
 		yield return new WaitForSeconds (2);
 
+		bonusPts = beaBnsPts + firBnsPts + durBnsPts;
 		avgTnkScore += bonusPts;
+		avgScrutiny = 53;
 		if (avgTnkScore > avgScrutiny) 
 		{
 			tnkStar = 3;
 			header.text = winHdr;
 			body.text = winMsg;
 			starsImg.sprite = star3;
-			print ("Tank 3");
 			kissMark.SetActive(true);
 		}
-		else if (avgTnkScore == avgScrutiny) {
+		else if (avgTnkScore > 49) {
 			tnkStar = 2;
 			header.text = mehHdr;
 			body.text = mehMsg;
 			starsImg.sprite = star2;
-			print ("Tank 2");
 		} else 
 		{
 			tnkStar = 1;
 			header.text = loseHdr;
 			body.text = loseMsg;
 			starsImg.sprite = star1;
-			print ("Tank 1");
 		}
 
 

@@ -7,17 +7,17 @@ public class QuickSwipe : MonoBehaviour
 {
 
     //List of positions for mouse to detect
-    public List<Transform> patternList = new List<Transform>();    
+    public List<Transform> patternList = new List<Transform>();
+
     //How close you must get to the point to detect
     public float radiusDetection;    
-    //For list of points
+    
+	//For list of points
     private Queue<Transform> currentTemp = new Queue<Transform>();
 
     public bool isRunning = false;
 	public bool wonLast = false;
     public bool tie = false;
-
-	public float bonusTime;
 
     //Script to move tank if successful
     public PlayerReacts playerReactScript;
@@ -70,32 +70,35 @@ public class QuickSwipe : MonoBehaviour
             else //if they finished the shape end the coroutines
             {
 				//if the player completes quickly
-				if (time <= timer - bonusTime)
+				if (time <= timer - RunwayHandler.swpBonus)
 				{
                     wonLast = true;
-                    FinalJudgement.bonusPts++;
-                    //Add more to time window to increase difficulty next round
-					bonusTime++;
+					FinalJudgement.beaBnsPts++;
+					print ("Win (Swipe)");
 				} else
                 {
-                    //A "tie" condition, does not increase difficulty
+                    //A "tie" condition, does not increase difficulty and/or bonus points
                     tie = true;
+					print ("Tie (Swipe)");
                 }
 				StopAllCoroutines();
 				isRunning = false;
 				GetComponent<Image> ().enabled = false;
                 playerReactScript.QuickMove();
 				RunwayHandler.eventRunning = false;
+				RunwayHandler.swipeWin = wonLast;
 
 			}
 			//yield return new WaitForSeconds(Time.deltaTime);
 			yield return null;
 		}
+		print ("Lose (Swipe)");
 		wonLast = false;
+		tie = false;
 		splatter.SetActive(true);
 		splatter.GetComponent<SplatEffectFade>().DoSplatter();
 		splatter.GetComponent<AudioSource>().Play();
-        FinalJudgement.bonusPts--;
+        FinalJudgement.beaBnsPts--;
         isRunning = false;
 		GetComponent<Image> ().enabled = false;
 		RunwayHandler.eventRunning = false;

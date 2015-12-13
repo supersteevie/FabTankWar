@@ -8,6 +8,8 @@ public class QuickFire : MonoBehaviour
 	public bool wonLast  = false;
     public bool tie = false;
 
+	private float bonus;
+
 	public GameObject turretLoc;
 	public GameObject PrefabBullet;
 	public GameObject splatter;
@@ -16,6 +18,7 @@ public class QuickFire : MonoBehaviour
 	{
 		wonLast = false;
         tie = false;
+		bonus = GameObject.Find ("GameHandler").GetComponent<RunwayHandler> ().firBonus;
 		StartCoroutine (StartEvent (timer));	
 		isRunning = true;
 		GetComponent<Image> ().enabled = true;
@@ -34,8 +37,16 @@ public class QuickFire : MonoBehaviour
 				//Player wins
 				StopAllCoroutines ();
 				isRunning = false;
-				wonLast = true;
-				FinalJudgement.bonusPts++;
+				if (time < bonus) 
+				{
+					wonLast = true;
+					FinalJudgement.firBnsPts++;
+					print ("Win (Fire)");
+				} else
+				{
+					tie = true;
+					print ("Tie (Fire)");
+				}
 				GetComponent<Image> ().enabled = false;
 				RunwayHandler.eventRunning = false;
 				FireMissle();
@@ -45,8 +56,9 @@ public class QuickFire : MonoBehaviour
 			yield return null;
 		}
 
-		if (!wonLast) {
-			FinalJudgement.bonusPts--;
+		if (!wonLast && !tie) {
+			FinalJudgement.firBnsPts--;
+			print ("Lose (Fire)");
 			splatter.SetActive(true);
 			splatter.GetComponent<SplatEffectFade> ().DoSplatter ();
 			splatter.GetComponent<AudioSource> ().Play ();

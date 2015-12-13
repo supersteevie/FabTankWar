@@ -6,6 +6,7 @@ public class QuickBuff : MonoBehaviour
 {
 	public bool isRunning;
 	public int desireTaps { set; get; }
+	public int bonusTaps { set; get;}
 	public int totalTaps = 0;
 	public bool wonLast = false;
     public bool tie = false;
@@ -46,13 +47,19 @@ public class QuickBuff : MonoBehaviour
 			}
 			yield return null;
 		}
-		if (totalTaps > desireTaps) {
+		if (totalTaps > bonusTaps) {
 			//Win
-			FinalJudgement.bonusPts++;
+			FinalJudgement.durBnsPts++;
 			wonLast = true;
+			bonusTaps = totalTaps + GameObject.Find("GameHandler").GetComponent<RunwayHandler>().tapsIncr;
+			desireTaps = totalTaps - GameObject.Find("GameHandler").GetComponent<RunwayHandler>().tapsIncr;
+			print ("Win (Buff)");
 		} else if (totalTaps < desireTaps) {
 			//Lost
-			FinalJudgement.bonusPts--;
+			bonusTaps = totalTaps + GameObject.Find("GameHandler").GetComponent<RunwayHandler>().tapsIncr;
+			desireTaps = totalTaps - GameObject.Find("GameHandler").GetComponent<RunwayHandler>().tapsIncr;
+			print ("Lose (Buff)");
+			FinalJudgement.durBnsPts--;
 			GameObject splat;
 			splatter.SetActive(true);
 			splatter.GetComponent<SplatEffectFade>().DoSplatter();
@@ -61,6 +68,7 @@ public class QuickBuff : MonoBehaviour
 		} else {
 			//Tie
 			tie = true;
+			print ("Tie (Buff)");
 		}
 		isRunning = false;
 		GetComponent<Image> ().enabled = false;

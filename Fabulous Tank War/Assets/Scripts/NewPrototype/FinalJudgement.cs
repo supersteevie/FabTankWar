@@ -118,7 +118,7 @@ public class FinalJudgement : MonoBehaviour {
 
 		bonusPts = beaBnsPts + firBnsPts + durBnsPts;
 		avgTnkScore += bonusPts;
-		avgScrutiny = 53;
+		avgScrutiny = 55;
 		if (avgTnkScore > avgScrutiny) 
 		{
 			tnkStar = 3;

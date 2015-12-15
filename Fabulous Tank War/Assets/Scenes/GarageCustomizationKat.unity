@@ -618,7 +618,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: .882352948, g: .882352948, b: .882352948, a: 1}
-  m_Intensity: 1.02999997
+  m_Intensity: .270000011
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -636,7 +636,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_BounceIntensity: .769999981
+  m_BounceIntensity: .340000004
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}

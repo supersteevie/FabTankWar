@@ -27,7 +27,7 @@ public class Stars : MonoBehaviour {
 		Star2Num = PlayerPrefs.GetInt("2" + "STARRATING", 0);
 		Star3Num = PlayerPrefs.GetInt("3" + "STARRATING", 0);
 		Star4Num = PlayerPrefs.GetInt("4" + "STARRATING", 0);
-		Star4Num = PlayerPrefs.GetInt("5" + "STARRATING", 0);
+		Star5Num = PlayerPrefs.GetInt("5" + "STARRATING", 0);
 
 		// gather starreatings
 		if (PlayerPrefs.GetString ("1" + "PLAYERNAME", " ") == " ") {

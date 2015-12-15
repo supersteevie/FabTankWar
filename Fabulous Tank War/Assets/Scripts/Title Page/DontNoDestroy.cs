@@ -14,15 +14,15 @@ public class DontNoDestroy : MonoBehaviour {
 
 	void Update()
 	{
-		if (Application.loadedLevel == 0) 
+		if (Application.loadedLevel == 2) 
 		{
 			GetComponent<AudioSource>().clip = GarageMusic;
 		}
-		else if (Application.loadedLevel == 1 || Application.loadedLevel == 4) 
+		else if (Application.loadedLevel == 0 || Application.loadedLevel == 1) 
 		{
 			GetComponent<AudioSource>().clip = titleMusic;
 		}
-		else if (Application.loadedLevel == 2) 
+		else if (Application.loadedLevel == 3) 
 		{
 			GetComponent<AudioSource>().clip = RunwayMusic;
 		}
